@@ -15,6 +15,15 @@
 
 @implementation JBQADetailViewController
 
+-(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker {
+    qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
+    qTitle.text = title;
+}
+
+-(void)setAvatarFromURL:(NSURL*)url {
+    avatarView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+}
+
 -(void)setQuestionContent:(NSString *)content {
     
     NSString *cssString = @"<style type='text/css'>img {width: 300px; height: auto;}</style>";

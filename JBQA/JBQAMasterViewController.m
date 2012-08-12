@@ -10,7 +10,7 @@
 
 #import "JBQADetailViewController.h"
 
-#define RSS_Feed @"http://www.jailbreakqa.com/feeds/rss"
+#define RSS_Feed @"http://jailbreakqa.com/feeds/rss"
 
 @interface JBQAMasterViewController () {
     NSMutableArray *_objects;
@@ -126,10 +126,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    /*
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    */
+    
+
+    
+    UIBarButtonItem* loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
+    
+    self.navigationItem.rightBarButtonItem = loginBtn;
+    
 }
 
 - (void)viewDidUnload
@@ -154,6 +157,8 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+#pragma - Whatever.
+
 - (void)insertNewObject:(NSString*)meh
 {
     if (!_objects) {
@@ -162,6 +167,25 @@
     [_objects insertObject:meh atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)displayLogin {
+    
+    
+    loginAlert = [[UIAlertView alloc]
+                   initWithTitle:@"JailbreakQA Login"
+                   message:@"Enter your username and password"
+                   delegate:self
+                   cancelButtonTitle:@"Cancel"
+                   otherButtonTitles:@"Login", nil];
+	
+    loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+	
+    usernameField = [loginAlert textFieldAtIndex:0];
+    passwordField = [loginAlert textFieldAtIndex:1];
+    
+    [loginAlert show];
+    
 }
 
 #pragma mark - Table View
@@ -255,11 +279,18 @@
     }
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
+    
     NSString* currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
+    NSString* title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
+    NSString* asker = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
     
-    
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]]]];
+    NSString *img = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"];
+    NSURL* imageURL = [NSURL URLWithString:img];
+    [self.detailViewController setQuestionTitle:title asker:asker];
+    [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
-    self.detailViewController.title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
+    self.detailViewController.title = @"Details";
 }
  
 

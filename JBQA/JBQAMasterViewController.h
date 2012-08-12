@@ -10,11 +10,13 @@
 
 @class JBQADetailViewController;
 
-@interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate> {
+@interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     UIActivityIndicatorView * activityIndicator;
 	CGSize cellSize;
 	NSXMLParser * rssParser;
 	NSMutableArray * stories;
+ 
+    IBOutlet UIWebView* webView;
     
 	// a temporary item; added to the "stories" array one at a time, and cleared for the next one
 	NSMutableDictionary * item;
@@ -24,6 +26,9 @@
 	// we use these to track each current item, until it's ready to be added to the "stories" array
 	NSString * currentElement;
 	NSMutableString * currentTitle, * currentDate, * currentSummary, * currentLink, * currentAuthor;
+    
+    UITextField* passwordField, *usernameField;
+    UIAlertView* loginAlert;
 }
 
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
