@@ -4,7 +4,8 @@
 //
 //  Created by Guillermo Moran on 8/11/12.
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
-// ?type=rss&comments=yes
+
+// This is important, i swear... -> ?type=rss&comments=yes
 
 #import "JBQAMasterViewController.h"
 
