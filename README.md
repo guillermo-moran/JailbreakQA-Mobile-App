@@ -4,7 +4,7 @@ This is a very early (attempt) of making JailbreakQA mobile and easier to read/r
 
 While this may not be very useful to your average jailbreaker, it might come in handy for us (The volunteers at JailbreakQA). That being said, this app may or may not be submitted to a Cydia repository. 
 
-
+Why I did this? The subject kept coming up. I figured maybe this would be a neat idea. 
 
 ##Contribution
 
@@ -27,6 +27,8 @@ There's a lot of work to be done! Here is the things I have in mind:
 - Properly format questions in a neat, clean UI
 - Load unanswered/newest/most voted questions
 - Load more questions in the list (currently loads first 30)
+
+P.S: This project uses ARC.
 
 ##License 
 
