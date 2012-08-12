@@ -4,8 +4,7 @@
 //
 //  Created by Guillermo Moran on 8/11/12.
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
-
-// This is important, i swear... -> ?type=rss&comments=yes
+// ?type=rss&comments=yes
 
 #import "JBQAMasterViewController.h"
 
@@ -117,7 +116,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"JailbreakQA";
+        self.title = @"JBQA";
     }
     return self;
 }
@@ -143,8 +142,7 @@
 	[super viewDidAppear:animated];
     
 	if ([stories count] == 0) {
-		NSString * path = RSS_Feed;
-		[self parseXMLFileAtURL:path];
+		[self parseXMLFileAtURL:RSS_Feed];
 	}
     
 	cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
@@ -258,8 +256,7 @@
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
     NSString* currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
-    currentQuestion = [currentQuestion stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-    currentQuestion = [currentQuestion stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    
     
     [self.detailViewController setQuestionContent:currentQuestion];
     self.detailViewController.title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];

@@ -10,7 +10,7 @@
 
 @interface JBQADetailViewController : UIViewController <UISplitViewControllerDelegate> {
     
-    IBOutlet UITextView* questionView;
+    IBOutlet UIWebView* questionView;
     
 }
 

@@ -16,7 +16,11 @@
 @implementation JBQADetailViewController
 
 -(void)setQuestionContent:(NSString *)content {
-    questionView.text = content;
+    
+    NSString *cssString = @"<style type='text/css'>img {width: 300px; height: auto;}</style>";
+    NSString *htmlString = [NSString stringWithFormat:@"%@%@",cssString,content];
+    
+    [questionView loadHTMLString:htmlString baseURL:nil];
 }
 
 #pragma mark - Managing the detail item
