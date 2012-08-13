@@ -10,6 +10,8 @@
 
 #import "JBQADetailViewController.h"
 
+#import "ASIFormDataRequest.h"
+
 #define RSS_Feed @"http://jailbreakqa.com/feeds/rss"
 
 @interface JBQAMasterViewController () {
@@ -188,6 +190,48 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == loginAlert) {
+        if (buttonIndex == 1) {
+            [self login];
+            NSLog(@"User attempting to log in...");
+        }
+    }
+}
+
+-(void)login {
+    NSURL *url = [NSURL URLWithString:@"http://www.jailbreakqa.com/account/signin/"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request addPostValue:usernameField.text forKey:@"username"];
+    [request addPostValue:passwordField.text forKey:@"password"];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+    //Add finish or failed selector
+    [request setDidFinishSelector:@selector(requestLoginFinished:)];
+    [request setDidFailSelector:@selector(requestLoginFailed:)];
+    
+    
+    
+}
+
+- (void)requestLoginFinished:(ASIHTTPRequest *)request {
+    
+    NSLog(@"%d,%@", request.responseStatusCode, [request responseString]);
+}
+
+
+
+- (void)requestLoginFailed:(ASIHTTPRequest *)request {
+    //some error was there processing request
+    //Check error
+    NSError *error = [request error];
+    NSLog(@"Failed ---> %@",[error localizedDescription]);
+}
+
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -268,21 +312,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDate *object = [_objects objectAtIndex:indexPath.row];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-	    if (!self.detailViewController) {
-	        self.detailViewController = [[JBQADetailViewController alloc] initWithNibName:@"JBQADetailViewController_iPhone" bundle:nil];
-	    }
-	    self.detailViewController.detailItem = object;
-        [self.navigationController pushViewController:self.detailViewController animated:YES];
-    } else {
-        self.detailViewController.detailItem = object;
-    }
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
     
     NSString* currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
     NSString* title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
     NSString* asker = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+	    
+        if (!self.detailViewController) {
+            
+	        self.detailViewController = [[JBQADetailViewController alloc] initWithNibName:@"JBQADetailViewController_iPhone" bundle:nil];
+	    }
+        
+	    self.detailViewController.detailItem = object;
+        [self.navigationController pushViewController:self.detailViewController animated:YES];
+        
+    }
+    else {
+        self.detailViewController.detailItem = object;
+    }
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]]]];
     NSString *img = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"];
