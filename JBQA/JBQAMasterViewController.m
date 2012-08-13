@@ -12,7 +12,11 @@
 
 #import "ASIFormDataRequest.h"
 
-#define RSS_Feed @"http://jailbreakqa.com/feeds/rss"
+//Le important URLs
+#define SERVICE_URL @"http://jailbreakqa.com"
+#define RSS_FEED [NSString stringWithFormat:@"%@/feeds/rss",SERVICE_URL]
+#define ANSWER_FEED [NSString stringWithFormat:@"%@/?type=rss&comments=yes",SERVICE_URL]
+#define SIGNIN_URL [NSString stringWithFormat:@"%@/account/signin/",SERVICE_URL]
 
 @interface JBQAMasterViewController () {
     NSMutableArray *_objects;
@@ -147,7 +151,7 @@
 	[super viewDidAppear:animated];
     
 	if ([stories count] == 0) {
-		[self parseXMLFileAtURL:RSS_Feed];
+		[self parseXMLFileAtURL:RSS_FEED];
 	}
     
 	cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
@@ -200,7 +204,17 @@
 }
 
 -(void)login {
-    NSURL *url = [NSURL URLWithString:@"http://www.jailbreakqa.com/account/signin/"];
+    
+    /*
+     Yes. I will remove ASIHTTPRequest later.
+     Don't bug me about it.
+     
+     Don't like it? Fix it yourself. :)
+    */
+    
+    NSLog(@"DHowett is going to strangle me.");
+    
+    NSURL *url = [NSURL URLWithString:SIGNIN_URL];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
     [request setRequestMethod:@"POST"];
@@ -220,6 +234,7 @@
 - (void)requestLoginFinished:(ASIHTTPRequest *)request {
     
     NSLog(@"%d,%@", request.responseStatusCode, [request responseString]);
+    
 }
 
 
