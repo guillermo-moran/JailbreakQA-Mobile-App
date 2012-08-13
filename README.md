@@ -14,7 +14,13 @@ So.. Please feel free to contribute to this app by forking it & submitting pull 
 
 ##How it works
 
-How this works is almost too simple. JBQA (which runs on OSQA) has an RSS Feed (thekirbylover pointed that out). The XML is simply parsed and corresponding data is added to an array, which is in turn displayed on a table.
+How this works is almost too simple. JBQA (which runs on OSQA) has an RSS Feed (@kirbylover4000 pointed that out). The XML is simply parsed and corresponding data is added to an array, which is in turn displayed on a table.
+
+
+##Compile Instructions
+Link it with MobileCoreServices, SystemConfiguration, and CFNetwork frameworks; also link with libz.dylib. Add the ASIHTTPRequest folder into the project, and then add all implementation (.m) files to the compile sources build phase with the compiler flag <b> "-fno-objc-arc" </b>
+Do all this, and you <i>should</i> be able to compile just fine. (Just ignore the incomplete implementation warning for ASIHTTPRequest).
+
 
 ##To-Do List
 
