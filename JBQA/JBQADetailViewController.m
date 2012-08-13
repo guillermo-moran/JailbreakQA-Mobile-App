@@ -36,8 +36,8 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if (self.detailItem != newDetailItem) {
+        self.detailItem = newDetailItem;
 
         // Update the view.
         [self configureView];

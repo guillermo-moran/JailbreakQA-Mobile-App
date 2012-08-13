@@ -31,6 +31,8 @@
     UIAlertView* loginAlert;
 }
 
+-(void)login;
+
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
 
 @end
