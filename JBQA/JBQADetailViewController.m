@@ -8,6 +8,7 @@
 
 #import "JBQADetailViewController.h"
 
+
 @interface JBQADetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
