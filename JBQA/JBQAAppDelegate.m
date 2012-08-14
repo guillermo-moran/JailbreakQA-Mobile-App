@@ -13,7 +13,7 @@
 #import "JBQADetailViewController.h"
 
 @implementation JBQAAppDelegate
-
+@synthesize window,navigationController,splitViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

@@ -24,6 +24,7 @@
 @end
 
 @implementation JBQAMasterViewController
+@synthesize detailViewController;
 
 - (void)parseXMLFileAtURL:(NSString *)URL {
 	stories = [[NSMutableArray alloc] init];
