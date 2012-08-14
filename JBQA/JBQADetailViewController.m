@@ -14,6 +14,7 @@
 @end
 
 @implementation JBQADetailViewController
+@synthesize masterPopoverController,detailItem,detailDescriptionLabel;
 
 -(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker {
     qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
