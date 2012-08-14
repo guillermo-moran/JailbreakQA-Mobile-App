@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48070B8315D8E1E80087D034 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48070B8215D8E1E80087D034 /* CFNetwork.framework */; };
-		48070B8615D8E1EC0087D034 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48070B8515D8E1EC0087D034 /* CoreFoundation.framework */; };
-		48070B8815D8E2030087D034 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48070B8715D8E2030087D034 /* MobileCoreServices.framework */; };
-		48070B8A15D8E2090087D034 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48070B8915D8E2090087D034 /* SystemConfiguration.framework */; };
-		48070B8C15D8E2110087D034 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 48070B8B15D8E2110087D034 /* libz.dylib */; };
-		48070B8E15D8E2180087D034 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 48070B8D15D8E2180087D034 /* libz.1.2.5.dylib */; };
-		48070B9015D8E2280087D034 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 48070B8F15D8E2280087D034 /* libxml2.dylib */; };
 		48070BA915D8E2800087D034 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 48070B9315D8E2800087D034 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		48070BAA15D8E2800087D034 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 48070B9615D8E2800087D034 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		48070BAB15D8E2800087D034 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 48070B9815D8E2800087D034 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -35,16 +28,15 @@
 		FD5ECF5715D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */; };
 		FD5ECF5A15D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */; };
 		FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */; };
+		FDAB15AC15D99D91001B8FA5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */; };
+		FDAB15AE15D99D98001B8FA5 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */; };
+		FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */; };
+		FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */; };
+		FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		48070B8215D8E1E80087D034 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		48070B8715D8E2030087D034 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		48070B8915D8E2090087D034 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		48070B8B15D8E2110087D034 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		48070B8D15D8E2180087D034 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		48070B8F15D8E2280087D034 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		48070B9215D8E2800087D034 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		48070B9315D8E2800087D034 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		48070B9415D8E2800087D034 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -85,6 +77,11 @@
 		FD5ECF5615D6ABCB0061E472 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JBQAMasterViewController_iPad.xib; sourceTree = "<group>"; };
 		FD5ECF5915D6ABCB0061E472 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JBQADetailViewController_iPhone.xib; sourceTree = "<group>"; };
 		FD5ECF5C15D6ABCB0061E472 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JBQADetailViewController_iPad.xib; sourceTree = "<group>"; };
+		FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
+		FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,13 +89,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48070B9015D8E2280087D034 /* libxml2.dylib in Frameworks */,
-				48070B8E15D8E2180087D034 /* libz.1.2.5.dylib in Frameworks */,
-				48070B8C15D8E2110087D034 /* libz.dylib in Frameworks */,
-				48070B8A15D8E2090087D034 /* SystemConfiguration.framework in Frameworks */,
-				48070B8815D8E2030087D034 /* MobileCoreServices.framework in Frameworks */,
-				48070B8615D8E1EC0087D034 /* CoreFoundation.framework in Frameworks */,
-				48070B8315D8E1E80087D034 /* CFNetwork.framework in Frameworks */,
+				FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */,
+				FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */,
+				FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */,
+				FDAB15AE15D99D98001B8FA5 /* libxml2.2.7.3.dylib in Frameworks */,
+				FDAB15AC15D99D91001B8FA5 /* libz.1.2.5.dylib in Frameworks */,
 				FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */,
 				FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */,
 				FD5ECF3F15D6ABCB0061E472 /* CoreGraphics.framework in Frameworks */,
@@ -149,13 +144,6 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
-				48070B8F15D8E2280087D034 /* libxml2.dylib */,
-				48070B8D15D8E2180087D034 /* libz.1.2.5.dylib */,
-				48070B8B15D8E2110087D034 /* libz.dylib */,
-				48070B8915D8E2090087D034 /* SystemConfiguration.framework */,
-				48070B8715D8E2030087D034 /* MobileCoreServices.framework */,
-				48070B8515D8E1EC0087D034 /* CoreFoundation.framework */,
-				48070B8215D8E1E80087D034 /* CFNetwork.framework */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				FD5ECF3915D6ABCB0061E472 /* Frameworks */,
 				FD5ECF3715D6ABCB0061E472 /* Products */,
@@ -173,6 +161,12 @@
 		FD5ECF3915D6ABCB0061E472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
+				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
+				FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */,
+				FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */,
+				FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */,
+				48070B8515D8E1EC0087D034 /* CoreFoundation.framework */,
 				FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */,
 				FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */,
 				FD5ECF3E15D6ABCB0061E472 /* CoreGraphics.framework */,
@@ -381,7 +375,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -405,7 +399,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -418,6 +412,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBQA/JBQA-Prefix.pch";
 				INFOPLIST_FILE = "JBQA/JBQA-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -430,6 +425,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBQA/JBQA-Prefix.pch";
 				INFOPLIST_FILE = "JBQA/JBQA-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

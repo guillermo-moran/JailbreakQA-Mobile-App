@@ -8,12 +8,14 @@
 
 #import "JBQADetailViewController.h"
 
+
 @interface JBQADetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
 @end
 
 @implementation JBQADetailViewController
+@synthesize masterPopoverController,detailItem,detailDescriptionLabel;
 
 -(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker {
     qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
@@ -36,8 +38,8 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if (self.detailItem != newDetailItem) {
+        self.detailItem = newDetailItem;
 
         // Update the view.
         [self configureView];
@@ -93,7 +95,7 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
+    barButtonItem.title = @"JBQA";
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
