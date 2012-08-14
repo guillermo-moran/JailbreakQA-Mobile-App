@@ -15,7 +15,8 @@
 //Le important URLs
 #define SERVICE_URL @"http://jailbreakqa.com"
 #define RSS_FEED [NSString stringWithFormat:@"%@/feeds/rss",SERVICE_URL]
-#define ANSWER_FEED [NSString stringWithFormat:@"%@/?type=rss&comments=yes",SERVICE_URL]
+#define COMMENTS_FEED [NSString stringWithFormat:@"%@/?type=rss&comments=yes",SERVICE_URL]
+#define ANSWERS_FEED [NSString stringWithFormat:@"%@/?type=rss",SERVICE_URL]
 #define SIGNIN_URL [NSString stringWithFormat:@"%@/account/signin/",SERVICE_URL]
 
 @interface JBQAMasterViewController () {
@@ -172,7 +173,7 @@
     }
     [_objects insertObject:meh atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)displayLogin {
@@ -350,7 +351,9 @@
     }
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]]]];
+    
     NSString *img = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"];
+    
     NSURL* imageURL = [NSURL URLWithString:img];
     [self.detailViewController setQuestionTitle:title asker:asker];
     [self.detailViewController setAvatarFromURL:imageURL];
