@@ -29,9 +29,18 @@
 
 @implementation JBQAMasterViewController
 
+#pragma maker Loading - 
+
+- (void)hideHUD:(id)HUD {
+    [HUD show:NO];
+    //[HUD release]; for reference purposes. :P
+}
+
+
 #pragma mark Parser -
 - (void)parseXMLFileAtURL:(NSString *)URL {
     NSLog(@"Beginning parse");
+    
     stories = [[NSMutableArray alloc] init];
     
 	//you must then convert the path to a proper NSURL or it won't work
@@ -70,7 +79,7 @@
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [errorAlert show];
     }
-
+    [self hideHUD:refreshSpinner];
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
@@ -125,6 +134,8 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"stories array has %d items", [stories count]);
 	[self.tableView reloadData];
+    [self hideHUD:refreshSpinner];
+    [refreshSpinner done];
 }
 
 #pragma mark View Stuff -
@@ -141,6 +152,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self refreshData]; //Please do this when we open the app?
+    
 	// Do any additional setup after loading the view, typically from a nib.
     UIBarButtonItem *loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
     self.navigationItem.rightBarButtonItem = loginBtn;
@@ -254,7 +268,7 @@
     [loginAlert setTag:2];
     [loginAlert show];
     }
-    else if (!self.isInternetActive)
+    else {
       loginAlert = [[UIAlertView alloc]
                       initWithTitle:@"Connection Error"
                       message:@"Please check your internet connection, and try again"
@@ -264,6 +278,7 @@
       [loginAlert setTag:3];
       [loginAlert show];
     }
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 2) {
@@ -303,6 +318,10 @@
 }
 
 - (void)refreshData {
+    refreshSpinner = [[UIProgressHUD alloc] initWithWindow:self.view];
+    [refreshSpinner setText:@"Refreshing Content..."];
+    [refreshSpinner show:YES];
+    
     dispatch_async(backgroundQueue, ^(void) {
         [self parseXMLFileAtURL:RSS_FEED];
     });

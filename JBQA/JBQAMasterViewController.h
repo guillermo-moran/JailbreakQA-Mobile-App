@@ -32,7 +32,7 @@
     
     UITextField *passwordField, *usernameField;
     UIAlertView *loginAlert;
-    UIActivityIndicatorView *refreshSpinner; //someone please implement this :3
+    id refreshSpinner; //someone please implement this :3 -- k.
     //Reachabilty <3
     Reachability *internetReachable; //check if internet connection is available
     Reachability *hostReachable; //JBQA check
@@ -47,4 +47,13 @@
 @property (nonatomic, getter = isInternetActive) BOOL internetActive;
 @property (nonatomic, getter = isHostReachable) BOOL hostReachable;
 
+@end
+
+//Le requested loading views
+
+@interface UIProgressHUD : NSObject
+- (UIProgressHUD *) initWithWindow: (UIView*)aWindow;
+- (void) show: (BOOL)aShow;
+- (void) setText: (NSString*)aText;
+- (void) done;
 @end
