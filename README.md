@@ -1,6 +1,6 @@
 ##JailbreakQA [un]official mobile application
 
-This is a very early (attempt) of making JailbreakQA mobile and easier to read/reply/ask without dealing with JailbreakQA's desktop site on MobileSafari.
+This is a very early attempt of making JailbreakQA mobile and easier to read/reply/ask without dealing with JailbreakQA's desktop site on MobileSafari.
 
 While this may not be very useful to your average jailbreaker, it might come in handy for us (The volunteers at JailbreakQA). That being said, this app may or may not be submitted to a Cydia repository. 
 
