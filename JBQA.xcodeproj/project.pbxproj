@@ -16,6 +16,8 @@
 		48070BAF15D8E2800087D034 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 48070BA215D8E2800087D034 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		48070BB015D8E2800087D034 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 48070BA415D8E2800087D034 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		48070BB115D8E2800087D034 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 48070BA815D8E2800087D034 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		484AA78515DFACAA00E814A4 /* JBQAMobileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */; };
+		484AA78715DFAE6E00E814A4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 484AA78615DFAE6E00E814A4 /* Default@2x.png */; };
 		FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */; };
 		FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */; };
 		FD5ECF3F15D6ABCB0061E472 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3E15D6ABCB0061E472 /* CoreGraphics.framework */; };
@@ -59,6 +61,8 @@
 		48070BA515D8E2800087D034 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		48070BA715D8E2800087D034 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		48070BA815D8E2800087D034 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JBQAMobileIcon.png; sourceTree = "<group>"; };
+		484AA78615DFAE6E00E814A4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		FD5ECF3615D6ABCB0061E472 /* JBQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +148,8 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
+				484AA78615DFAE6E00E814A4 /* Default@2x.png */,
+				484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				FD5ECF3915D6ABCB0061E472 /* Frameworks */,
 				FD5ECF3715D6ABCB0061E472 /* Products */,
@@ -262,6 +268,8 @@
 				FD5ECF5715D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib in Resources */,
 				FD5ECF5A15D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib in Resources */,
 				FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */,
+				484AA78515DFACAA00E814A4 /* JBQAMobileIcon.png in Resources */,
+				484AA78715DFAE6E00E814A4 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,8 +365,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -387,8 +395,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;

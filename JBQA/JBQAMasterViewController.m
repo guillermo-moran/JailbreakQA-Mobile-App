@@ -12,6 +12,8 @@
 
 #import "ASIFormDataRequest.h"
 
+#import "Reachability.h"
+
 //Le important URLs
 #define SERVICE_URL @"http://jailbreakqa.com"
 #define RSS_FEED [NSString stringWithFormat:@"%@/feeds/rss",SERVICE_URL]
@@ -19,16 +21,18 @@
 #define ANSWERS_FEED [NSString stringWithFormat:@"%@/?type=rss",SERVICE_URL]
 #define SIGNIN_URL [NSString stringWithFormat:@"%@/account/signin/",SERVICE_URL]
 
+
 @interface JBQAMasterViewController () {
     NSMutableArray *_objects;
 }
 @end
 
 @implementation JBQAMasterViewController
-@synthesize detailViewController;
 
+#pragma mark Parser -
 - (void)parseXMLFileAtURL:(NSString *)URL {
-	stories = [[NSMutableArray alloc] init];
+    NSLog(@"Beginning parse");
+    stories = [[NSMutableArray alloc] init];
     
 	//you must then convert the path to a proper NSURL or it won't work
 	NSURL *xmlURL = [NSURL URLWithString:URL];
@@ -44,8 +48,9 @@
 	[rssParser setShouldProcessNamespaces:NO];
 	[rssParser setShouldReportNamespacePrefixes:NO];
 	[rssParser setShouldResolveExternalEntities:NO];
-    
-	[rssParser parse];
+    dispatch_async(backgroundQueue, ^(void) {
+        [rssParser parse];
+    });
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
@@ -53,15 +58,24 @@
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-	NSString * errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
-	NSLog(@"error parsing XML: %@", errorString);
-    
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[errorAlert show];
+    if (self.isInternetActive && self.isHostReachable)
+    {
+        NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
+        NSLog(@"JBQA: error parsing XML: %@", errorString);
+        UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+    }
+    else {
+        NSLog(@"Parse Failed: Either the device doesn't have a network connection, or JBQA is down");
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [errorAlert show];
+    }
+
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
-	//NSLog(@"found this element: %@", elementName);
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+    
+    //NSLog(@"found this element: %@", elementName);
 	currentElement = [elementName copy];
     
 	if ([elementName isEqualToString:@"item"]) {
@@ -87,13 +101,11 @@
         [item setObject:currentAuthor forKey:@"author"];
         
 		[stories addObject:[item copy]];
-		NSLog(@"adding story: %@", currentTitle);
-        NSLog(@"Found summary: %@",currentSummary);
-        NSLog(@"Found Author: %@", currentAuthor);
 	}
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
 	//NSLog(@"found characters: %@", string);
 	// save the characters for the current item...
 	if ([currentElement isEqualToString:@"title"]) {
@@ -111,21 +123,18 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    
-	[activityIndicator stopAnimating];
-	[activityIndicator removeFromSuperview];
-    
-	NSLog(@"all done!");
-	NSLog(@"stories array has %d items", [stories count]);
+    NSLog(@"stories array has %d items", [stories count]);
 	[self.tableView reloadData];
 }
 
+#pragma mark View Stuff -
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"JBQA";
     }
+    backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     return self;
 }
 
@@ -133,40 +142,91 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    
-
-    
-    UIBarButtonItem* loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
-    
+    UIBarButtonItem *loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
     self.navigationItem.rightBarButtonItem = loginBtn;
+        
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    [internetReachable startNotifier];
     
+    //Check if JailbreakQA is alive :P
+    hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
+    [hostReachable startNotifier];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-    
+	[super viewDidAppear:animated];    
 	if ([stories count] == 0) {
-		[self parseXMLFileAtURL:RSS_FEED];
+        if (self.isInternetActive) {
+        dispatch_async(backgroundQueue, ^(void) {
+            [self parseXMLFileAtURL:RSS_FEED];
+        });
+        }
+    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
+        self.navigationItem.leftBarButtonItem = refreshBtn;
+            
 	}
-    
-	cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
+    cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-#pragma - Whatever.
+#pragma mark Network Status Check -
+-(void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    {
+        case NotReachable:
+        {
+            self.internetActive = NO;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            self.internetActive = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            self.internetActive = YES;
+            break;
+        }
+    }
+    
+    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
+    switch (hostStatus)
+    {
+        case NotReachable:
+        {
+            self.hostReachable = NO;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            self.hostReachable = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            
+            self.hostReachable = YES;
+            break;
+        }
+    }
+}
 
+
+#pragma mark Login and Refresh Methods -
 - (void)insertNewObject:(NSString*)meh
 {
     if (!_objects) {
@@ -179,7 +239,7 @@
 
 -(void)displayLogin {
     
-    
+    if (self.isInternetActive) {
     loginAlert = [[UIAlertView alloc]
                    initWithTitle:@"JailbreakQA Login"
                    message:@"Enter your username and password"
@@ -191,66 +251,64 @@
 	
     usernameField = [loginAlert textFieldAtIndex:0];
     passwordField = [loginAlert textFieldAtIndex:1];
-    
+    [loginAlert setTag:2];
     [loginAlert show];
-    
-}
+    }
+    else if (!self.isInternetActive)
+      loginAlert = [[UIAlertView alloc]
+                      initWithTitle:@"Connection Error"
+                      message:@"Please check your internet connection, and try again"
+                      delegate:self
+                      cancelButtonTitle:@"Dismiss"
+                      otherButtonTitles:@"Try again", nil];
+      [loginAlert setTag:3];
+      [loginAlert show];
+    }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView == loginAlert) {
+    if (alertView.tag == 2) {
         if (buttonIndex == 1) {
             [self login];
             NSLog(@"User attempting to log in...");
         }
     }
+    if (alertView.tag == 3) {
+        if (buttonIndex == 2)
+        [self displayLogin];
+    }
 }
 
 -(void)login {
-    
-    /*
-     Yes. I will remove ASIHTTPRequest later.
-     Don't bug me about it.
-     
-     Don't like it? Fix it yourself. :)
-    */
-    
-    NSLog(@"DHowett is going to strangle me.");
-    
     NSURL *url = [NSURL URLWithString:SIGNIN_URL];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    
     [request setRequestMethod:@"POST"];
     [request addPostValue:usernameField.text forKey:@"username"];
     [request addPostValue:passwordField.text forKey:@"password"];
     [request setDelegate:self];
     [request startAsynchronous];
-    
     //Add finish or failed selector
     [request setDidFinishSelector:@selector(requestLoginFinished:)];
     [request setDidFailSelector:@selector(requestLoginFailed:)];
-    
-    
-    
 }
 
 - (void)requestLoginFinished:(ASIHTTPRequest *)request {
-    
-    NSLog(@"%d,%@", request.responseStatusCode, [request responseString]);
-    
+    NSLog(@"Login Response Code is %d,%@", request.responseStatusCode, [request responseString]);
 }
-
-
 
 - (void)requestLoginFailed:(ASIHTTPRequest *)request {
     //some error was there processing request
     //Check error
     NSError *error = [request error];
-    NSLog(@"Failed ---> %@",[error localizedDescription]);
+    NSLog(@"Login Failed ---> %@",[error localizedDescription]);
 }
 
+- (void)refreshData {
+    dispatch_async(backgroundQueue, ^(void) {
+        [self parseXMLFileAtURL:RSS_FEED];
+    });
+}
 
-#pragma mark - Table View
-
+#pragma mark Table -
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -287,10 +345,10 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return NO;
+    return NO
+
+;
 }
-
-
 
 /*
  // Override to support rearranging the table view.
@@ -323,8 +381,8 @@
 	// open in Safari
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:storyLink]];
 }
-*/
 
+*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -360,7 +418,7 @@
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
     self.detailViewController.title = @"Details";
+
 }
  
-
 @end
