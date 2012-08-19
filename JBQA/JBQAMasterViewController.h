@@ -13,27 +13,32 @@
 
 @interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     
+    //Login Stuff
+    NSMutableData* returnData;
+    
+    //Whatever
+    
 	CGSize cellSize;
 	NSXMLParser *rssParser;
 	NSMutableArray *stories;
+    
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
     
-    IBOutlet UIWebView *webView;
+    IBOutlet UIWebView *webView; //I forget why.
     
-	// a temporary item; added to the "stories" array one at a time, and cleared for the next one
 	NSMutableDictionary *item;
     
-	// it parses through the document, from top to bottom...
-	// we collect and cache each sub-element value, and then save each item to our array.
-	// we use these to track each current item, until it's ready to be added to the "stories" array
 	NSString *currentElement;
 	NSMutableString *currentTitle, *currentDate, *currentSummary, *currentLink, *currentAuthor;
     
     UITextField *passwordField, *usernameField;
     UIAlertView *loginAlert;
+    
     id refreshSpinner; //someone please implement this :3 -- k.
+    
     //Reachabilty <3
+    
     Reachability *internetReachable; //check if internet connection is available
     Reachability *hostReachable; //JBQA check
 }

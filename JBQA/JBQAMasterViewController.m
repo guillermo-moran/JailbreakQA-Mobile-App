@@ -10,8 +10,6 @@
 
 #import "JBQADetailViewController.h"
 
-#import "ASIFormDataRequest.h"
-
 #import "Reachability.h"
 
 //Le important URLs
@@ -293,33 +291,66 @@
     }
 }
 
--(void)login {
-    NSURL *url = [NSURL URLWithString:SIGNIN_URL];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setRequestMethod:@"POST"];
-    [request addPostValue:usernameField.text forKey:@"username"];
-    [request addPostValue:passwordField.text forKey:@"password"];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    //Add finish or failed selector
-    [request setDidFinishSelector:@selector(requestLoginFinished:)];
-    [request setDidFailSelector:@selector(requestLoginFailed:)];
+- (void)login {
+    
+    NSLog(@"No more ASIHTTP! Maybe DHowett won't kill me anymore :D");
+
+    NSString* loginURL = SIGNIN_URL;
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                    initWithURL:[NSURL URLWithString:loginURL]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    NSData *requestBody = [[NSString stringWithFormat:@"username=%@&password=%@", usernameField.text, passwordField.text] dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:requestBody];
+    
+    
+    
+    NSURLConnection *gConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [gConnect start];
+    
+    
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    returnData = [[NSMutableData alloc] init];
+    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    int responseCode = [httpResponse statusCode];
+    NSLog(@"Recieved response code: %i",responseCode);
+    if (responseCode == 200) {
+        NSLog(@"Recieved response 200, request was successful");
+    }
+    else {
+        NSLog(@"Did not recieve response 200, request was unsuccessful");
+    }
 }
 
-- (void)requestLoginFinished:(ASIHTTPRequest *)request {
-    NSLog(@"Login Response Code is %d,%@", request.responseStatusCode, [request responseString]);
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [returnData appendData:data];
+}
+- (void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error {
+    NSLog(@"Request failed");
 }
 
-- (void)requestLoginFailed:(ASIHTTPRequest *)request {
-    //some error was there processing request
-    //Check error
-    NSError *error = [request error];
-    NSLog(@"Login Failed ---> %@",[error localizedDescription]);
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    // Return the server's response string (A bunch of HTML)
+    // Uncomment this bit for testing purposes, else makes the log messy and retarded. 
+    
+    /*
+    NSString* returnStr = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"%@",returnStr);
+     */
+    
+    
+    //[returnData release];
 }
+
 
 - (void)refreshData {
     refreshSpinner = [[UIProgressHUD alloc] initWithWindow:self.view];
-    [refreshSpinner setText:@"Refreshing Content..."];
+    [refreshSpinner setText:@"Refreshing Content"];
     [refreshSpinner show:YES];
     
     dispatch_async(backgroundQueue, ^(void) {
