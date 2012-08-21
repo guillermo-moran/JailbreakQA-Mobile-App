@@ -7,10 +7,11 @@
 // ?type=rss&comments=yes
 
 #import "JBQAMasterViewController.h"
-
 #import "JBQADetailViewController.h"
 
 #import "Reachability.h"
+
+#import "JBQALoginController.h"
 
 //Le important URLs
 #define SERVICE_URL @"http://jailbreakqa.com"
@@ -290,7 +291,11 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 2) {
         if (buttonIndex == 1) {
-            [self login];
+            
+            JBQALoginController* loginController = [[JBQALoginController alloc] init];
+            
+            [loginController loginOnWebsite:SIGNIN_URL username:usernameField.text password:passwordField.text];
+            
             NSLog(@"User attempting to log in...");
         }
     }
@@ -299,63 +304,6 @@
         [self displayLogin];
     }
 }
-
-- (void)login {
-    
-    NSLog(@"No more ASIHTTP! Maybe DHowett won't kill me anymore :D");
-
-    NSString* loginURL = SIGNIN_URL;
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                    initWithURL:[NSURL URLWithString:loginURL]];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    NSData *requestBody = [[NSString stringWithFormat:@"username=%@&password=%@", usernameField.text, passwordField.text] dataUsingEncoding:NSUTF8StringEncoding];
-    [request setHTTPBody:requestBody];
-    
-    
-    
-    NSURLConnection *gConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [gConnect start];
-    
-    
-}
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    returnData = [[NSMutableData alloc] init];
-    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    int responseCode = [httpResponse statusCode];
-    NSLog(@"Recieved response code: %i",responseCode);
-    if (responseCode == 200) {
-        NSLog(@"Recieved response 200, request was successful");
-    }
-    else {
-        NSLog(@"Did not recieve response 200, request was unsuccessful");
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [returnData appendData:data];
-}
-- (void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error {
-    NSLog(@"Request failed");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-    // Return the server's response string (A bunch of HTML)
-    // Uncomment this bit for testing purposes, else makes the log messy and retarded. 
-    
-    
-    NSString* returnStr = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"%@",returnStr);
-     
-    
-    
-    //[returnData release];
-}
-
 
 - (void)refreshData {
     
@@ -389,6 +337,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+        
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
     

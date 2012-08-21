@@ -16,9 +16,6 @@
     //UI
     UIBarButtonItem *refreshBtn;
     
-    //Login Stuff
-    NSMutableData* returnData;
-    
     //Whatever
     
 	CGSize cellSize;
@@ -47,7 +44,6 @@
 }
 
 - (void)checkNetworkStatus:(NSNotification *)notice;
-- (void)login;
 - (void)refreshData;
 
 - (void)enableRefresh;

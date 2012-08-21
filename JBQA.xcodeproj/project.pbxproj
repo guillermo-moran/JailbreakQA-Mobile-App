@@ -26,6 +26,7 @@
 		FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */; };
 		FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */; };
 		FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
+		FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDA61F415E4074E0059896C /* JBQALoginController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FDDA61F315E4074E0059896C /* JBQALoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQALoginController.h; sourceTree = "<group>"; };
+		FDDA61F415E4074E0059896C /* JBQALoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQALoginController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 		FD5ECF4015D6ABCB0061E472 /* JBQA */ = {
 			isa = PBXGroup;
 			children = (
+				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
+				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
 				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
 				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
@@ -223,6 +228,7 @@
 				FD5ECF4E15D6ABCB0061E472 /* JBQAMasterViewController.m in Sources */,
 				FD5ECF5115D6ABCB0061E472 /* JBQADetailViewController.m in Sources */,
 				FD55120015E1632400214372 /* Reachability.m in Sources */,
+				FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
