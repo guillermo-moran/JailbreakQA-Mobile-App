@@ -13,6 +13,9 @@
 
 @interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     
+    //UI
+    UIBarButtonItem *refreshBtn;
+    
     //Login Stuff
     NSMutableData* returnData;
     
@@ -46,6 +49,9 @@
 - (void)checkNetworkStatus:(NSNotification *)notice;
 - (void)login;
 - (void)refreshData;
+
+- (void)enableRefresh;
+- (void)disableRefresh;
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
 
 //Reachability properties

@@ -31,7 +31,16 @@
 
 - (void)hideHUD:(id)HUD {
     [HUD show:NO];
+    [self enableRefresh];
     //[HUD release]; for reference purposes. :P
+}
+
+-(void)enableRefresh {
+    self.navigationItem.leftBarButtonItem = refreshBtn; //show button when finished.
+}
+
+-(void)disableRefresh {
+    self.navigationItem.leftBarButtonItem = nil; //hide the button while loading data
 }
 
 
@@ -179,8 +188,8 @@
             [self parseXMLFileAtURL:RSS_FEED];
         });
         }
-    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
-        self.navigationItem.leftBarButtonItem = refreshBtn;
+    refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)]; 
+        //self.navigationItem.leftBarButtonItem = refreshBtn; //Added when finished loading content
             
 	}
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
@@ -337,11 +346,11 @@
     // Return the server's response string (A bunch of HTML)
     // Uncomment this bit for testing purposes, else makes the log messy and retarded. 
     
-    /*
+    
     NSString* returnStr = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     
     NSLog(@"%@",returnStr);
-     */
+     
     
     
     //[returnData release];
@@ -349,13 +358,14 @@
 
 
 - (void)refreshData {
+    
     refreshSpinner = [[UIProgressHUD alloc] initWithWindow:self.view];
     [refreshSpinner setText:@"Refreshing Content"];
     [refreshSpinner show:YES];
-    
     dispatch_async(backgroundQueue, ^(void) {
         [self parseXMLFileAtURL:RSS_FEED];
     });
+    [self disableRefresh];
 }
 
 #pragma mark Table -
@@ -416,25 +426,8 @@
  }
  */
 
-/*
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	// Navigation logic
-    
-	int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
-    
-	NSString * storyLink = [[stories objectAtIndex: storyIndex] objectForKey: @"link"];
-    
-	// clean up the link - get rid of spaces, returns, and tabs...
-    storyLink = [storyLink stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-	NSLog(@"link: %@", storyLink);
-	// open in Safari
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:storyLink]];
-}
 
-*/
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDate *object = [_objects objectAtIndex:indexPath.row];
     
