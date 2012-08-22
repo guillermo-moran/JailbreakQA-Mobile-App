@@ -26,9 +26,9 @@
 }
 @end
 
-@implementation JBQAMasterViewController
+@implementation JBQAMasterViewController {}
 
-#pragma maker Loading - 
+#pragma mark Loading - 
 
 - (void)hideHUD:(id)HUD {
     [HUD show:NO];
