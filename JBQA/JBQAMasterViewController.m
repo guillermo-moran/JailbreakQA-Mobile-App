@@ -10,8 +10,8 @@
 #import "JBQADetailViewController.h"
 #import "JBQAQuestionController.h"
 
-#import "Reachability.h"
-
+#import "JBQAReachability.h"
+#import "JBQAFeedParser.h"
 #import "JBQALoginController.h"
 
 #import "JBQALinks.h"
@@ -28,116 +28,6 @@
 
 #pragma maker Loading -
 
--(void)hideHUD:(id)HUD {
-    [self enableRefresh];
-    //[HUD release]; for reference purposes. :P
-}
-
--(void)enableRefresh {
-    self.navigationItem.leftBarButtonItem = refreshBtn; //show button when finished.
-}
-
--(void)disableRefresh {
-    self.navigationItem.leftBarButtonItem = nil; //hide the button while loading data
-}
-
-
-#pragma mark Parser -
--(void)parseXMLFileAtURL:(NSString *)URL {
-    NSLog(@"Beginning parse");
-    
-    stories = [[NSMutableArray alloc] init];
-    
-	
-	NSURL *xmlURL = [NSURL URLWithString:URL];
-    
-	
-	rssParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
-    
-	
-	[rssParser setDelegate:self];
-    
-	[rssParser setShouldProcessNamespaces:NO];
-	[rssParser setShouldReportNamespacePrefixes:NO];
-	[rssParser setShouldResolveExternalEntities:NO];
-    dispatch_async(backgroundQueue, ^(void) {
-        [rssParser parse];
-    });
-}
-
--(void)parserDidStartDocument:(NSXMLParser *)parser {
-	NSLog(@"found file and started parsing");
-}
-
--(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    if (self.isInternetActive && self.isHostReachable)
-    {
-        NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
-        NSLog(@"JBQA: error parsing XML: %@", errorString);
-        UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [errorAlert show];
-    }
-    else {
-        NSLog(@"Parse Failed: Either the device doesn't have a network connection, or JBQA is down");
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-        [errorAlert show];
-    }
-    [self hideHUD:refreshSpinner];
-}
-
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
-    
-    //NSLog(@"found this element: %@", elementName);
-	currentElement = [elementName copy];
-    
-	if ([elementName isEqualToString:@"item"]) {
-		// clear out our story item caches...
-		item = [[NSMutableDictionary alloc] init];
-		currentTitle = [[NSMutableString alloc] init];
-		currentDate = [[NSMutableString alloc] init];
-		currentSummary = [[NSMutableString alloc] init];
-		currentLink = [[NSMutableString alloc] init];
-        currentAuthor = [[NSMutableString alloc] init];
-	}
-}
-
--(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
-    
-	//NSLog(@"ended element: %@", elementName);
-	if ([elementName isEqualToString:@"item"]) {
-		// save values to an item, then store that item into the array...
-		[item setObject:currentTitle forKey:@"title"];
-		[item setObject:currentLink forKey:@"link"];
-		[item setObject:currentSummary forKey:@"summary"];
-		[item setObject:currentDate forKey:@"date"];
-        [item setObject:currentAuthor forKey:@"author"];
-        
-		[stories addObject:[item copy]];
-	}
-}
-
--(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-	//NSLog(@"found characters: %@", string);
-	// save the characters for the current item...
-	if ([currentElement isEqualToString:@"title"]) {
-		[currentTitle appendString:string];
-	} else if ([currentElement isEqualToString:@"link"]) {
-		[currentLink appendString:string];
-	} else if ([currentElement isEqualToString:@"description"]) {
-		[currentSummary appendString:string];
-	} else if ([currentElement isEqualToString:@"pubDate"]) {
-		[currentDate appendString:string];
-	}else if ([currentElement isEqualToString:@"dc:creator"]) {
-		[currentAuthor appendString:string];
-	}
-
-}
-
--(void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"stories array has %d items", [stories count]);
-	[self.tableView reloadData];
-}
 
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -146,6 +36,7 @@
     if (self) {
         self.title = @"JBQA";
     }
+    
     backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     return self;
 }
@@ -153,28 +44,36 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Reachability!
+    
+    JBQAReachability* reachability = [[JBQAReachability alloc] init];
+    [reachability checkIsAlive];
+    
+    //Add Buttons
+    
+    UIBarButtonItem *loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
+    self.navigationItem.rightBarButtonItem = loginBtn;
+    
+    UIBarButtonItem* askBtn = [[UIBarButtonItem alloc] initWithTitle:@"Ask" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
+    self.navigationItem.leftBarButtonItem = askBtn; //Added when finished loading content
+    
+    //Setup RSS Parser
+    
     id controller = self;
+    
     [self.tableView addPullToRefreshWithActionHandler:^{
-        NSLog(@"refresh dataSource");
-        [self.tableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
+        NSLog(@"Refreshing Data!");
         [controller refreshData];
+        [self.tableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
     }];
     
     [self.tableView.pullToRefreshView triggerRefresh];
     self.tableView.pullToRefreshView.lastUpdatedDate = [NSDate date];
     //[self refreshData]; //Please do this when we open the app?
+  
     
-	// Do any additional setup after loading the view, typically from a nib.
-    UIBarButtonItem *loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
-    self.navigationItem.rightBarButtonItem = loginBtn;
-        
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
-    internetReachable = [Reachability reachabilityForInternetConnection];
-    [internetReachable startNotifier];
     
-    //Check if JailbreakQA is alive :P
-    hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
-    [hostReachable startNotifier];
 }
 
 -(void)viewDidUnload
@@ -184,16 +83,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];    
-	if ([stories count] == 0) {
-        if (self.isInternetActive) {
-        dispatch_async(backgroundQueue, ^(void) {
-            [self parseXMLFileAtURL:RSS_FEED];
-        });
-        }
-    refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Ask a Question" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
-        //self.navigationItem.leftBarButtonItem = refreshBtn; //Added when finished loading content
+	
             
-	}
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
 }
 
@@ -202,58 +93,15 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-#pragma mark Network Status Check -
--(void) checkNetworkStatus:(NSNotification *)notice
-{
-    // called after network status changes
-    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
-    switch (internetStatus)
-    {
-        case NotReachable:
-        {
-            self.internetActive = NO;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            self.internetActive = YES;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            self.internetActive = YES;
-            break;
-        }
-    }
-    
-    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
-    switch (hostStatus)
-    {
-        case NotReachable:
-        {
-            self.hostReachable = NO;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            self.hostReachable = YES;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            
-            self.hostReachable = YES;
-            break;
-        }
-    }
-}
 
 
 #pragma mark Login and Refresh Methods -
 
 -(void)displayLogin {
     
-    if (self.isInternetActive) {
+    JBQAReachability* reachability = [[JBQAReachability alloc] init];
+    
+    if (reachability.isInternetActive) {
     loginAlert = [[UIAlertView alloc]
                    initWithTitle:@"JailbreakQA Login"
                    message:@"Enter your username and password"
@@ -297,12 +145,17 @@
     }
 }
 
--(void)refreshData {
+- (void)refreshData
+{
     
+    
+    JBQAFeedParser *feedParser = [[JBQAFeedParser alloc] init];
+    feedParser.delegate = self;
+        
+    [self.tableView setUserInteractionEnabled:NO];
     dispatch_async(backgroundQueue, ^(void) {
-        [self parseXMLFileAtURL:RSS_FEED];
+        [feedParser parseXMLFileAtURL:RSS_FEED];
     });
-    [self disableRefresh];
 }
 
 -(void)ask {
@@ -310,7 +163,46 @@
     [self presentModalViewController:qController animated:YES];
 }
 
+#pragma mark Parser Delegate Methods -
+- (void)parserDidStartDocument;
+{
+    NSLog(@"Received callback");
+}
+
+- (void)parseErrorOccurred:(NSError *)parseError
+{
+    JBQAFeedParser* feedParser = [[JBQAFeedParser alloc] init];
+    JBQAReachability* reachability = [[JBQAReachability alloc] init];
+    
+    feedParser.parsing = NO;
+    [self.tableView setUserInteractionEnabled:YES];
+    if (reachability.isInternetActive && reachability.isHostReachable) {
+        NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
+        UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+    }
+    else {
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [errorAlert show];
+    }
+}
+
+- (void)parserDidEndDocumentWithResults:(id)parseResults
+{
+    JBQAFeedParser* feedParser = [[JBQAFeedParser alloc] init];
+    stories = parseResults;
+    [self.tableView reloadData];
+    NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
+    [self.tableView setUserInteractionEnabled:YES];
+    feedParser.parsing = NO;
+    
+    
+}
+
+
+
 #pragma mark Table -
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -335,6 +227,8 @@
         
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
+    
+
     
     NSString* questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
     NSString* questionAuthor = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];

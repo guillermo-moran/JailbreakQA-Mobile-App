@@ -33,6 +33,8 @@
 		FDDC8B6315E92C1100DC305F /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FDDC8B6015E92C1100DC305F /* LICENSE.txt */; };
 		FDDC8B6415E92C1100DC305F /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDC8B6215E92C1100DC305F /* SVPullToRefresh.m */; };
 		FDDC8B6715E92D3400DC305F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDC8B6615E92D3400DC305F /* QuartzCore.framework */; };
+		FDF4DA5D15E933FE00FD223E /* JBQAFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */; };
+		FDF4DA6515E9364600FD223E /* JBQAReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4DA6415E9364600FD223E /* JBQAReachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,10 @@
 		FDDC8B6115E92C1100DC305F /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		FDDC8B6215E92C1100DC305F /* SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPullToRefresh.m; sourceTree = "<group>"; };
 		FDDC8B6615E92D3400DC305F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FDF4DA5B15E933FE00FD223E /* JBQAFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAFeedParser.h; sourceTree = "<group>"; };
+		FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAFeedParser.m; sourceTree = "<group>"; };
+		FDF4DA6315E9364600FD223E /* JBQAReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAReachability.h; sourceTree = "<group>"; };
+		FDF4DA6415E9364600FD223E /* JBQAReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAReachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +152,10 @@
 			isa = PBXGroup;
 			children = (
 				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
+				FDF4DA6315E9364600FD223E /* JBQAReachability.h */,
+				FDF4DA6415E9364600FD223E /* JBQAReachability.m */,
+				FDF4DA5B15E933FE00FD223E /* JBQAFeedParser.h */,
+				FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */,
 				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
 				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
 				FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */,
@@ -267,6 +277,8 @@
 				FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */,
 				FD92F33D15E47130002D50E2 /* JBQAQuestionController.m in Sources */,
 				FDDC8B6415E92C1100DC305F /* SVPullToRefresh.m in Sources */,
+				FDF4DA5D15E933FE00FD223E /* JBQAFeedParser.m in Sources */,
+				FDF4DA6515E9364600FD223E /* JBQAReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,10 +48,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     returnData = [[NSMutableData alloc] init];
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    NSDictionary *fields = [httpResponse allHeaderFields];
-    NSString *cookie = [fields valueForKey:@"Set-Cookie"];
-    
-    NSLog(@"Cookies!: %@",cookie);
+
     int responseCode = [httpResponse statusCode];
     NSLog(@"Recieved response code: %i",responseCode);
     if (responseCode == 200) {
