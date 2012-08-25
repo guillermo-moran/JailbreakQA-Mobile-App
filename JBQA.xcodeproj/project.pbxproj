@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4816F69115E8B43F002B1E2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
 		484AA78515DFACAA00E814A4 /* JBQAMobileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */; };
+		48529E5C15E51BD700773CDF /* JBQAParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48529E5B15E51BD700773CDF /* JBQAParser.m */; };
+		48FCBBA115E86F9100D098C5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FCBBA015E86F9100D098C5 /* MBProgressHUD.m */; };
 		FD55120015E1632400214372 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5511FF15E1632400214372 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */; };
 		FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */; };
@@ -23,15 +26,17 @@
 		FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */; };
 		FDAB15AC15D99D91001B8FA5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */; };
 		FDAB15AE15D99D98001B8FA5 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */; };
-		FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */; };
 		FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */; };
-		FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
 		FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDA61F415E4074E0059896C /* JBQALoginController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
-		484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JBQAMobileIcon.png; sourceTree = "<group>"; };
+		484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JBQAMobileIcon.png; sourceTree = SOURCE_ROOT; };
+		48529E5A15E51BD700773CDF /* JBQAParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAParser.h; sourceTree = "<group>"; };
+		48529E5B15E51BD700773CDF /* JBQAParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAParser.m; sourceTree = "<group>"; };
+		48FCBBA015E86F9100D098C5 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		48FCBBA215E86F9B00D098C5 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		FD5511FE15E1632400214372 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD5511FF15E1632400214372 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FD5ECF3615D6ABCB0061E472 /* JBQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,9 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */,
+				4816F69115E8B43F002B1E2A /* SystemConfiguration.framework in Frameworks */,
 				FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */,
-				FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */,
 				FDAB15AE15D99D98001B8FA5 /* libxml2.2.7.3.dylib in Frameworks */,
 				FDAB15AC15D99D91001B8FA5 /* libz.1.2.5.dylib in Frameworks */,
 				FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */,
@@ -80,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48FCBB9E15E86F5B00D098C5 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				48FCBBA215E86F9B00D098C5 /* MBProgressHUD.h */,
+				48FCBBA015E86F9100D098C5 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		FD5511FD15E1632400214372 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +105,7 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
-				484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */,
+				48FCBB9E15E86F5B00D098C5 /* MBProgressHUD */,
 				FD5511FD15E1632400214372 /* Reachability */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				FD5ECF3915D6ABCB0061E472 /* Frameworks */,
@@ -133,6 +146,8 @@
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
 				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
 				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
+				48529E5A15E51BD700773CDF /* JBQAParser.h */,
+				48529E5B15E51BD700773CDF /* JBQAParser.m */,
 				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
 				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
 				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
@@ -149,6 +164,7 @@
 			children = (
 				FD5ECF4215D6ABCB0061E472 /* JBQA-Info.plist */,
 				FD5ECF4315D6ABCB0061E472 /* InfoPlist.strings */,
+				484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */,
 				FD5ECF4615D6ABCB0061E472 /* main.m */,
 				FD5ECF4815D6ABCB0061E472 /* JBQA-Prefix.pch */,
 			);
@@ -165,6 +181,7 @@
 				FD5ECF3215D6ABCB0061E472 /* Sources */,
 				FD5ECF3315D6ABCB0061E472 /* Frameworks */,
 				FD5ECF3415D6ABCB0061E472 /* Resources */,
+				50524F424C454D533F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -218,6 +235,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		50524F424C454D533F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FD5ECF3215D6ABCB0061E472 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -229,6 +262,8 @@
 				FD5ECF5115D6ABCB0061E472 /* JBQADetailViewController.m in Sources */,
 				FD55120015E1632400214372 /* Reachability.m in Sources */,
 				FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */,
+				48529E5C15E51BD700773CDF /* JBQAParser.m in Sources */,
+				48FCBBA115E86F9100D098C5 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,8 +320,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -315,8 +350,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
