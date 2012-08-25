@@ -18,9 +18,9 @@ How this works is almost too simple. JBQA (which runs on OSQA) has an RSS Feed (
 
 
 ##Compile Instructions
-Link it with MobileCoreServices, SystemConfiguration, and CFNetwork frameworks; also link with libz.dylib. Add the ASIHTTPRequest folder into the project, and then add all implementation (.m) files to the compile sources build phase with the compiler flag <b> "-fno-objc-arc" </b>
+Link it with MobileCoreServices, SystemConfiguration, and CFNetwork frameworks; also link with libz.dylib. Add the Reachability folder into the project, and then add its implementation (.m) file to the compile sources build phase with the compiler flag <b> "-fno-objc-arc"</b> (all this is to be done only if it isn't done already :P)
 Do all of this, and you <i>should</i> be able to compile just fine. 
-(Just ignore the incomplete implementation warning for ASIHTTPRequest).
+
 
 
 ##To-Do List
