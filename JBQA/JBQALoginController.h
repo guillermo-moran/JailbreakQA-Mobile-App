@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JBQALoginController : NSObject {
-    
-    NSMutableData* returnData;
+@interface JBQALoginController : NSObject
+{    
+    NSMutableData *returnData;
 }
 
 -(void)loginOnWebsite:(NSString*)url username:(NSString*)username password:(NSString*)password;

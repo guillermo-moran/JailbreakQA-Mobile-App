@@ -10,31 +10,24 @@
 
 @implementation JBQALoginController
 
-
--(void)loginOnWebsite:(NSString*)url username:(NSString*)username password:(NSString*)password {
-    
-    NSLog(@"Logging in to %@ with -  username:%@ password:%@",url,username,password);
-    
+-(void)loginOnWebsite:(NSString*)url username:(NSString*)username password:(NSString*)password
+{    
+    NSLog(@"Logging in to %@ with -  username:%@ password:areyoufuckingkiddingme",url,username);
     NSLog(@"No more ASIHTTP! Maybe DHowett won't kill me anymore :D");
-    
     NSString* loginURL = url;
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
                                     initWithURL:[NSURL URLWithString:loginURL]];
-    
     [request setHTTPMethod:@"POST"];
     
     NSData *requestBody = [[NSString stringWithFormat:@"username=%@&password=%@", username, password] dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:requestBody];
     
-    
-    
     NSURLConnection *JBQAConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [JBQAConnect start];
-    
-    
 }
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
     returnData = [[NSMutableData alloc] init];
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
     int responseCode = [httpResponse statusCode];
@@ -47,26 +40,21 @@
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
     [returnData appendData:data];
 }
-- (void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error
+{
     NSLog(@"Request failed");
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-    // Return the server's response string (A bunch of HTML)
-    // Uncomment this bit for testing purposes, else makes the log messy and retarded.
-    
-    
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    /*
     NSString* returnStr = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    
     NSLog(@"%@",returnStr);
-    
-    
-    
-    //[returnData release];
+     */
 }
 
 
