@@ -8,59 +8,43 @@
 
 #import <UIKit/UIKit.h>
 #import <dispatch/dispatch.h>
+#import "JBQAParser.h"
 
-@class JBQADetailViewController, Reachability;
+@class JBQADetailViewController, Reachability, MBProgressHUD;
 
-@interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
+@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     
     //UI
     UIBarButtonItem *refreshBtn;
+    UIBarButtonItem *loginBtn; //for the sake of completeness
+    MBProgressHUD *hud; //I'll implement a progress view, I promise :D
     
-    //Whatever
+    //Stuff
     
 	CGSize cellSize;
-	NSXMLParser *rssParser;
+    JBQAParser *feedParser;
 	NSMutableArray *stories;
-    
+    float progress;
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
     
     IBOutlet UIWebView *webView; //I forget why.
     
-	NSMutableDictionary *item;
-    
-	NSString *currentElement;
-	NSMutableString *currentTitle, *currentDate, *currentSummary, *currentLink, *currentAuthor;
-    
     UITextField *passwordField, *usernameField;
     UIAlertView *loginAlert;
     
-    id refreshSpinner; //someone please implement this :3 -- k.
-    
     //Reachabilty <3
-    
     Reachability *internetReachable; //check if internet connection is available
     Reachability *hostReachable; //JBQA check
 }
 
-- (void)checkNetworkStatus:(NSNotification *)notice;
-- (void)refreshData;
-
-- (void)enableRefresh;
-- (void)disableRefresh;
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
-
-//Reachability properties
 @property (nonatomic, getter = isInternetActive) BOOL internetActive;
 @property (nonatomic, getter = isHostReachable) BOOL hostReachable;
 
-@end
+- (void)checkNetworkStatus:(NSNotification *)notice;
+- (void)refreshData;
+- (void)enableRefresh;
+- (void)disableRefresh;
 
-//Le requested loading views
-
-@interface UIProgressHUD : NSObject
-- (UIProgressHUD *) initWithWindow: (UIView*)aWindow;
-- (void) show: (BOOL)aShow;
-- (void) setText: (NSString*)aText;
-- (void) done;
 @end
