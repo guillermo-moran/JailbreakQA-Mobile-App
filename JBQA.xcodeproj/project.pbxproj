@@ -21,12 +21,18 @@
 		FD5ECF5715D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */; };
 		FD5ECF5A15D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */; };
 		FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */; };
+		FD92F33D15E47130002D50E2 /* JBQAQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */; };
+		FD92F33E15E47130002D50E2 /* JBQAQuestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */; };
+		FD92F34015E47168002D50E2 /* JBQAQuestionController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */; };
 		FDAB15AC15D99D91001B8FA5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */; };
 		FDAB15AE15D99D98001B8FA5 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */; };
 		FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */; };
 		FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */; };
 		FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
 		FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDA61F415E4074E0059896C /* JBQALoginController.m */; };
+		FDDC8B6315E92C1100DC305F /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FDDC8B6015E92C1100DC305F /* LICENSE.txt */; };
+		FDDC8B6415E92C1100DC305F /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDC8B6215E92C1100DC305F /* SVPullToRefresh.m */; };
+		FDDC8B6715E92D3400DC305F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDC8B6615E92D3400DC305F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +58,11 @@
 		FD5ECF5615D6ABCB0061E472 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JBQAMasterViewController_iPad.xib; sourceTree = "<group>"; };
 		FD5ECF5915D6ABCB0061E472 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JBQADetailViewController_iPhone.xib; sourceTree = "<group>"; };
 		FD5ECF5C15D6ABCB0061E472 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JBQADetailViewController_iPad.xib; sourceTree = "<group>"; };
+		FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAQuestionController.h; sourceTree = "<group>"; };
+		FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAQuestionController.m; sourceTree = "<group>"; };
+		FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController.xib; sourceTree = "<group>"; };
+		FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController_iPad.xib; sourceTree = "<group>"; };
+		FD92F34115E4739A002D50E2 /* JBQALinks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBQALinks.h; sourceTree = "<group>"; };
 		FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 		FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -59,6 +70,10 @@
 		FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FDDA61F315E4074E0059896C /* JBQALoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQALoginController.h; sourceTree = "<group>"; };
 		FDDA61F415E4074E0059896C /* JBQALoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQALoginController.m; sourceTree = "<group>"; };
+		FDDC8B6015E92C1100DC305F /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		FDDC8B6115E92C1100DC305F /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		FDDC8B6215E92C1100DC305F /* SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPullToRefresh.m; sourceTree = "<group>"; };
+		FDDC8B6615E92D3400DC305F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDDC8B6715E92D3400DC305F /* QuartzCore.framework in Frameworks */,
 				FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */,
 				FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */,
 				FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */,
@@ -93,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */,
+				FDDC8B5F15E92C1100DC305F /* SVPullToRefresh */,
 				FD5511FD15E1632400214372 /* Reachability */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				FD5ECF3915D6ABCB0061E472 /* Frameworks */,
@@ -111,6 +128,7 @@
 		FD5ECF3915D6ABCB0061E472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FDDC8B6615E92D3400DC305F /* QuartzCore.framework */,
 				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
 				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
 				FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */,
@@ -127,16 +145,21 @@
 		FD5ECF4015D6ABCB0061E472 /* JBQA */ = {
 			isa = PBXGroup;
 			children = (
+				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
 				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
 				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */,
+				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
+				FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */,
+				FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */,
 				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
 				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
 				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
-				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
-				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
 				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
 				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
+				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
+				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
 				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
 				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
 				FD5ECF4115D6ABCB0061E472 /* Supporting Files */,
@@ -153,6 +176,16 @@
 				FD5ECF4815D6ABCB0061E472 /* JBQA-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FDDC8B5F15E92C1100DC305F /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				FDDC8B6015E92C1100DC305F /* LICENSE.txt */,
+				FDDC8B6115E92C1100DC305F /* SVPullToRefresh.h */,
+				FDDC8B6215E92C1100DC305F /* SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +246,9 @@
 				FD5ECF5A15D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib in Resources */,
 				FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */,
 				484AA78515DFACAA00E814A4 /* JBQAMobileIcon.png in Resources */,
+				FD92F33E15E47130002D50E2 /* JBQAQuestionController.xib in Resources */,
+				FD92F34015E47168002D50E2 /* JBQAQuestionController_iPad.xib in Resources */,
+				FDDC8B6315E92C1100DC305F /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +265,8 @@
 				FD5ECF5115D6ABCB0061E472 /* JBQADetailViewController.m in Sources */,
 				FD55120015E1632400214372 /* Reachability.m in Sources */,
 				FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */,
+				FD92F33D15E47130002D50E2 /* JBQAQuestionController.m in Sources */,
+				FDDC8B6415E92C1100DC305F /* SVPullToRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

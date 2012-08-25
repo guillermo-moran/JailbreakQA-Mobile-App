@@ -4,21 +4,19 @@
 //
 //  Created by Guillermo Moran on 8/11/12.
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
-// ?type=rss&comments=yes
+// 
 
 #import "JBQAMasterViewController.h"
 #import "JBQADetailViewController.h"
+#import "JBQAQuestionController.h"
 
 #import "Reachability.h"
 
 #import "JBQALoginController.h"
 
-//Le important URLs
-#define SERVICE_URL @"http://jailbreakqa.com"
-#define RSS_FEED [NSString stringWithFormat:@"%@/feeds/rss",SERVICE_URL]
-#define COMMENTS_FEED [NSString stringWithFormat:@"%@/?type=rss&comments=yes",SERVICE_URL]
-#define ANSWERS_FEED [NSString stringWithFormat:@"%@/?type=rss",SERVICE_URL]
-#define SIGNIN_URL [NSString stringWithFormat:@"%@/account/signin/",SERVICE_URL]
+#import "JBQALinks.h"
+
+#import "SVPullToRefresh.h"
 
 
 @interface JBQAMasterViewController () {
@@ -28,10 +26,9 @@
 
 @implementation JBQAMasterViewController
 
-#pragma maker Loading - 
+#pragma maker Loading -
 
-- (void)hideHUD:(id)HUD {
-    [HUD show:NO];
+-(void)hideHUD:(id)HUD {
     [self enableRefresh];
     //[HUD release]; for reference purposes. :P
 }
@@ -46,22 +43,20 @@
 
 
 #pragma mark Parser -
-- (void)parseXMLFileAtURL:(NSString *)URL {
+-(void)parseXMLFileAtURL:(NSString *)URL {
     NSLog(@"Beginning parse");
     
     stories = [[NSMutableArray alloc] init];
     
-	//you must then convert the path to a proper NSURL or it won't work
+	
 	NSURL *xmlURL = [NSURL URLWithString:URL];
     
-	// here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
-	// this may be necessary only for the toolchain
+	
 	rssParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
     
-	// Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
+	
 	[rssParser setDelegate:self];
     
-	// Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
 	[rssParser setShouldProcessNamespaces:NO];
 	[rssParser setShouldReportNamespacePrefixes:NO];
 	[rssParser setShouldResolveExternalEntities:NO];
@@ -70,11 +65,11 @@
     });
 }
 
-- (void)parserDidStartDocument:(NSXMLParser *)parser {
+-(void)parserDidStartDocument:(NSXMLParser *)parser {
 	NSLog(@"found file and started parsing");
 }
 
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
     if (self.isInternetActive && self.isHostReachable)
     {
         NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
@@ -90,7 +85,7 @@
     [self hideHUD:refreshSpinner];
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
     //NSLog(@"found this element: %@", elementName);
 	currentElement = [elementName copy];
@@ -106,7 +101,7 @@
 	}
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
+-(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
     
 	//NSLog(@"ended element: %@", elementName);
 	if ([elementName isEqualToString:@"item"]) {
@@ -121,7 +116,7 @@
 	}
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+-(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
 	//NSLog(@"found characters: %@", string);
 	// save the characters for the current item...
@@ -139,15 +134,13 @@
 
 }
 
-- (void)parserDidEndDocument:(NSXMLParser *)parser {
+-(void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"stories array has %d items", [stories count]);
 	[self.tableView reloadData];
-    [self hideHUD:refreshSpinner];
-    [refreshSpinner done];
 }
 
 #pragma mark View Stuff -
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -157,11 +150,19 @@
     return self;
 }
 
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
+    id controller = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        NSLog(@"refresh dataSource");
+        [self.tableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
+        [controller refreshData];
+    }];
     
-    [self refreshData]; //Please do this when we open the app?
+    [self.tableView.pullToRefreshView triggerRefresh];
+    self.tableView.pullToRefreshView.lastUpdatedDate = [NSDate date];
+    //[self refreshData]; //Please do this when we open the app?
     
 	// Do any additional setup after loading the view, typically from a nib.
     UIBarButtonItem *loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
@@ -176,12 +177,12 @@
     [hostReachable startNotifier];
 }
 
-- (void)viewDidUnload
+-(void)viewDidUnload
 {
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+-(void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];    
 	if ([stories count] == 0) {
         if (self.isInternetActive) {
@@ -189,14 +190,14 @@
             [self parseXMLFileAtURL:RSS_FEED];
         });
         }
-    refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)]; 
+    refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Ask a Question" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
         //self.navigationItem.leftBarButtonItem = refreshBtn; //Added when finished loading content
             
 	}
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
@@ -249,15 +250,6 @@
 
 
 #pragma mark Login and Refresh Methods -
-- (void)insertNewObject:(NSString*)meh
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:meh atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
 
 -(void)displayLogin {
     
@@ -305,30 +297,32 @@
     }
 }
 
-- (void)refreshData {
+-(void)refreshData {
     
-    refreshSpinner = [[UIProgressHUD alloc] initWithWindow:self.view];
-    [refreshSpinner setText:@"Refreshing Content"];
-    [refreshSpinner show:YES];
     dispatch_async(backgroundQueue, ^(void) {
         [self parseXMLFileAtURL:RSS_FEED];
     });
     [self disableRefresh];
 }
 
+-(void)ask {
+    JBQAQuestionController* qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
+    [self presentModalViewController:qController animated:YES];
+}
+
 #pragma mark Table -
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [stories count];
 }
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
@@ -340,7 +334,7 @@
     
         
     
-    int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
+    int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
     
     NSString* questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
     NSString* questionAuthor = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
@@ -352,7 +346,7 @@
 	return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return NO
@@ -362,14 +356,14 @@
 
 /*
  // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
  {
  }
  */
 
 /*
  // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
  {
  // Return NO if you do not want the item to be re-orderable.
  return YES;
@@ -381,7 +375,7 @@
 {
     NSDate *object = [_objects objectAtIndex:indexPath.row];
     
-    int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
+    int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
     
     NSString* currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
     NSString* title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];

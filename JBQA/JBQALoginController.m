@@ -24,6 +24,8 @@
     
     [request setHTTPMethod:@"POST"];
     
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    
     NSData *requestBody = [[NSString stringWithFormat:@"username=%@&password=%@", username, password] dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:requestBody];
     
@@ -34,7 +36,7 @@
     
     
 }
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     returnData = [[NSMutableData alloc] init];
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
     int responseCode = [httpResponse statusCode];
@@ -47,14 +49,14 @@
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [returnData appendData:data];
 }
-- (void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error {
+-(void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error {
     NSLog(@"Request failed");
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
     // Return the server's response string (A bunch of HTML)
     // Uncomment this bit for testing purposes, else makes the log messy and retarded.

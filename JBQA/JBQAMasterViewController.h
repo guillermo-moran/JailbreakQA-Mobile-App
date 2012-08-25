@@ -46,6 +46,8 @@
 - (void)checkNetworkStatus:(NSNotification *)notice;
 - (void)refreshData;
 
+-(void)ask;
+
 - (void)enableRefresh;
 - (void)disableRefresh;
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
