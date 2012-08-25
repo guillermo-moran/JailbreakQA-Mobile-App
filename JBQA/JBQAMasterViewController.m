@@ -53,10 +53,6 @@
     //Check if JailbreakQA is alive :P
     hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
     [hostReachable startNotifier];
-    
-    if ([stories count] == 0) {
-        [self refreshData]; //refresh data /after/ Reachability is set up. 
-    }
 }
 
 - (void)viewDidUnload
@@ -69,6 +65,7 @@
     refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
     //self.navigationItem.leftBarButtonItem = refreshBtn; //Added when finished loading content
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
+    [self refreshData]; //refresh data /after/ Reachability is set up
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -171,7 +168,7 @@
 {
     if([keyPath isEqual:@"progress"]) {
         parseProgress = feedParser.progress;
-        NSLog(@"parseProgress is: %.3f", parseProgress);
+        hud.progress = parseProgress;
     }
 }
 
@@ -202,7 +199,7 @@
 	
             usernameField = [loginAlert textFieldAtIndex:0];
             passwordField = [loginAlert textFieldAtIndex:1];
-            [loginAlert setTag:2];
+            [loginAlert setTag:1];
             [loginAlert show];
         }
         else {
@@ -212,7 +209,7 @@
                           delegate:self
                           cancelButtonTitle:@"Dismiss"
                           otherButtonTitles:@"Try again", nil];
-            [loginAlert setTag:3];
+            [loginAlert setTag:2];
             [loginAlert show];
         }
     }
@@ -221,14 +218,14 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == 2) {
+    if (alertView.tag == 1) {
         if (buttonIndex == 1) {
             JBQALoginController *loginController = [[JBQALoginController alloc] init];
             [loginController loginOnWebsite:SIGNIN_URL username:usernameField.text password:passwordField.text];
             NSLog(@"User attempting to log in...");
         }
     }
-    if (alertView.tag == 3) {
+    if (alertView.tag == 2) {
         if (buttonIndex == 2)
         [self displayLogin];
     }
@@ -236,8 +233,10 @@
 
 - (void)refreshData
 {
+    parseProgress = 0; //always set to zero 
     [self disableRefresh];
     //switching to the detailview on an iPad screws up the refresh. Fix please!
+  
     feedParser = [[JBQAParser alloc] init];
     feedParser.delegate = self;
     [feedParser addObserver:self forKeyPath:@"progress" options:NSKeyValueObservingOptionNew context:NULL];
@@ -246,8 +245,8 @@
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Updating";
     hud.dimBackground = YES;
-    hud.progress = parseProgress;
-    [self.tableView setUserInteractionEnabled:NO];
+    NSLog(@"Progress is %.5f", parseProgress);
+        [self.tableView setUserInteractionEnabled:NO];
     dispatch_async(backgroundQueue, ^(void) {
         [feedParser parseXMLFileAtURL:RSS_FEED];
     });
@@ -277,8 +276,8 @@
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
     
-    NSString* questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
-    NSString* questionAuthor = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
+    NSString *questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
+    NSString *questionAuthor = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
     
     cell.textLabel.text = questionTitle;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Asked by: %@",questionAuthor];
