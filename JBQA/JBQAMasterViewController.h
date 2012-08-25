@@ -24,7 +24,7 @@
 	CGSize cellSize;
     JBQAParser *feedParser;
 	NSMutableArray *stories;
-    float progress;
+    float parseProgress;
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
     

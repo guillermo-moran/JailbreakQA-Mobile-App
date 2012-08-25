@@ -27,11 +27,12 @@
     NSString *xmlString;
     NSMutableArray *parseResults;
     id <JBQAParserDelegate> delegate;
+    int totalLines;
 }
 
 @property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
 @property (nonatomic, getter = isParsing) BOOL parsing;
-
+@property float progress;
 - (void)parseXMLFileAtURL:(NSString *)URL;
 
 @end

@@ -91,6 +91,7 @@
 				48FCBBA015E86F9100D098C5 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		FD5511FD15E1632400214372 /* Reachability */ = {
@@ -99,14 +100,13 @@
 				FD5511FE15E1632400214372 /* Reachability.h */,
 				FD5511FF15E1632400214372 /* Reachability.m */,
 			);
-			path = Reachability;
+			name = Reachability;
+			path = ../Reachability;
 			sourceTree = "<group>";
 		};
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
-				48FCBB9E15E86F5B00D098C5 /* MBProgressHUD */,
-				FD5511FD15E1632400214372 /* Reachability */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				FD5ECF3915D6ABCB0061E472 /* Frameworks */,
 				FD5ECF3715D6ABCB0061E472 /* Products */,
@@ -162,6 +162,8 @@
 		FD5ECF4115D6ABCB0061E472 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				48FCBB9E15E86F5B00D098C5 /* MBProgressHUD */,
+				FD5511FD15E1632400214372 /* Reachability */,
 				FD5ECF4215D6ABCB0061E472 /* JBQA-Info.plist */,
 				FD5ECF4315D6ABCB0061E472 /* InfoPlist.strings */,
 				484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */,

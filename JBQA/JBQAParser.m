@@ -14,6 +14,12 @@
 {
     self.Parsing = YES;
     NSURL *xmlURL = [NSURL URLWithString:URL];
+    NSError *error = nil;
+    NSString *xmlFileString = [NSString stringWithContentsOfURL:xmlURL
+                                        encoding:NSUTF8StringEncoding
+                                        error:&error];
+    //hope this works
+    totalLines = [xmlFileString componentsSeparatedByString:@"\n"].count;
 	// here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
 	// this may be necessary only for the toolchain
 	rssParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
@@ -42,6 +48,7 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
+    self.progress = (float)[parser lineNumber] / (float)totalLines;
 	currentElement = [elementName copy];
 	if ([elementName isEqualToString:@"item"]) {
 		// clear out our story item caches...
@@ -56,6 +63,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+    self.progress = (float)[parser lineNumber] / (float)totalLines;
 	//NSLog(@"ended element: %@", elementName);
 	if ([elementName isEqualToString:@"item"]) {
 		// save values to an item, then store that item into the array...
@@ -66,10 +74,12 @@
         [item setObject:currentAuthor forKey:@"author"];
         [parseResults addObject:[item copy]];
 	}
+   
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    self.progress = (float)[parser lineNumber] / (float)totalLines;
 	//NSLog(@"found characters: %@", string);
 	// save the characters for the current item...
 	if ([currentElement isEqualToString:@"title"]) {
@@ -83,10 +93,12 @@
 	}else if ([currentElement isEqualToString:@"dc:creator"]) {
 		[currentAuthor appendString:string];
 	}
+    
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
+    self.progress = (float)[parser lineNumber] / (float)totalLines;
     [self.delegate parserDidEndDocumentWithResults:parseResults];
 }
 

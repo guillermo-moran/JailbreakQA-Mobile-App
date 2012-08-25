@@ -150,10 +150,12 @@
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [errorAlert show];
     }
+    [feedParser removeObserver:self forKeyPath:@"progress"];
 }
 
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
+    
     [MBProgressHUD hideHUDForView:self.view animated:NO];
     stories = parseResults;
     [self.tableView reloadData];
@@ -161,6 +163,16 @@
     [self.tableView setUserInteractionEnabled:YES];
     feedParser.parsing = NO;
     [self enableRefresh];
+    [feedParser removeObserver:self forKeyPath:@"progress"];
+}
+
+#pragma mark KVO  -
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqual:@"progress"]) {
+        parseProgress = feedParser.progress;
+        NSLog(@"parseProgress is: %.3f", parseProgress);
+    }
 }
 
 #pragma mark Login and Refresh Methods -
@@ -224,24 +236,21 @@
 
 - (void)refreshData
 {
-    if (self.isHostReachable && self.isInternetActive) {
-        //switching to the detailview on an iPad screws up the refresh. Fix please!
-        [self disableRefresh];
-        feedParser = [[JBQAParser alloc] init];
-        feedParser.delegate = self;
-        hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-        hud.mode = MBProgressHUDModeIndeterminate;
-        hud.labelText = @"Updating";
-        hud.dimBackground = YES;
-        hud.graceTime = 2.0;
-        [self.tableView setUserInteractionEnabled:NO];
-        dispatch_async(backgroundQueue, ^(void) {
-            [feedParser parseXMLFileAtURL:RSS_FEED];
-        });
-    }
-    //here, I take the easy way out ;p
-    else
-        [self parseErrorOccurred:nil];
+    [self disableRefresh];
+    //switching to the detailview on an iPad screws up the refresh. Fix please!
+    feedParser = [[JBQAParser alloc] init];
+    feedParser.delegate = self;
+    [feedParser addObserver:self forKeyPath:@"progress" options:NSKeyValueObservingOptionNew context:NULL];
+    //register for KVO notifs from parser. Damn I love Apple.
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Updating";
+    hud.dimBackground = YES;
+    hud.progress = parseProgress;
+    [self.tableView setUserInteractionEnabled:NO];
+    dispatch_async(backgroundQueue, ^(void) {
+        [feedParser parseXMLFileAtURL:RSS_FEED];
+    });
 }
 
 #pragma mark Table -
