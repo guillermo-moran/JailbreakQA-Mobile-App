@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface JBQADetailViewController : UIViewController <UISplitViewControllerDelegate>
 {
