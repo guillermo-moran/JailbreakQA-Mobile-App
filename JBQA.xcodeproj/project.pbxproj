@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		480A0C4C15EA275700011552 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 480A0C4B15EA275700011552 /* MBProgressHUD.m */; };
 		480A0C4F15EA276E00011552 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 480A0C4E15EA276E00011552 /* ODRefreshControl.m */; };
+		480A0C6015EA352A00011552 /* JBQAQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 480A0C5E15EA352A00011552 /* JBQAQuestionController.m */; };
+		480A0C6415EA393A00011552 /* JBQAQuestionController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480A0C6215EA393A00011552 /* JBQAQuestionController_iPad.xib */; };
+		480A0C6515EA393A00011552 /* JBQAQuestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480A0C6315EA393A00011552 /* JBQAQuestionController.xib */; };
 		4816F69115E8B43F002B1E2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
 		484AA78515DFACAA00E814A4 /* JBQAMobileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */; };
 		48529E5C15E51BD700773CDF /* JBQAParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48529E5B15E51BD700773CDF /* JBQAParser.m */; };
@@ -38,6 +41,11 @@
 		480A0C4B15EA275700011552 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		480A0C4D15EA276E00011552 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODRefreshControl.h; path = ODRefreshControl/ODRefreshControl.h; sourceTree = "<group>"; };
 		480A0C4E15EA276E00011552 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ODRefreshControl.m; path = ODRefreshControl/ODRefreshControl.m; sourceTree = "<group>"; };
+		480A0C5015EA313F00011552 /* JBQALinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQALinks.h; sourceTree = "<group>"; };
+		480A0C5D15EA352A00011552 /* JBQAQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAQuestionController.h; sourceTree = "<group>"; };
+		480A0C5E15EA352A00011552 /* JBQAQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAQuestionController.m; sourceTree = "<group>"; };
+		480A0C6215EA393A00011552 /* JBQAQuestionController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController_iPad.xib; sourceTree = "<group>"; };
+		480A0C6315EA393A00011552 /* JBQAQuestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController.xib; sourceTree = "<group>"; };
 		484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JBQAMobileIcon.png; sourceTree = SOURCE_ROOT; };
 		48529E5A15E51BD700773CDF /* JBQAParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAParser.h; sourceTree = "<group>"; };
 		48529E5B15E51BD700773CDF /* JBQAParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAParser.m; sourceTree = "<group>"; };
@@ -121,7 +129,6 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
-				48F9C35115E9CDD4007390A7 /* QuartzCore.framework */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				FD5ECF3915D6ABCB0061E472 /* Frameworks */,
 				FD5ECF3715D6ABCB0061E472 /* Products */,
@@ -139,15 +146,16 @@
 		FD5ECF3915D6ABCB0061E472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
-				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
-				FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */,
 				FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */,
 				FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */,
+				FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */,
 				48070B8515D8E1EC0087D034 /* CoreFoundation.framework */,
-				FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */,
-				FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */,
 				FD5ECF3E15D6ABCB0061E472 /* CoreGraphics.framework */,
+				FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */,
+				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
+				48F9C35115E9CDD4007390A7 /* QuartzCore.framework */,
+				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
+				FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,6 +165,7 @@
 			children = (
 				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
+				480A0C5015EA313F00011552 /* JBQALinks.h */,
 				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
 				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
 				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
@@ -165,10 +174,14 @@
 				48529E5B15E51BD700773CDF /* JBQAParser.m */,
 				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
 				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				480A0C5D15EA352A00011552 /* JBQAQuestionController.h */,
+				480A0C5E15EA352A00011552 /* JBQAQuestionController.m */,
 				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
 				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
 				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
 				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
+				480A0C6315EA393A00011552 /* JBQAQuestionController.xib */,
+				480A0C6215EA393A00011552 /* JBQAQuestionController_iPad.xib */,
 				FD5ECF4115D6ABCB0061E472 /* Supporting Files */,
 			);
 			path = JBQA;
@@ -248,6 +261,8 @@
 				FD5ECF5A15D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib in Resources */,
 				FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */,
 				484AA78515DFACAA00E814A4 /* JBQAMobileIcon.png in Resources */,
+				480A0C6415EA393A00011552 /* JBQAQuestionController_iPad.xib in Resources */,
+				480A0C6515EA393A00011552 /* JBQAQuestionController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +298,7 @@
 				48529E5C15E51BD700773CDF /* JBQAParser.m in Sources */,
 				480A0C4C15EA275700011552 /* MBProgressHUD.m in Sources */,
 				480A0C4F15EA276E00011552 /* ODRefreshControl.m in Sources */,
+				480A0C6015EA352A00011552 /* JBQAQuestionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
