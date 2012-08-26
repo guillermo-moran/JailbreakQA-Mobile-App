@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480A0C4C15EA275700011552 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 480A0C4B15EA275700011552 /* MBProgressHUD.m */; };
+		480A0C4F15EA276E00011552 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 480A0C4E15EA276E00011552 /* ODRefreshControl.m */; };
 		4816F69115E8B43F002B1E2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
 		484AA78515DFACAA00E814A4 /* JBQAMobileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */; };
 		48529E5C15E51BD700773CDF /* JBQAParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48529E5B15E51BD700773CDF /* JBQAParser.m */; };
-		48F9C34F15E9CD20007390A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F9C34E15E9CD20007390A7 /* ODRefreshControl.m */; };
 		48F9C35215E9CDD4007390A7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F9C35115E9CDD4007390A7 /* QuartzCore.framework */; };
 		48F9C35315E9CDE8007390A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3E15D6ABCB0061E472 /* CoreGraphics.framework */; };
 		FD55120015E1632400214372 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5511FF15E1632400214372 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -33,11 +34,13 @@
 
 /* Begin PBXFileReference section */
 		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		480A0C4A15EA275700011552 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		480A0C4B15EA275700011552 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
+		480A0C4D15EA276E00011552 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODRefreshControl.h; path = ODRefreshControl/ODRefreshControl.h; sourceTree = "<group>"; };
+		480A0C4E15EA276E00011552 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ODRefreshControl.m; path = ODRefreshControl/ODRefreshControl.m; sourceTree = "<group>"; };
 		484AA78415DFACAA00E814A4 /* JBQAMobileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JBQAMobileIcon.png; sourceTree = SOURCE_ROOT; };
 		48529E5A15E51BD700773CDF /* JBQAParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAParser.h; sourceTree = "<group>"; };
 		48529E5B15E51BD700773CDF /* JBQAParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAParser.m; sourceTree = "<group>"; };
-		48F9C34D15E9CD20007390A7 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
-		48F9C34E15E9CD20007390A7 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		48F9C35115E9CDD4007390A7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FD5511FE15E1632400214372 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD5511FF15E1632400214372 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -87,11 +90,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		480A0C4915EA273C00011552 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				480A0C4A15EA275700011552 /* MBProgressHUD.h */,
+				480A0C4B15EA275700011552 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		48F9C34C15E9CD20007390A7 /* ODRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
-				48F9C34D15E9CD20007390A7 /* ODRefreshControl.h */,
-				48F9C34E15E9CD20007390A7 /* ODRefreshControl.m */,
+				480A0C4D15EA276E00011552 /* ODRefreshControl.h */,
+				480A0C4E15EA276E00011552 /* ODRefreshControl.m */,
 			);
 			path = ODRefreshControl;
 			sourceTree = SOURCE_ROOT;
@@ -143,20 +155,20 @@
 		FD5ECF4015D6ABCB0061E472 /* JBQA */ = {
 			isa = PBXGroup;
 			children = (
-				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
-				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
 				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
 				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
 				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
-				48529E5A15E51BD700773CDF /* JBQAParser.h */,
-				48529E5B15E51BD700773CDF /* JBQAParser.m */,
 				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
 				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
-				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
-				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
-				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
 				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
+				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
+				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
+				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
+				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
+				48529E5A15E51BD700773CDF /* JBQAParser.h */,
+				48529E5B15E51BD700773CDF /* JBQAParser.m */,
 				FD5ECF4115D6ABCB0061E472 /* Supporting Files */,
 			);
 			path = JBQA;
@@ -165,6 +177,7 @@
 		FD5ECF4115D6ABCB0061E472 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				480A0C4915EA273C00011552 /* MBProgressHUD */,
 				48F9C34C15E9CD20007390A7 /* ODRefreshControl */,
 				FD5511FD15E1632400214372 /* Reachability */,
 				FD5ECF4215D6ABCB0061E472 /* JBQA-Info.plist */,
@@ -268,7 +281,8 @@
 				FD55120015E1632400214372 /* Reachability.m in Sources */,
 				FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */,
 				48529E5C15E51BD700773CDF /* JBQAParser.m in Sources */,
-				48F9C34F15E9CD20007390A7 /* ODRefreshControl.m in Sources */,
+				480A0C4C15EA275700011552 /* MBProgressHUD.m in Sources */,
+				480A0C4F15EA276E00011552 /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
