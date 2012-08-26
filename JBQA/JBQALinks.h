@@ -6,9 +6,16 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#ifndef JBQA_JBQALinks_h
-#define JBQA_JBQALinks_h
+//Main URL
+#define SERVICE_URL @"http://jailbreakqa.com"
 
+//RSS Feeds
+#define RSS_FEED [NSString stringWithFormat:@"%@/feeds/rss",SERVICE_URL]
+#define COMMENTS_FEED [NSString stringWithFormat:@"%@/?type=rss&comments=yes",SERVICE_URL]
+#define ANSWERS_FEED [NSString stringWithFormat:@"%@/?type=rss",SERVICE_URL]
 
+//Login
+#define SIGNIN_URL [NSString stringWithFormat:@"%@/account/signin/",SERVICE_URL]
 
-#endif
+//Questions
+#define QUESTION_URL [NSString stringWithFormat:@"%@/questions/ask/",SERVICE_URL]
