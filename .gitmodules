@@ -1,3 +1,6 @@
 [submodule "MBProgressHUD"]
 	path = MBProgressHUD
 	url = git://github.com/matej/MBProgressHUD.git
+[submodule "ODRefreshControl"]
+	path = ODRefreshControl
+	url = git://github.com/Sephiroth87/ODRefreshControl.git
