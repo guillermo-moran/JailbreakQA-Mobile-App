@@ -14,8 +14,8 @@
 @interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UITextFieldDelegate> {
     
     //UI
-    UIBarButtonItem *refreshBtn;
     UIBarButtonItem *loginBtn; //for the sake of completeness
+    UIBarButtonItem *askBtn;
     ODRefreshControl *refreshControl;
     JBQALoginController *loginController;
     
@@ -45,5 +45,6 @@
 - (void)checkNetworkStatus:(NSNotification *)notice;
 - (void)refreshData;
 - (void)displayLogin;
+- (void)ask;
 
 @end

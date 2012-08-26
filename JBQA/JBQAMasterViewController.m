@@ -9,17 +9,11 @@
 #import "JBQAMasterViewController.h"
 #import "JBQADetailViewController.h"
 #import "JBQALoginController.h"
+#import "JBQAQuestionController.h"
 #import "JBQAParser.h"
+#import "JBQALinks.h"
 #import "Reachability.h"
 #import "ODRefreshControl.h"
-
-//Important URLs
-#define SERVICE_URL @"http://jailbreakqa.com"
-#define RSS_FEED [NSString stringWithFormat:@"%@/feeds/rss",SERVICE_URL]
-#define COMMENTS_FEED [NSString stringWithFormat:@"%@/?type=rss&comments=yes",SERVICE_URL]
-#define ANSWERS_FEED [NSString stringWithFormat:@"%@/?type=rss",SERVICE_URL]
-#define SIGNIN_URL [NSString stringWithFormat:@"%@/account/signin/",SERVICE_URL]
-
 
 @interface JBQAMasterViewController ()
 {
@@ -44,8 +38,11 @@
 {
     [super viewDidLoad];
     loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
-    self.navigationItem.rightBarButtonItem = loginBtn;
     refreshControl =  [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    askBtn = [[UIBarButtonItem alloc] initWithTitle:@"Ask" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
+    
+    self.navigationItem.rightBarButtonItem = loginBtn;
+    self.navigationItem.leftBarButtonItem = askBtn;
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
@@ -117,6 +114,45 @@
     }
 }
 
+#pragma mark Login and Refresh Methods -
+- (void)refreshData
+{
+    [refreshControl beginRefreshing];
+    //switching to the detailview on an iPad screws up the refresh. Fix please!
+    feedParser = [[JBQAParser alloc] init];
+    feedParser.delegate = self;
+    dispatch_async(backgroundQueue, ^(void) {
+        NSLog(@"This takes time, k?");
+        [feedParser parseXMLFileAtURL:RSS_FEED];
+    });
+}
+
+- (void)insertNewObject:(NSString *)object
+{
+    if (!_objects) {
+        _objects = [[NSMutableArray alloc] init];
+    }
+    [_objects insertObject:object atIndex:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)displayLogin
+{
+    if (self.isInternetActive) {
+        loginController = [[JBQALoginController alloc] init];
+        [self presentViewController:loginController animated:YES completion:nil];
+    }
+    else
+        [self parseErrorOccurred:nil]; //again, me being lazy
+}
+
+- (void)ask
+{
+    JBQAQuestionController *qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
+    [self presentViewController:qController animated:YES completion:^(void){NSLog(@"Displayed %@", [qController class]);}];
+}
+
 #pragma mark Parser Delegate Methods -
 - (void)parserDidStartDocument;
 {
@@ -145,40 +181,6 @@
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
     NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
-}
-
-
-#pragma mark Login and Refresh Methods -
-- (void)insertNewObject:(NSString*)meh
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:meh atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (void)displayLogin
-{
-    if (self.isInternetActive) {
-        loginController = [[JBQALoginController alloc] init];
-        [self presentViewController:loginController animated:YES completion:nil];
-    }
-    else
-        [self parseErrorOccurred:nil]; //again, me being lazy
-}
-
-- (void)refreshData
-{
-    [refreshControl beginRefreshing];
-    //switching to the detailview on an iPad screws up the refresh. Fix please!
-    feedParser = [[JBQAParser alloc] init];
-    feedParser.delegate = self;
-    dispatch_async(backgroundQueue, ^(void) {
-        NSLog(@"This takes time, k?");
-        [feedParser parseXMLFileAtURL:RSS_FEED];
-    });
 }
 
 #pragma mark Table -

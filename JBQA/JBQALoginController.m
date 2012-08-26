@@ -88,6 +88,7 @@
     return NO;
 }
 
+#pragma mark -
 - (void)loginSelected
 {
     [self loginOnWebsite:SIGNIN_URL username:_usernameField.text password:_passwordField.text];
@@ -98,7 +99,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
+- (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
 {
     if (password.length > 3 || username.length > 0) //yes, I checked 
     {
@@ -125,7 +126,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     returnData = [[NSMutableData alloc] init];
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
     int responseCode = [httpResponse statusCode];
     NSLog(@"Recieved response code: %i",responseCode);
     if (responseCode == 200) {
