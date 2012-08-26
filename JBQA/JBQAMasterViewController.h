@@ -6,18 +6,18 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <dispatch/dispatch.h>
 #import "JBQAParser.h"
 
-@class JBQADetailViewController, Reachability, ODRefreshControl;
+@class JBQADetailViewController, JBQALoginController, Reachability, ODRefreshControl;
 
-@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
+@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UITextFieldDelegate> {
     
     //UI
     UIBarButtonItem *refreshBtn;
     UIBarButtonItem *loginBtn; //for the sake of completeness
     ODRefreshControl *refreshControl;
+    JBQALoginController *loginController;
     
     //Stuff
     
@@ -44,5 +44,6 @@
 
 - (void)checkNetworkStatus:(NSNotification *)notice;
 - (void)refreshData;
+- (void)displayLogin;
 
 @end

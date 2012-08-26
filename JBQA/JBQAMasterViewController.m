@@ -47,11 +47,13 @@
     self.navigationItem.rightBarButtonItem = loginBtn;
     refreshControl =  [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
     internetReachable = [Reachability reachabilityForInternetConnection];
     [internetReachable startNotifier];
     hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
     [hostReachable startNotifier];
+    
     [self refreshData]; //refresh data /after/ Reachability is set up
 }
 
@@ -127,22 +129,22 @@
     [refreshControl endRefreshing];
     if (self.isInternetActive && self.isHostReachable) {
         NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
-        UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
     }
     else {
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [errorAlert show];
     }
 }
 
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
-    [refreshControl endRefreshing];    
     stories = parseResults;
     [self.tableView reloadData];
-    NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
+    [refreshControl endRefreshing];
+    NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
 }
 
 
@@ -157,52 +159,14 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
--(void)displayLogin
+- (void)displayLogin
 {
-    if (![feedParser isParsing]) {
-        //this is needed, the UIAlertView screws things up
-        if (self.isInternetActive) {
-            loginAlert = [[UIAlertView alloc]
-                          initWithTitle:@"JailbreakQA Login"
-                          message:@"Enter your username and password"
-                          delegate:self
-                          cancelButtonTitle:@"Cancel"
-                          otherButtonTitles:@"Login", nil];
-	
-            loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-	
-            usernameField = [loginAlert textFieldAtIndex:0];
-            passwordField = [loginAlert textFieldAtIndex:1];
-            [loginAlert setTag:1];
-            [loginAlert show];
-        }
-        else {
-            loginAlert = [[UIAlertView alloc]
-                          initWithTitle:@"Connection Error"
-                          message:@"Please check your internet connection, and try again"
-                          delegate:self
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:@"Try again", nil];
-            [loginAlert setTag:2];
-            [loginAlert show];
-        }
+    if (self.isInternetActive) {
+        loginController = [[JBQALoginController alloc] init];
+        [self presentViewController:loginController animated:YES completion:nil];
     }
-    else /*do nothing*/;
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == 1) {
-        if (buttonIndex == 1) {
-            JBQALoginController *loginController = [[JBQALoginController alloc] init];
-            [loginController loginOnWebsite:SIGNIN_URL username:usernameField.text password:passwordField.text];
-            NSLog(@"User attempting to log in...");
-        }
-    }
-    if (alertView.tag == 2) {
-        if (buttonIndex == 2)
-        [self displayLogin];
-    }
+    else
+        [self parseErrorOccurred:nil]; //again, me being lazy
 }
 
 - (void)refreshData
