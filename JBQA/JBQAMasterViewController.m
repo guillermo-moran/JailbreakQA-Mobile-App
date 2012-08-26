@@ -11,7 +11,7 @@
 #import "JBQALoginController.h"
 #import "JBQAParser.h"
 #import "Reachability.h"
-#import "MBProgressHUD.h"
+#import "ODRefreshControl.h"
 
 //Important URLs
 #define SERVICE_URL @"http://jailbreakqa.com"
@@ -45,14 +45,14 @@
     [super viewDidLoad];
     loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
     self.navigationItem.rightBarButtonItem = loginBtn;
-        
+    refreshControl =  [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
     internetReachable = [Reachability reachabilityForInternetConnection];
     [internetReachable startNotifier];
-    
-    //Check if JailbreakQA is alive :P
     hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
     [hostReachable startNotifier];
+    [self refreshData]; //refresh data /after/ Reachability is set up
 }
 
 - (void)viewDidUnload
@@ -62,23 +62,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-    refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
-    //self.navigationItem.leftBarButtonItem = refreshBtn; //Added when finished loading content
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
-    [self refreshData]; //refresh data /after/ Reachability is set up
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
--(void)enableRefresh {
-    self.navigationItem.leftBarButtonItem = refreshBtn; //show button when finished.
-}
-
--(void)disableRefresh {
-    self.navigationItem.leftBarButtonItem = nil; //hide the button while loading data
 }
 
 #pragma mark Network Status Check -
@@ -134,10 +123,8 @@
 
 - (void)parseErrorOccurred:(NSError *)parseError
 {
-    [self enableRefresh];
     feedParser.parsing = NO;
-    [MBProgressHUD hideHUDForView:self.view animated:NO];
-    [self.tableView setUserInteractionEnabled:YES];
+    [refreshControl endRefreshing];
     if (self.isInternetActive && self.isHostReachable) {
         NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
         UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -147,30 +134,17 @@
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [errorAlert show];
     }
-    [feedParser removeObserver:self forKeyPath:@"progress"];
 }
 
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
-    
-    [MBProgressHUD hideHUDForView:self.view animated:NO];
+    [refreshControl endRefreshing];    
     stories = parseResults;
     [self.tableView reloadData];
     NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
-    [self.tableView setUserInteractionEnabled:YES];
     feedParser.parsing = NO;
-    [self enableRefresh];
-    [feedParser removeObserver:self forKeyPath:@"progress"];
 }
 
-#pragma mark KVO  -
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqual:@"progress"]) {
-        parseProgress = feedParser.progress;
-        hud.progress = parseProgress;
-    }
-}
 
 #pragma mark Login and Refresh Methods -
 - (void)insertNewObject:(NSString*)meh
@@ -233,21 +207,12 @@
 
 - (void)refreshData
 {
-    parseProgress = 0; //always set to zero 
-    [self disableRefresh];
+    [refreshControl beginRefreshing];
     //switching to the detailview on an iPad screws up the refresh. Fix please!
-  
     feedParser = [[JBQAParser alloc] init];
     feedParser.delegate = self;
-    [feedParser addObserver:self forKeyPath:@"progress" options:NSKeyValueObservingOptionNew context:NULL];
-    //register for KVO notifs from parser. Damn I love Apple.
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.labelText = @"Updating";
-    hud.dimBackground = YES;
-    NSLog(@"Progress is %.5f", parseProgress);
-        [self.tableView setUserInteractionEnabled:NO];
     dispatch_async(backgroundQueue, ^(void) {
+        NSLog(@"This takes time, k?");
         [feedParser parseXMLFileAtURL:RSS_FEED];
     });
 }
@@ -314,9 +279,9 @@
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
     
-    NSString* currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
-    NSString* title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
-    NSString* asker = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
+    NSString *currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
+    NSString *title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
+    NSString *asker = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 	    
@@ -337,7 +302,7 @@
     
     NSString *img = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"];
     
-    NSURL* imageURL = [NSURL URLWithString:img];
+    NSURL *imageURL = [NSURL URLWithString:img];
     [self.detailViewController setQuestionTitle:title asker:asker];
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];

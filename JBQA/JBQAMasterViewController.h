@@ -10,14 +10,14 @@
 #import <dispatch/dispatch.h>
 #import "JBQAParser.h"
 
-@class JBQADetailViewController, Reachability, MBProgressHUD;
+@class JBQADetailViewController, Reachability, ODRefreshControl;
 
 @interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     
     //UI
     UIBarButtonItem *refreshBtn;
     UIBarButtonItem *loginBtn; //for the sake of completeness
-    MBProgressHUD *hud; //I'll implement a progress view, I promise :D
+    ODRefreshControl *refreshControl;
     
     //Stuff
     
@@ -44,7 +44,5 @@
 
 - (void)checkNetworkStatus:(NSNotification *)notice;
 - (void)refreshData;
-- (void)enableRefresh;
-- (void)disableRefresh;
 
 @end
