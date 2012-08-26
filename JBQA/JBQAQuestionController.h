@@ -6,8 +6,21 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@class MBProgressHUD;
 
-@interface JBQAQuestionController : UIViewController
+@interface JBQAQuestionController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+{
+    IBOutlet UITextField *questionTitleField;
+    IBOutlet UITextField *tagsField;
+    IBOutlet UITextView *questionContent;
+    MBProgressHUD *_activityIndicator;
+    NSMutableData *returnData;
+    CGFloat animatedDistance;
+}
+
+-(void)submitQuestionWithTitle:(NSString*)title content:(NSString*)content tags:(NSString*)tags;
+
+-(IBAction)confirmedSubmission;
+-(IBAction)canceledSubmission;
 
 @end
