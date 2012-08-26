@@ -8,11 +8,7 @@
 //
 
 
-#define SERVICE_URL @"http://jailbreakqa.com"
-#define RSS_FEED [NSString stringWithFormat:@"%@/feeds/rss",SERVICE_URL]
-#define COMMENTS_FEED [NSString stringWithFormat:@"%@/?type=rss&comments=yes",SERVICE_URL]
-#define ANSWERS_FEED [NSString stringWithFormat:@"%@/?type=rss",SERVICE_URL]
-#define SIGNIN_URL [NSString stringWithFormat:@"%@/account/signin/",SERVICE_URL]
+#import "JBQALinks.h"
 
 @class MBProgressHUD;
 
