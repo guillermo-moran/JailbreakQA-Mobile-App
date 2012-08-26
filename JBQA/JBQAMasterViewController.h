@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <dispatch/dispatch.h>
 
+#import "ODRefreshControl.h"
+
 @class JBQADetailViewController, Reachability;
 
 @interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
@@ -16,6 +18,7 @@
     //UI
     
     UITableView* table;
+    ODRefreshControl *refreshControl;
     
     //Whatever
     

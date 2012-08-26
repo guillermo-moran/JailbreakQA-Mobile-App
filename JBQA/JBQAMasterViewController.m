@@ -9,14 +9,17 @@
 #import "JBQAMasterViewController.h"
 #import "JBQADetailViewController.h"
 #import "JBQAQuestionController.h"
+#import "JBQALoginController.h"
 
 #import "JBQAReachability.h"
 #import "JBQAFeedParser.h"
-#import "JBQALoginController.h"
+
 
 #import "JBQALinks.h"
 
-#import "SVPullToRefresh.h"
+
+
+
 
 
 @interface JBQAMasterViewController () {
@@ -60,17 +63,13 @@
     
     //Setup RSS Parser
     
-    id controller = self;
+    refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        NSLog(@"Refreshing Data!");
-        [controller refreshData];
-        [self.tableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
-    }];
+    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     
-    [self.tableView.pullToRefreshView triggerRefresh];
-    self.tableView.pullToRefreshView.lastUpdatedDate = [NSDate date];
-    //[self refreshData]; //Please do this when we open the app?
+    //Table Refresh
+    [refreshControl beginRefreshing];
+    [self refreshData];
   
     
     
@@ -100,21 +99,12 @@
 -(void)displayLogin {
     
     JBQAReachability* reachability = [[JBQAReachability alloc] init];
+    JBQALoginController* loginView = [[JBQALoginController alloc] init];
     
-    if (reachability.isInternetActive) {
-    loginAlert = [[UIAlertView alloc]
-                   initWithTitle:@"JailbreakQA Login"
-                   message:@"Enter your username and password"
-                   delegate:self
-                   cancelButtonTitle:@"Cancel"
-                   otherButtonTitles:@"Login", nil];
-	
-    loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-	
-    usernameField = [loginAlert textFieldAtIndex:0];
-    passwordField = [loginAlert textFieldAtIndex:1];
-    [loginAlert setTag:2];
-    [loginAlert show];
+    if (!reachability.isInternetActive) {
+        
+        [self presentModalViewController:loginView animated:YES];
+        
     }
     else {
       loginAlert = [[UIAlertView alloc]
@@ -128,22 +118,6 @@
     }
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 2) {
-        if (buttonIndex == 1) {
-            
-            JBQALoginController* loginController = [[JBQALoginController alloc] init];
-            
-            [loginController loginOnWebsite:SIGNIN_URL username:usernameField.text password:passwordField.text];
-            
-            NSLog(@"User attempting to log in...");
-        }
-    }
-    if (alertView.tag == 3) {
-        if (buttonIndex == 2)
-        [self displayLogin];
-    }
-}
 
 - (void)refreshData
 {
@@ -185,7 +159,9 @@
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [errorAlert show];
     }
+    [refreshControl endRefreshing];
 }
+
 
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
@@ -196,7 +172,7 @@
     [self.tableView setUserInteractionEnabled:YES];
     feedParser.parsing = NO;
     
-    
+    [refreshControl endRefreshing];
 }
 
 

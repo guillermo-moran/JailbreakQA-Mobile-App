@@ -12,28 +12,14 @@ The app is open sourced with the intent that you, developers, will contribute to
 
 So.. Please feel free to contribute to this app by forking it & submitting pull requests to this repository. 
 
-##How it works
-
-How this works is almost too simple. JBQA (which runs on OSQA) has an RSS Feed (@kirbylover4000 pointed that out). The XML is simply parsed and corresponding data is added to an array, which is in turn displayed on a table.
-
-
-##Compile Instructions
-Link it with MobileCoreServices, SystemConfiguration, and CFNetwork frameworks; also link with libz.dylib. Add the ASIHTTPRequest folder into the project, and then add all implementation (.m) files to the compile sources build phase with the compiler flag <b> "-fno-objc-arc" </b>
-Do all of this, and you <i>should</i> be able to compile just fine. 
-(Just ignore the incomplete implementation warning for ASIHTTPRequest).
-
-
 ##To-Do List
 
 There's a lot of work to be done! Here is the things I have in mind:
 
-- Create a nice, native-looking, clean interface
-- Implement logging in to your account (May require a bit of HTML Parsing)
-- Add a feature to ask/reply/comment on questions (May require a bit of HTML Parsing)
-- Add comments/answers view (easy with some RSS parsing)
-- Properly format questions in a neat, clean UI
-- Load unanswered/newest/most voted questions
-- Load more questions in the list (currently loads first 30)
+- Improve UI
+- Some clean up
+- Reply to question
+- Login through twitter/open-id
 
 P.S: This project uses ARC.
 
@@ -52,3 +38,19 @@ Copyright 2012 Fr0st Development
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License. 
+
+##Credits
+
+This project uses: 
+
+- Reachability
+- ODRefresh
+- BButon
+
+Their Licenses are included in this source code as well
+
+Thanks to:
+
+- @Caughinflux
+- @Cykey
+- @Protosphere7

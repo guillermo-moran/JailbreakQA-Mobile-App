@@ -3,16 +3,38 @@
 //  JBQA
 //
 //  Created by Guillermo Moran on 8/21/12.
-//  Copyright (c) 2012 Fr0st Development. All rights reserved.
+//  Modified by Aditya KD (flux) on 8/26/12. xD
+//  Copyright © 2012 Fr0st Development. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-@interface JBQALoginController : NSObject {
+#import "JBQALinks.h"
+
+@class BButton;
+
+@interface JBQALoginController : UIViewController <UITextFieldDelegate, UIWebViewDelegate, UITableViewDataSource, UITableViewDelegate>
+{
+    UITextField *_username;
+    UITextField *_password;
     
-    NSMutableData* returnData;
+    UIWebView* loginWebView;
+    NSString* JBQAUsername;
+    NSString* JBQAPassword;
+    
+    UIAlertView* loginAlert;
+    
+    UITableView *_tableView;
+    BButton *_login;
+    
+    UINavigationBar *_navBar;
+
+    
 }
 
--(void)loginOnWebsite:(NSString*)url username:(NSString*)username password:(NSString*)password;
+- (void)loginTapped:(UIButton *)tapped;
+- (void)cancelTapped:(UIBarButtonItem *)button;
+- (void)loginOnWebsite:(NSString*)url username:(NSString*)username password:(NSString*)password;
+- (void)dismissAlert:(UIAlertView*)alert;
 
 @end
+

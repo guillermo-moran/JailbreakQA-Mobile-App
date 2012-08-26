@@ -5,6 +5,8 @@
 //  Created by Aditya KD on 22/08/12.
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
+//  Credit goes to flux for this one!
+ 
 
 #import "JBQAFeedParser.h"
 

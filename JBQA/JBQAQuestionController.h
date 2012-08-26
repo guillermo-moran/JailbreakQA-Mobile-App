@@ -2,18 +2,25 @@
 //  JBQAQuestionController.h
 //  JBQA
 //
-//  Created by Guillermo Moran on 8/21/12.
+//  Created by Aditya KD on 26/08/12.
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface JBQAQuestionController : UIViewController {
-    IBOutlet UITextField* questionTitleField;
-    IBOutlet UITextField* tagsField;
-    IBOutlet UITextView* questionContent;
+
+@interface JBQAQuestionController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIWebViewDelegate>
+{
+    IBOutlet UITextField *questionTitleField;
+    IBOutlet UITextField *tagsField;
+    IBOutlet UITextView *questionContent;
+    NSMutableData *returnData;
+    CGFloat animatedDistance;
     
-    NSMutableData* returnData;
+    IBOutlet UIWebView* questionWebView;
+    
+    UIAlertView* questionAlert;
+    
+    NSString* qtitle, *qtags, *qtext;
 }
 
 -(void)submitQuestionWithTitle:(NSString*)title content:(NSString*)content tags:(NSString*)tags;

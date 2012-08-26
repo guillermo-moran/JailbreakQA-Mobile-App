@@ -8,67 +8,193 @@
 
 #import "JBQALoginController.h"
 
+#import "BButton.h"
+@interface JBQALoginController ()
+
+@end
+
 @implementation JBQALoginController
 
+//all credit for the modal view controller idea to Cykey!!!!! :P
 
--(void)loginOnWebsite:(NSString*)url username:(NSString*)username password:(NSString*)password {
+#pragma mark View Stuff -
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
-    NSLog(@"Logging in to %@ with -  username:%@ password:%@",url,username,password);
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
-    NSLog(@"No more ASIHTTP! Maybe DHowett won't kill me anymore :D");
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 60, 290, 100) style:UITableViewStyleGrouped];
+    [_tableView setDelegate:self];
+    [_tableView setDataSource:self];
+    [_tableView setBackgroundColor:[UIColor clearColor]];
+    [_tableView setScrollEnabled:NO];
+    [[self view] addSubview:_tableView];
     
-    NSString* loginURL = url;
+    _login = [[BButton alloc] initWithFrame:CGRectMake(24, 180, 270, 46)];
+    [_login setType:BButtonTypeInfo];
+    [_login setTitle:@"Login" forState:UIControlStateNormal];
+    [_login addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [[self view] addSubview:_login];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                    initWithURL:[NSURL URLWithString:loginURL]];
+    _navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    // [_navBar setTintColor:[UIColor blackColor]];
     
-    [request setHTTPMethod:@"POST"];
+    UIBarButtonItem *_leftItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelTapped:)];
     
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    
-    NSData *requestBody = [[NSString stringWithFormat:@"username=%@&password=%@", username, password] dataUsingEncoding:NSUTF8StringEncoding];
-    [request setHTTPBody:requestBody];
+    UINavigationItem *_navItem = [[UINavigationItem alloc] initWithTitle:@"Login"];
+    [_navItem setLeftBarButtonItem:_leftItem];
     
     
+    [_navBar pushNavigationItem:_navItem animated:NO];
+    [[self view] addSubview:_navBar];
     
-    NSURLConnection *JBQAConnect = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [JBQAConnect start];
+    loginWebView = [[UIWebView alloc] init];
+    loginWebView.frame = CGRectMake(0, 0, 50, 50);
+    [self.view addSubview:loginWebView];
+    [loginWebView setHidden:NO];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark Table view data source -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    
+    if (indexPath.row == 0) {
+        _username = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
+        [_username setAdjustsFontSizeToFitWidth:YES];
+        [_username setPlaceholder:@"Username"];
+        [_username setTag:1];
+        [_username setDelegate:self];
+        [_username setKeyboardAppearance:UIKeyboardAppearanceDefault];
+        [_username setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+        [cell setAccessoryView:_username];
+    } else if (indexPath.row == 1) {
+        _password = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
+        [_password setAdjustsFontSizeToFitWidth:YES];
+        [_password setPlaceholder:@"Password"];
+        [_password setTag:2];
+        [_password setDelegate:self];
+        [_password setKeyboardAppearance:UIKeyboardAppearanceDefault];
+        [_password setSecureTextEntry:YES];
+        [cell setAccessoryView:_password];
+    }
+    
+    //   [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    return cell;
+}
+#pragma mark UITextFieldDelegate -
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
+}
+
+#pragma mark Stuff -
+
+- (void)cancelTapped:(UIBarButtonItem *)button
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)loginTapped:(UIButton *)tapped
+{
+    [self loginOnWebsite:SIGNIN_URL username:_username.text password:_password.text];
+}
+
+
+
+-(void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password {
+    NSLog(@"Attempting login now!");
+
+    [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    loginWebView.delegate = self;
+    JBQAUsername = username;
+    JBQAPassword = password;
     
 }
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    returnData = [[NSMutableData alloc] init];
-    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    int responseCode = [httpResponse statusCode];
-    NSLog(@"Recieved response code: %i",responseCode);
-    if (responseCode == 200) {
-        NSLog(@"Recieved response 200, request was successful");
+
+-(void)webViewDidStartLoad:(UIWebView *)webView {
+    NSLog(@"Loading...");
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+
+    NSLog(@"Load Error.");
+    
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"WebView finished load. ");
+    // write javascript code in a string
+    
+    NSString* javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
+    "document.getElementsByName('password')[0].value ='%@';"
+    "javascript:document.getElementById('blogin')[0].click();",JBQAUsername, JBQAPassword];
+    
+    // run javascript in webview:
+    [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
+    
+    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    //NSLog(@"Retreived HTML Source: %@",html);
+    
+    loginAlert = [[UIAlertView alloc] init];
+    
+    if ([html rangeOfString:[NSString stringWithFormat:@"%@",JBQAUsername]].location == NSNotFound) {
+        loginAlert.title = @"Login Failed.";
+        loginAlert.message = @"Your username or password is incorrect. Please try again.";
     }
     else {
-        NSLog(@"Did not recieve response 200, request was unsuccessful");
+        loginAlert.title = @"JBQA Login";
+        loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
     }
+    [loginAlert show];
+    [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
+
 }
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [returnData appendData:data];
-}
--(void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error {
-    NSLog(@"Request failed");
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-    // Return the server's response string (A bunch of HTML)
-    // Uncomment this bit for testing purposes, else makes the log messy and retarded.
-    
-    
-    NSString* returnStr = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"%@",returnStr);
-    
-    
-    
-    //[returnData release];
+-(void)dismissAlert:(UIAlertView*)alert {
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
