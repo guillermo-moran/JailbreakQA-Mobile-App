@@ -30,7 +30,6 @@
 -(void)networkStatusChanged:(NSNotification *)notice
 {
     // called after network status changes
-    statusHasChanged = YES;
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
     self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
 }
