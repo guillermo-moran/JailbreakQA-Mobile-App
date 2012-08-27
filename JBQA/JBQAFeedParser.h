@@ -8,17 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 @protocol JBQAParserDelegate
 
-- (void)parserDidStartDocument;
 - (void)parseErrorOccurred:(NSError *)error;
 - (void)parserDidEndDocumentWithResults:(id)parseResults;
 
+@optional
+
+- (void)parserDidStartDocument;
+
 @end
 
-
-@interface JBQAFeedParser : NSObject <NSXMLParserDelegate> {
-    
+@interface JBQAFeedParser : NSObject <NSXMLParserDelegate>
+{
     NSXMLParser *rssParser;
     dispatch_queue_t backgroundQueue;
     NSMutableDictionary *item;
@@ -30,11 +34,9 @@
     int totalLines;
 }
 
--(void)parseXMLFileAtURL:(NSString *)URL;
+- (void)parseXMLFileAtURL:(NSString *)URL;
 
 @property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
 @property (nonatomic, getter = isParsing) BOOL parsing;
-
-
 
 @end

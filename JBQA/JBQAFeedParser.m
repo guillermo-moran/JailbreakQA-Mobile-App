@@ -32,20 +32,24 @@
 	[rssParser setShouldProcessNamespaces:NO];
 	[rssParser setShouldReportNamespacePrefixes:NO];
 	[rssParser setShouldResolveExternalEntities:NO];
-    NSLog(@"Begin parse");
     [rssParser parse];
 }
 
-//Forward NSXMLParser's delegated methods to JBQAParser's delegate.
+//Forward NSXMLParser's delegated methods to self.delegate 
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
     parseResults = [[NSMutableArray alloc] init];
-    [self.delegate parserDidStartDocument];
+    if ([self.delegate respondsToSelector:@selector(parserDidStartDocument:)]) {
+        NSLog(@"Delegate responds to %@, sending to delegate", NSStringFromSelector(_cmd));
+        [self.delegate parserDidStartDocument];
+    }
+    else
+        NSLog(@"Begin parse");
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{
-    [self.delegate parseErrorOccurred:parseError];
+{   if ([self.delegate respondsToSelector:@selector(parseErrorOccurred:)])
+        [self.delegate parseErrorOccurred:parseError];
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -65,7 +69,6 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    
 	//NSLog(@"ended element: %@", elementName);
 	if ([elementName isEqualToString:@"item"]) {
 		// save values to an item, then store that item into the array...
@@ -76,7 +79,6 @@
         [item setObject:currentAuthor forKey:@"author"];
         [parseResults addObject:[item copy]];
 	}
-    
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -99,8 +101,8 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    
-    [self.delegate parserDidEndDocumentWithResults:parseResults];
+    if ([self.delegate respondsToSelector:@selector(parserDidEndDocumentWithResults:)]);
+        [self.delegate parserDidEndDocumentWithResults:parseResults];
 }
 
 @end
