@@ -17,8 +17,14 @@
 @implementation JBQADetailViewController
 @synthesize masterPopoverController,detailItem,detailDescriptionLabel;
 
--(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker {
+-(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate *)date {
     qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDoesRelativeDateFormatting:YES];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    qDate.text = [NSString stringWithFormat:@"Posted: %@",[formatter stringFromDate:date]];
+    [formatter release];
     qTitle.text = title;
 }
 
@@ -28,7 +34,7 @@
 
 -(void)setQuestionContent:(NSString *)content {
     
-    NSString *cssString = @"<style type='text/css'>img {width: 300px; height: auto;}</style>";
+    NSString *cssString = @"<style>body {font-family: Helvetica;} img {width: 300px; height: auto;}</style>";
     NSString *htmlString = [NSString stringWithFormat:@"%@%@",cssString,content];
     
     [questionView loadHTMLString:htmlString baseURL:nil];
@@ -57,6 +63,13 @@
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
+    
+    if (questionView)
+        for (UIView *subview in [questionView subviews])
+            if ([subview isKindOfClass:[UIScrollView class]])
+                for (UIView *shadow in [subview subviews])
+                    if([shadow isKindOfClass:[UIImageView class]])
+                        [shadow setHidden:YES];
 }
 
 - (void)viewDidLoad
@@ -95,7 +108,7 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = @"JBQA";
+    barButtonItem.title = @"Questions";
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
@@ -108,3 +121,4 @@
 }
 
 @end
+
