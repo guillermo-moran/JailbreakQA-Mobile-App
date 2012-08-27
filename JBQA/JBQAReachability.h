@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
  
 @class Reachability;
-@interface JBQAReachability : NSObject {
-    
+@interface JBQAReachability : NSObject
+{
     Reachability *internetReachable; //check if internet connection is available
     Reachability *hostReachable; //JBQA check
 }
 
--(void)checkNetworkStatus:(NSNotification *)notice;
--(void)checkIsAlive;
+- (void)checkNetworkStatus:(NSNotification *)notice;
+- (void)checkIsAlive;
 
 //Reachability properties
 @property (nonatomic, getter = isInternetActive) BOOL internetActive;
