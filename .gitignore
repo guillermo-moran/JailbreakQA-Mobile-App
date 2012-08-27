@@ -4,12 +4,10 @@ JBQA.xcodeproj/xcuserdata/aditya.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
 
 *.xcuserstate
 
-BButton/.DS_Store
 
-.DS_Store
+.DS*
 
 JBQA.xcodeproj/project.pbxproj
 
-BButton/.DS_Store
 
 *.pbxproj

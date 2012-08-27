@@ -24,7 +24,7 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     qDate.text = [NSString stringWithFormat:@"Posted: %@",[formatter stringFromDate:date]];
-    [formatter release];
+
     qTitle.text = title;
 }
 
