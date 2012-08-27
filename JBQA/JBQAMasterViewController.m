@@ -128,6 +128,7 @@
     }
     
     else {
+        loginView.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentModalViewController:loginView animated:YES];
     }
 }
@@ -149,6 +150,7 @@
 
 -(void)ask {
     JBQAQuestionController* qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
+    qController.modalPresentationStyle = UIModalPresentationPageSheet;
     [self presentModalViewController:qController animated:YES];
 }
 
@@ -267,6 +269,10 @@
     NSString* currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
     NSString* title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
     NSString* asker = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss ZZ"];
+    NSDate* date = [formatter dateFromString:[[stories objectAtIndex:storyIndex] objectForKey:@"pubDate"]];
+    [formatter release];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 	    
@@ -288,7 +294,7 @@
     NSString *img = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"];
     
     NSURL* imageURL = [NSURL URLWithString:img];
-    [self.detailViewController setQuestionTitle:title asker:asker];
+    [self.detailViewController setQuestionTitle:title asker:asker date:date];
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
     self.detailViewController.title = @"Details";
