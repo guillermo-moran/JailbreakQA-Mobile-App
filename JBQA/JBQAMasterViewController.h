@@ -11,7 +11,7 @@
 
 #import "ODRefreshControl.h"
 
-@class JBQADetailViewController, Reachability;
+@class JBQADetailViewController, Reachability, TSActionSheet;
 
 @interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     
@@ -20,6 +20,7 @@
     UITableView* table;
     ODRefreshControl *refreshControl;
     UIBarButtonItem *loginBtn;
+    TSActionSheet *actionSheet;
     
     //Whatever
     

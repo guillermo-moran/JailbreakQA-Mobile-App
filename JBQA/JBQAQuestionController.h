@@ -16,13 +16,13 @@
     NSMutableData *returnData;
     CGFloat animatedDistance;
     
-    IBOutlet UINavigationBar* navBar;
+    IBOutlet UINavigationBar *navBar;
     
-    IBOutlet UIWebView* questionWebView;
+    IBOutlet UIWebView *questionWebView;
     
-    UIAlertView* questionAlert;
+    UIAlertView *questionAlert;
     
-    NSString* qtitle, *qtags, *qtext;
+    NSString *qtitle, *qtags, *qtext;
 }
 
 -(void)submitQuestionWithTitle:(NSString*)title content:(NSString*)content tags:(NSString*)tags;

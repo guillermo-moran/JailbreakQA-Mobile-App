@@ -9,6 +9,8 @@
 #import "JBQALoginController.h"
 
 #import "BButton.h"
+#import "MBProgressHUD.h"
+
 @interface JBQALoginController ()
 
 @end
@@ -99,7 +101,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    
     if (indexPath.row == 0) {
         _username = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
         [_username setAdjustsFontSizeToFitWidth:YES];
@@ -108,6 +109,8 @@
         [_username setDelegate:self];
         [_username setKeyboardAppearance:UIKeyboardAppearanceDefault];
         [_username setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+        [_username setAutocorrectionType:UITextAutocorrectionTypeNo];
+        [_username setReturnKeyType:UIReturnKeyNext];
         [cell setAccessoryView:_username];
     } else if (indexPath.row == 1) {
         _password = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
@@ -116,6 +119,7 @@
         [_password setTag:2];
         [_password setDelegate:self];
         [_password setKeyboardAppearance:UIKeyboardAppearanceDefault];
+        [_password setAutocorrectionType:UITextAutocorrectionTypeNo];
         [_password setSecureTextEntry:YES];
         [cell setAccessoryView:_password];
     }
@@ -128,7 +132,10 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    if (textField == _username)
+        [_password becomeFirstResponder];
+    else
+        [textField resignFirstResponder];
     return NO;
 }
 
@@ -142,31 +149,38 @@
 - (void)loginTapped:(UIButton *)tapped
 {
     [self loginOnWebsite:SIGNIN_URL username:_username.text password:_password.text];
+    [_password resignFirstResponder];
 }
 
 
 
--(void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password {
+- (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password {
     NSLog(@"Attempting login now!");
-
+    
+    _activityIndicator.mode = MBProgressHUDModeIndeterminate;
+    _activityIndicator.labelText = @"Logging In";
+    _activityIndicator.detailsLabelText = @"Please Wait";
+    _activityIndicator.backgroundColor = [UIColor clearColor];
+    _activityIndicator.center = _tableView.center;
+    _activityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     loginWebView.delegate = self;
     JBQAUsername = username;
     JBQAPassword = password;
-    
 }
 
--(void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webViewDidStartLoad:(UIWebView *)webView {
     NSLog(@"Loading...");
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
 
     NSLog(@"Load Error.");
     
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     NSLog(@"WebView finished load. ");
     // write javascript code in a string
     
@@ -190,15 +204,14 @@
     else {
         loginAlert.title = @"JBQA Login";
         loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
-        
-        
     }
     [loginAlert show];
     [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
 
 }
 
--(void)dismissAlert:(UIAlertView*)alert {
+- (void)dismissAlert:(UIAlertView *)alert
+{
     [alert dismissWithClickedButtonIndex:0 animated:YES];
     [self dismissModalViewControllerAnimated:YES];
 }

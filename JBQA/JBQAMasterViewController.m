@@ -18,11 +18,6 @@
 
 #import "JBQALinks.h"
 
-
-
-
-
-
 @interface JBQAMasterViewController () {
     NSMutableArray *_objects;
 }
@@ -105,43 +100,36 @@
      This is pretty fucking lazy, I know. I'll fix it later, I promise
     */
     
-    JBQALoginController* loginView = [[JBQALoginController alloc] init];
+    JBQALoginController *loginView = [[JBQALoginController alloc] init];
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
      
     NSString* html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
     
     if ([html rangeOfString:@"login"].location == NSNotFound) {
-        
-       
-        TSActionSheet *actionSheet = [[TSActionSheet alloc] initWithTitle:@"JailbreakQA"];
+    
+        actionSheet = [[TSActionSheet alloc] initWithTitle:@"JailbreakQA"];
         
         [actionSheet destructiveButtonWithTitle:@"Logout" block:^{
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
             [alert show];
         }];
-        
+        __weak typeof(self) xSelf = self;
+        //Stupid retain cycles. I don't like this, if you have a cleaner alternative, please do implement it :)
         [actionSheet addButtonWithTitle:@"Ask a Question" block:^{
-            [self ask];
+            [xSelf ask];//fix?
         }];
         
         //[actionSheet cancelButtonWithTitle:@"Cancel" block:nil];
         actionSheet.cornerRadius = 5;
-        
         [actionSheet showWithTouch:event];
-        
         NSLog(@"Already logged in");
-        
     }
     
     else {
         [self presentModalViewController:loginView animated:YES];
     }
-    
-        
-    
-    
 }
 
 
