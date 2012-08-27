@@ -4,7 +4,9 @@
 //
 //  Created by Guillermo Moran on 8/11/12.
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
-// 
+//
+
+#import "JBQALinks.h"
 
 #import "JBQAMasterViewController.h"
 #import "JBQADetailViewController.h"
@@ -15,8 +17,7 @@
 #import "JBQAFeedParser.h"
 
 #import "TSActionSheet.h"
-
-#import "JBQALinks.h"
+#import "ODRefreshControl.h"
 
 @interface JBQAMasterViewController () {
     NSMutableArray *_objects;
@@ -25,8 +26,7 @@
 
 @implementation JBQAMasterViewController
 
-#pragma maker Loading -
-
+static BOOL firstRefresh = YES;
 
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,66 +35,45 @@
     if (self) {
         self.title = @"JBQA";
     }
-    
     backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     return self;
 }
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //Reachability!
-    
-    JBQAReachability* reachability = [[JBQAReachability alloc] init];
-    [reachability checkIsAlive];
-    
+    [self startReachability];
     //Add Buttons
-    
-    loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(displayUserMenu:event:)];
-    //Login button added after refresh
+    menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(displayUserMenu:event:)];
+    self.navigationItem.rightBarButtonItem = menuBtn; //no need to hide
    
-    //Setup RSS Parser
-    
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-    
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    
-    //Table Refresh
-    [refreshControl beginRefreshing];
-    [self refreshData];
-  
-    
-    
+    dispatch_async(backgroundQueue, ^(void){[self refreshData];});
 }
 
--(void)viewDidUnload
+- (void)viewDidUnload
 {
     [super viewDidUnload];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];    
-	
-            
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-
-
 #pragma mark Login and Refresh Methods -
 
-
--(void)displayUserMenu:(id)sender event:(UIEvent*)event {
+- (void)displayUserMenu:(id)sender event:(UIEvent *)event {
     
     /*
      This is pretty fucking lazy, I know. I'll fix it later, I promise
@@ -104,7 +83,7 @@
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
      
-    NSString* html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
     
     if ([html rangeOfString:@"login"].location == NSNotFound) {
     
@@ -118,7 +97,7 @@
         __weak typeof(self) xSelf = self;
         //Stupid retain cycles. I don't like this, if you have a cleaner alternative, please do implement it :)
         [actionSheet addButtonWithTitle:@"Ask a Question" block:^{
-            [xSelf ask];//fix?
+            [xSelf ask];
         }];
         
         //[actionSheet cancelButtonWithTitle:@"Cancel" block:nil];
@@ -129,47 +108,54 @@
     
     else {
         loginView.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentModalViewController:loginView animated:YES];
+        [self presentViewController:loginView animated:YES completion:NULL];
     }
 }
 
 
 - (void)refreshData
 {
-    
-    self.navigationItem.rightBarButtonItem = nil; //Hide the button
-    
-    JBQAFeedParser *feedParser = [[JBQAFeedParser alloc] init];
+    feedParser = [[JBQAFeedParser alloc] init];
     feedParser.delegate = self;
-        
-    [self.tableView setUserInteractionEnabled:NO];
-    dispatch_async(backgroundQueue, ^(void) {
-        [feedParser parseXMLFileAtURL:RSS_FEED];
-    });
+    [refreshControl beginRefreshing];
+    if (firstRefresh){
+        usleep(300000);//wait /0.3/ seconds on first launch. Kill me already.
+        firstRefresh  = NO;
+    }
+    [refreshControl beginRefreshing];
+    if (reachability.isInternetActive)
+        dispatch_async(backgroundQueue, ^(void) {
+            NSLog(@"Calling -parseXMLFileAtURL:");
+            [feedParser parseXMLFileAtURL:RSS_FEED];
+        });
+    else
+        [self parseErrorOccurred:nil];
 }
-
--(void)ask {
-    JBQAQuestionController* qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
+- (void)startReachability
+{
+    //Reachability!
+    reachability = [[JBQAReachability alloc] init];
+    [reachability checkIsAlive];
+}
+- (void)ask
+{
+    if (reachability.isInternetActive && reachability.isHostReachable) {
+    JBQAQuestionController *qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
     qController.modalPresentationStyle = UIModalPresentationPageSheet;
-    [self presentModalViewController:qController animated:YES];
+    [self presentViewController:qController animated:YES completion:NULL];
+    }
+    else
+        [self parseErrorOccurred:nil];
 }
 
 #pragma mark Parser Delegate Methods -
-- (void)parserDidStartDocument;
-{
-    NSLog(@"Received callback");
-}
 
 - (void)parseErrorOccurred:(NSError *)parseError
 {
-    JBQAFeedParser* feedParser = [[JBQAFeedParser alloc] init];
-    JBQAReachability* reachability = [[JBQAReachability alloc] init];
-    
     feedParser.parsing = NO;
-    [self.tableView setUserInteractionEnabled:YES];
     if (reachability.isInternetActive && reachability.isHostReachable) {
         NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
-        UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
     }
     else {
@@ -177,39 +163,36 @@
         [errorAlert show];
     }
     [refreshControl endRefreshing];
-    self.navigationItem.rightBarButtonItem = loginBtn; //Show button again.
+
 }
 
 
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
-    JBQAFeedParser* feedParser = [[JBQAFeedParser alloc] init];
     stories = parseResults;
     [self.tableView reloadData];
     NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
-    [self.tableView setUserInteractionEnabled:YES];
-    feedParser.parsing = NO;
     
+    feedParser.parsing = NO;
     [refreshControl endRefreshing];
-    self.navigationItem.rightBarButtonItem = loginBtn; //Show button again
 }
 
 
 
 #pragma mark Table -
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [stories count];
 }
 
 // Customize the appearance of table view cells.
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
@@ -219,15 +202,10 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-        
-    
     int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
     
-
-    
-    NSString* questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
-    NSString* questionAuthor = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
-    
+    NSString *questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
+    NSString *questionAuthor = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
     
 	cell.textLabel.text = questionTitle;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Asked by: %@",questionAuthor];
@@ -235,7 +213,7 @@
 	return cell;
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return NO
@@ -266,12 +244,12 @@
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
     
-    NSString* currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
-    NSString* title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
-    NSString* asker = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    NSString *currentQuestion = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
+    NSString *title = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
+    NSString *asker = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss ZZ"];
-    NSDate* date = [formatter dateFromString:[[stories objectAtIndex:storyIndex] objectForKey:@"pubDate"]];
+    NSDate *date = [formatter dateFromString:[[stories objectAtIndex:storyIndex] objectForKey:@"pubDate"]];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 	    
@@ -292,7 +270,7 @@
     
     NSString *img = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"];
     
-    NSURL* imageURL = [NSURL URLWithString:img];
+    NSURL *imageURL = [NSURL URLWithString:img];
     [self.detailViewController setQuestionTitle:title asker:asker date:date];
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];

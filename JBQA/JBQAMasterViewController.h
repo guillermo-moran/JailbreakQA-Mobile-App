@@ -8,43 +8,36 @@
 
 #import <UIKit/UIKit.h>
 #import <dispatch/dispatch.h>
+#import "JBQAFeedParser.h"
 
-#import "ODRefreshControl.h"
+@class JBQADetailViewController, JBQAFeedParser, JBQAReachability, ODRefreshControl, Reachability, TSActionSheet;
 
-@class JBQADetailViewController, Reachability, TSActionSheet;
-
-@interface JBQAMasterViewController : UITableViewController <NSXMLParserDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
-    
+@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate>
+{    
     //UI
-    
     UITableView* table;
     ODRefreshControl *refreshControl;
-    UIBarButtonItem *loginBtn;
+    UIBarButtonItem *menuBtn;
     TSActionSheet *actionSheet;
+    IBOutlet UIWebView *webView;
     
     //Whatever
-    
+    JBQAFeedParser *feedParser;
 	CGSize cellSize;
     NSMutableArray *stories;
-    
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
     
-    IBOutlet UIWebView *webView; //I forget why.
-	
-    
-    UITextField *passwordField, *usernameField;
-    UIAlertView *loginAlert;
-    
-    id refreshSpinner; //someone please implement this :3 -- k.
+    JBQAReachability *reachability;
 }
 
--(void)refreshData;
--(void)ask;
--(void)displayUserMenu:(id)sender event:(UIEvent*)event;
+- (void)refreshData;
+- (void)ask;
+- (void)displayUserMenu:(id)sender event:(UIEvent *)event;
 
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
-@property (nonatomic, retain) NSMutableArray* stories;
+@property (nonatomic, retain) NSMutableArray *stories;
+@property (strong, nonatomic) JBQAReachability *reachability;
 
 @end
 
