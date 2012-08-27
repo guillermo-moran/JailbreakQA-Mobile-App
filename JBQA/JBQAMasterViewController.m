@@ -119,7 +119,6 @@ static BOOL firstRefresh = YES;
     feedParser.delegate = self;
     [refreshControl beginRefreshing];
     if (firstRefresh){
-        usleep(300000);//wait /0.3/ seconds on first launch. Kill me already.
         firstRefresh  = NO;
     }
     [refreshControl beginRefreshing];
@@ -135,7 +134,7 @@ static BOOL firstRefresh = YES;
 {
     //Reachability!
     reachability = [[JBQAReachability alloc] init];
-    [reachability checkIsAlive];
+    [reachability startNetworkStatusNotifications];
 }
 - (void)ask
 {
