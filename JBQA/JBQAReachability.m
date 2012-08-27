@@ -18,7 +18,7 @@
 -(void)startNetworkStatusNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     internetReachable = [Reachability reachabilityForInternetConnection];
-    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable
+    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
     [internetReachable startNotifier];
     
     //Check if JailbreakQA is alive :P
