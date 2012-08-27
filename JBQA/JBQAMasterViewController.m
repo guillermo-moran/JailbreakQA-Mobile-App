@@ -128,6 +128,7 @@
     }
     
     else {
+        loginView.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentModalViewController:loginView animated:YES];
     }
 }
@@ -149,6 +150,7 @@
 
 -(void)ask {
     JBQAQuestionController* qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
+    qController.modalPresentationStyle = UIModalPresentationPageSheet;
     [self presentModalViewController:qController animated:YES];
 }
 
