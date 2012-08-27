@@ -17,11 +17,11 @@
     UITextField *_username;
     UITextField *_password;
     
-    UIWebView* loginWebView;
-    NSString* html;
+    UIWebView *loginWebView;
+    NSString *html;
     
-    NSString* JBQAUsername;
-    NSString* JBQAPassword;
+    NSString *JBQAUsername;
+    NSString *JBQAPassword;
     
     UIAlertView* loginAlert;
     

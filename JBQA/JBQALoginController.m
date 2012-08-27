@@ -88,15 +88,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 2;
+    if (self.isLoggingIn)
+        return 0;
+    else
+        return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    if (self.isLoggingIn){
+        cell = nil;
+        return cell;
+    }
+    else {
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
@@ -127,6 +133,7 @@
     //[cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
+    }
 }
 #pragma mark UITextFieldDelegate -
 
@@ -157,12 +164,11 @@
 - (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password {
     NSLog(@"Attempting login now!");
     
+    
+    _activityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _activityIndicator.mode = MBProgressHUDModeIndeterminate;
     _activityIndicator.labelText = @"Logging In";
     _activityIndicator.detailsLabelText = @"Please Wait";
-    _activityIndicator.backgroundColor = [UIColor clearColor];
-    _activityIndicator.center = _tableView.center;
-    _activityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     loginWebView.delegate = self;
