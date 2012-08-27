@@ -77,7 +77,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     NSLog(@"Retreived HTML Source: %@",html);
     
     if ([html rangeOfString:[NSString stringWithFormat:@"%@",qtext]].location == NSNotFound) {
-        [self dismissModalViewControllerAnimated:YES];
         questionAlert.title = @"Error";
         questionAlert.message = @"An error occured while posting your question. Please try again.";
     }
@@ -85,14 +84,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         questionAlert.title = @"JailbreakQA";
         questionAlert.message = @"Your question has been posted.";
     }
-    
+    [questionAlert show];
     [self performSelector:@selector(dismissAlert:) withObject:questionAlert afterDelay:2.0];
     
 }
 
 -(void)dismissAlert:(UIAlertView*)alert {
     [alert dismissWithClickedButtonIndex:0 animated:YES];
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
 }
 
 
