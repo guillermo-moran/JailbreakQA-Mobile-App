@@ -15,59 +15,24 @@
 
 #pragma mark Network Status Check -
 
--(void)checkIsAlive {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+-(void)startNetworkStatusNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     internetReachable = [Reachability reachabilityForInternetConnection];
+    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable
     [internetReachable startNotifier];
     
     //Check if JailbreakQA is alive :P
     hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
+    self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
     [hostReachable startNotifier];
 }
 
--(void)checkNetworkStatus:(NSNotification *)notice
+-(void)networkStatusChanged:(NSNotification *)notice
 {
     // called after network status changes
-    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
-    switch (internetStatus)
-    {
-        case NotReachable:
-        {
-            self.internetActive = NO;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            self.internetActive = YES;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            self.internetActive = YES;
-            break;
-        }
-    }
-    
-    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
-    switch (hostStatus)
-    {
-        case NotReachable:
-        {
-            self.hostReachable = NO;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            self.hostReachable = YES;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            
-            self.hostReachable = YES;
-            break;
-        }
-    }
+    statusHasChanged = YES;
+    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
+    self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
 }
 
 

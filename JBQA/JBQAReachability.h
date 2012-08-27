@@ -15,8 +15,8 @@
     Reachability *hostReachable; //JBQA check
 }
 
-- (void)checkNetworkStatus:(NSNotification *)notice;
-- (void)checkIsAlive;
+- (void)networkStatusChanged:(NSNotification *)notice;
+- (void)startNetworkStatusNotifications;
 
 //Reachability properties
 @property (nonatomic, getter = isInternetActive) BOOL internetActive;
