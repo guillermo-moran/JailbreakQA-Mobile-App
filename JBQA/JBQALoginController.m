@@ -175,7 +175,7 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSLog(@"Load Error.");
     
 }
@@ -187,6 +187,8 @@
     NSString* javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
     "document.getElementsByName('password')[0].value ='%@';"
     "document.getElementById('blogin').click();",JBQAUsername, JBQAPassword];
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
