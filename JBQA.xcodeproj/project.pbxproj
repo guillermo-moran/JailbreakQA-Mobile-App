@@ -202,26 +202,26 @@
 			isa = PBXGroup;
 			children = (
 				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
-				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
-				FDF4DA5B15E933FE00FD223E /* JBQAFeedParser.h */,
-				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
-				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
-				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
-				FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */,
-				FDF4DA6315E9364600FD223E /* JBQAReachability.h */,
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
-				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
-				FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */,
-				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
+				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
 				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
-				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
+				FDF4DA6315E9364600FD223E /* JBQAReachability.h */,
 				FDF4DA6415E9364600FD223E /* JBQAReachability.m */,
+				FDF4DA5B15E933FE00FD223E /* JBQAFeedParser.h */,
+				FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */,
+				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
+				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */,
+				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
+				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
+				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
+				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
+				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
+				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
+				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
 				FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */,
 				FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */,
-				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
-				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
-				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
-				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
 				FD5ECF4115D6ABCB0061E472 /* Supporting Files */,
 			);
 			path = JBQA;
@@ -373,7 +373,6 @@
 			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
-
 
 /* Begin PBXSourcesBuildPhase section */
 		FD5ECF3215D6ABCB0061E472 /* Sources */ = {
