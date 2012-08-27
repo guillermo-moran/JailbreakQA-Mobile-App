@@ -141,6 +141,18 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		48A2ADC715EB3E5000A520CE /* External Classes */ = {
+			isa = PBXGroup;
+			children = (
+				48A2ADC115EB383A00A520CE /* MBProgressHUD */,
+				FD621D5115EAE9CD007EEE78 /* TSPopover */,
+				FD621D2815EA8009007EEE78 /* BButton */,
+				FD621D2415EA7406007EEE78 /* ODRefreshControl */,
+				FD5511FD15E1632400214372 /* Reachability */,
+			);
+			name = "External Classes";
+			sourceTree = "<group>";
+		};
 		FD5511FD15E1632400214372 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,13 +165,9 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
-				48A2ADC115EB383A00A520CE /* MBProgressHUD */,
-				FD621D5115EAE9CD007EEE78 /* TSPopover */,
-				FD621D3C15EA98B2007EEE78 /* Artwork */,
-				FD621D2815EA8009007EEE78 /* BButton */,
-				FD621D2415EA7406007EEE78 /* ODRefreshControl */,
-				FD5511FD15E1632400214372 /* Reachability */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
+				48A2ADC715EB3E5000A520CE /* External Classes */,
+				FD621D3C15EA98B2007EEE78 /* Artwork */,
 				FD5ECF3915D6ABCB0061E472 /* Frameworks */,
 				FD5ECF3715D6ABCB0061E472 /* Products */,
 			);
@@ -193,27 +201,27 @@
 		FD5ECF4015D6ABCB0061E472 /* JBQA */ = {
 			isa = PBXGroup;
 			children = (
-				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
-				FDF4DA6315E9364600FD223E /* JBQAReachability.h */,
-				FDF4DA6415E9364600FD223E /* JBQAReachability.m */,
+				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
+				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
 				FDF4DA5B15E933FE00FD223E /* JBQAFeedParser.h */,
-				FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */,
+				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
 				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
-				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
 				FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */,
+				FDF4DA6315E9364600FD223E /* JBQAReachability.h */,
+				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
+				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
+				FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */,
+				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
 				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
+				FDF4DA6415E9364600FD223E /* JBQAReachability.m */,
 				FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */,
 				FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */,
-				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
-				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
-				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
-				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
-				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
-				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
-				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
-				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
-				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
 				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
+				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
+				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
+				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
 				FD5ECF4115D6ABCB0061E472 /* Supporting Files */,
 			);
 			path = JBQA;
