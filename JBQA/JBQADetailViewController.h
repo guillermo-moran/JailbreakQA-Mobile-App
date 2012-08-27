@@ -13,12 +13,13 @@
     IBOutlet UIWebView* questionView;
     IBOutlet UIImageView* avatarView;
     IBOutlet UILabel* qAsker;
+    IBOutlet UILabel* qDate;
     IBOutlet UITextView* qTitle;
     
 }
 
 -(void)setQuestionContent:(NSString*)content;
--(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker;
+-(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate*)date;
 -(void)setAvatarFromURL:(NSURL*)url;
 
 @property (strong, nonatomic) id detailItem;
