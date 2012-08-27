@@ -46,6 +46,7 @@ This project uses:
 - Reachability
 - ODRefresh
 - BButon
+- TSPopover
 
 Their Licenses are included in this source code as well
 

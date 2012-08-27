@@ -19,6 +19,7 @@
     
     UITableView* table;
     ODRefreshControl *refreshControl;
+    UIBarButtonItem *loginBtn;
     
     //Whatever
     
@@ -39,6 +40,7 @@
 
 -(void)refreshData;
 -(void)ask;
+-(void)displayUserMenu:(id)sender event:(UIEvent*)event;
 
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
 @property (nonatomic, retain) NSMutableArray* stories;

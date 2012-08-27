@@ -22,13 +22,17 @@
 		FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */; };
 		FD621D2715EA7406007EEE78 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FD621D2615EA7406007EEE78 /* ODRefreshControl.m */; };
 		FD621D2C15EA8009007EEE78 /* BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FD621D2A15EA8009007EEE78 /* BButton.m */; };
-		FD621D2D15EA8009007EEE78 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD621D2B15EA8009007EEE78 /* LICENSE.txt */; };
 		FD621D4315EA98B2007EEE78 /* JBQAMobileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D3D15EA98B2007EEE78 /* JBQAMobileIcon.png */; };
 		FD621D4415EA98B2007EEE78 /* JBQAMobileIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D3E15EA98B2007EEE78 /* JBQAMobileIcon@2x.png */; };
 		FD621D4515EA98B2007EEE78 /* light_noise_diagonal.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D3F15EA98B2007EEE78 /* light_noise_diagonal.png */; };
 		FD621D4615EA98B2007EEE78 /* light_noise_diagonal_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D4015EA98B2007EEE78 /* light_noise_diagonal_@2X.png */; };
 		FD621D4715EA98B2007EEE78 /* retina_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D4115EA98B2007EEE78 /* retina_wood.png */; };
 		FD621D4815EA98B2007EEE78 /* retina_wood_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */; };
+		FD621D5F15EAE9CD007EEE78 /* TSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FD621D5415EAE9CD007EEE78 /* TSActionSheet.m */; };
+		FD621D6015EAE9CD007EEE78 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD621D5615EAE9CD007EEE78 /* TSPopoverController.m */; };
+		FD621D6115EAE9CD007EEE78 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD621D5815EAE9CD007EEE78 /* TSPopoverPopoverView.m */; };
+		FD621D6215EAE9CD007EEE78 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD621D5B15EAE9CD007EEE78 /* TSPopoverTouchView.m */; };
+		FD621D6315EAE9CD007EEE78 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FD621D5D15EAE9CD007EEE78 /* UIBarButtonItem+WEPopover.m */; };
 		FD92F33D15E47130002D50E2 /* JBQAQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */; };
 		FD92F33E15E47130002D50E2 /* JBQAQuestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */; };
 		FD92F34015E47168002D50E2 /* JBQAQuestionController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */; };
@@ -69,13 +73,23 @@
 		FD621D2615EA7406007EEE78 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		FD621D2915EA8009007EEE78 /* BButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BButton.h; sourceTree = "<group>"; };
 		FD621D2A15EA8009007EEE78 /* BButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BButton.m; sourceTree = "<group>"; };
-		FD621D2B15EA8009007EEE78 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		FD621D3D15EA98B2007EEE78 /* JBQAMobileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JBQAMobileIcon.png; sourceTree = "<group>"; };
 		FD621D3E15EA98B2007EEE78 /* JBQAMobileIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JBQAMobileIcon@2x.png"; sourceTree = "<group>"; };
 		FD621D3F15EA98B2007EEE78 /* light_noise_diagonal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light_noise_diagonal.png; sourceTree = "<group>"; };
 		FD621D4015EA98B2007EEE78 /* light_noise_diagonal_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_noise_diagonal_@2X.png"; sourceTree = "<group>"; };
 		FD621D4115EA98B2007EEE78 /* retina_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina_wood.png; sourceTree = "<group>"; };
 		FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retina_wood_@2X.png"; sourceTree = "<group>"; };
+		FD621D5315EAE9CD007EEE78 /* TSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSActionSheet.h; sourceTree = "<group>"; };
+		FD621D5415EAE9CD007EEE78 /* TSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSActionSheet.m; sourceTree = "<group>"; };
+		FD621D5515EAE9CD007EEE78 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
+		FD621D5615EAE9CD007EEE78 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
+		FD621D5715EAE9CD007EEE78 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
+		FD621D5815EAE9CD007EEE78 /* TSPopoverPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverPopoverView.m; sourceTree = "<group>"; };
+		FD621D5915EAE9CD007EEE78 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
+		FD621D5A15EAE9CD007EEE78 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
+		FD621D5B15EAE9CD007EEE78 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
+		FD621D5C15EAE9CD007EEE78 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
+		FD621D5D15EAE9CD007EEE78 /* UIBarButtonItem+WEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WEPopover.m"; sourceTree = "<group>"; };
 		FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAQuestionController.h; sourceTree = "<group>"; };
 		FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAQuestionController.m; sourceTree = "<group>"; };
 		FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController.xib; sourceTree = "<group>"; };
@@ -127,6 +141,7 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
+				FD621D5115EAE9CD007EEE78 /* TSPopover */,
 				FD621D3C15EA98B2007EEE78 /* Artwork */,
 				FD621D2815EA8009007EEE78 /* BButton */,
 				FD621D2415EA7406007EEE78 /* ODRefreshControl */,
@@ -216,7 +231,6 @@
 			children = (
 				FD621D2915EA8009007EEE78 /* BButton.h */,
 				FD621D2A15EA8009007EEE78 /* BButton.m */,
-				FD621D2B15EA8009007EEE78 /* LICENSE.txt */,
 			);
 			path = BButton;
 			sourceTree = "<group>";
@@ -232,6 +246,24 @@
 				FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */,
 			);
 			path = Artwork;
+			sourceTree = "<group>";
+		};
+		FD621D5115EAE9CD007EEE78 /* TSPopover */ = {
+			isa = PBXGroup;
+			children = (
+				FD621D5315EAE9CD007EEE78 /* TSActionSheet.h */,
+				FD621D5415EAE9CD007EEE78 /* TSActionSheet.m */,
+				FD621D5515EAE9CD007EEE78 /* TSPopoverController.h */,
+				FD621D5615EAE9CD007EEE78 /* TSPopoverController.m */,
+				FD621D5715EAE9CD007EEE78 /* TSPopoverPopoverView.h */,
+				FD621D5815EAE9CD007EEE78 /* TSPopoverPopoverView.m */,
+				FD621D5915EAE9CD007EEE78 /* TSPopoverTouchesDelegate.h */,
+				FD621D5A15EAE9CD007EEE78 /* TSPopoverTouchView.h */,
+				FD621D5B15EAE9CD007EEE78 /* TSPopoverTouchView.m */,
+				FD621D5C15EAE9CD007EEE78 /* UIBarButtonItem+WEPopover.h */,
+				FD621D5D15EAE9CD007EEE78 /* UIBarButtonItem+WEPopover.m */,
+			);
+			path = TSPopover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +325,6 @@
 				FD5ECF5D15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib in Resources */,
 				FD92F33E15E47130002D50E2 /* JBQAQuestionController.xib in Resources */,
 				FD92F34015E47168002D50E2 /* JBQAQuestionController_iPad.xib in Resources */,
-				FD621D2D15EA8009007EEE78 /* LICENSE.txt in Resources */,
 				FD621D4315EA98B2007EEE78 /* JBQAMobileIcon.png in Resources */,
 				FD621D4415EA98B2007EEE78 /* JBQAMobileIcon@2x.png in Resources */,
 				FD621D4515EA98B2007EEE78 /* light_noise_diagonal.png in Resources */,
@@ -321,6 +352,11 @@
 				FDF4DA6515E9364600FD223E /* JBQAReachability.m in Sources */,
 				FD621D2715EA7406007EEE78 /* ODRefreshControl.m in Sources */,
 				FD621D2C15EA8009007EEE78 /* BButton.m in Sources */,
+				FD621D5F15EAE9CD007EEE78 /* TSActionSheet.m in Sources */,
+				FD621D6015EAE9CD007EEE78 /* TSPopoverController.m in Sources */,
+				FD621D6115EAE9CD007EEE78 /* TSPopoverPopoverView.m in Sources */,
+				FD621D6215EAE9CD007EEE78 /* TSPopoverTouchView.m in Sources */,
+				FD621D6315EAE9CD007EEE78 /* UIBarButtonItem+WEPopover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

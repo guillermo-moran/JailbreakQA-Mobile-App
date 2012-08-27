@@ -109,6 +109,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)viewDidLoad
 {
+    
+    navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
+    
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     questionContent.layer.cornerRadius = 5;
     [questionContent.layer setBorderColor: [[UIColor grayColor] CGColor]];

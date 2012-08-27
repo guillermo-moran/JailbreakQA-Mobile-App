@@ -14,6 +14,7 @@
 #import "JBQAReachability.h"
 #import "JBQAFeedParser.h"
 
+#import "TSActionSheet.h"
 
 #import "JBQALinks.h"
 
@@ -55,17 +56,18 @@
     
     //Add Buttons
     
-    UIBarButtonItem *loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(displayLogin)];
-    self.navigationItem.rightBarButtonItem = loginBtn;
-    
-    UIBarButtonItem* askBtn = [[UIBarButtonItem alloc] initWithTitle:@"Ask" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
-    self.navigationItem.leftBarButtonItem = askBtn; //Added when finished loading content
-    
+    loginBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(displayUserMenu:event:)];
+    //Login button added after refresh
+   
     //Setup RSS Parser
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
+    
+    [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
     //Table Refresh
     [refreshControl beginRefreshing];
@@ -96,32 +98,57 @@
 
 #pragma mark Login and Refresh Methods -
 
--(void)displayLogin {
+
+-(void)displayUserMenu:(id)sender event:(UIEvent*)event {
     
-    JBQAReachability* reachability = [[JBQAReachability alloc] init];
+    /*
+     This is pretty fucking lazy, I know. I'll fix it later, I promise
+    */
+    
     JBQALoginController* loginView = [[JBQALoginController alloc] init];
     
-    if (!reachability.isInternetActive) {
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
+     
+    NSString* html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    
+    if ([html rangeOfString:@"login"].location == NSNotFound) {
         
-        [self presentModalViewController:loginView animated:YES];
+       
+        TSActionSheet *actionSheet = [[TSActionSheet alloc] initWithTitle:@"JailbreakQA"];
+        
+        [actionSheet destructiveButtonWithTitle:@"Logout" block:^{
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+            [alert show];
+        }];
+        
+        [actionSheet addButtonWithTitle:@"Ask a Question" block:^{
+            [self ask];
+        }];
+        
+        //[actionSheet cancelButtonWithTitle:@"Cancel" block:nil];
+        actionSheet.cornerRadius = 5;
+        
+        [actionSheet showWithTouch:event];
+        
+        NSLog(@"Already logged in");
         
     }
+    
     else {
-      loginAlert = [[UIAlertView alloc]
-                      initWithTitle:@"Connection Error"
-                      message:@"Please check your internet connection, and try again"
-                      delegate:self
-                      cancelButtonTitle:@"Dismiss"
-                      otherButtonTitles:@"Try again", nil];
-      [loginAlert setTag:3];
-      [loginAlert show];
+        [self presentModalViewController:loginView animated:YES];
     }
+    
+        
+    
+    
 }
 
 
 - (void)refreshData
 {
     
+    self.navigationItem.rightBarButtonItem = nil; //Hide the button
     
     JBQAFeedParser *feedParser = [[JBQAFeedParser alloc] init];
     feedParser.delegate = self;
@@ -160,6 +187,7 @@
         [errorAlert show];
     }
     [refreshControl endRefreshing];
+    self.navigationItem.rightBarButtonItem = loginBtn; //Show button again.
 }
 
 
@@ -173,6 +201,7 @@
     feedParser.parsing = NO;
     
     [refreshControl endRefreshing];
+    self.navigationItem.rightBarButtonItem = loginBtn; //Show button again
 }
 
 

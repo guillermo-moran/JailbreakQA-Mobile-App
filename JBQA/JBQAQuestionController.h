@@ -16,6 +16,8 @@
     NSMutableData *returnData;
     CGFloat animatedDistance;
     
+    IBOutlet UINavigationBar* navBar;
+    
     IBOutlet UIWebView* questionWebView;
     
     UIAlertView* questionAlert;

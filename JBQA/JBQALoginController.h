@@ -18,6 +18,8 @@
     UITextField *_password;
     
     UIWebView* loginWebView;
+    NSString* html;
+    
     NSString* JBQAUsername;
     NSString* JBQAPassword;
     
@@ -27,7 +29,6 @@
     BButton *_login;
     
     UINavigationBar *_navBar;
-
     
 }
 

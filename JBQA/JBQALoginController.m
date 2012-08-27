@@ -47,6 +47,8 @@
     [[self view] addSubview:_login];
     
     _navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    
+    _navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     // [_navBar setTintColor:[UIColor blackColor]];
     
     UIBarButtonItem *_leftItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelTapped:)];
@@ -59,9 +61,10 @@
     [[self view] addSubview:_navBar];
     
     loginWebView = [[UIWebView alloc] init];
-    loginWebView.frame = CGRectMake(0, 0, 50, 50);
+    loginWebView.frame = CGRectZero;
     [self.view addSubview:loginWebView];
-    [loginWebView setHidden:NO];
+    [loginWebView setHidden:YES];
+    
 }
 
 - (void)viewDidUnload
@@ -117,7 +120,7 @@
         [cell setAccessoryView:_password];
     }
     
-    //   [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    //[cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
@@ -169,23 +172,26 @@
     
     NSString* javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
     "document.getElementsByName('password')[0].value ='%@';"
-    "javascript:document.getElementById('blogin')[0].click();",JBQAUsername, JBQAPassword];
+    "document.getElementById('blogin').click();",JBQAUsername, JBQAPassword];
     
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
     
-    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    //NSLog(@"Retreived HTML Source: %@",html);
+    html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    NSLog(@"Retreived HTML Source: %@",html);
     
     loginAlert = [[UIAlertView alloc] init];
     
     if ([html rangeOfString:[NSString stringWithFormat:@"%@",JBQAUsername]].location == NSNotFound) {
         loginAlert.title = @"Login Failed.";
         loginAlert.message = @"Your username or password is incorrect. Please try again.";
+        
     }
     else {
         loginAlert.title = @"JBQA Login";
         loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
+        
+        
     }
     [loginAlert show];
     [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
@@ -196,6 +202,5 @@
     [alert dismissWithClickedButtonIndex:0 animated:YES];
     [self dismissModalViewControllerAnimated:YES];
 }
-
 
 @end
