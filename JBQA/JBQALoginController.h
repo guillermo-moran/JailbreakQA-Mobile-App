@@ -10,7 +10,7 @@
 
 #import "JBQALinks.h"
 
-@class BButton, MBProgressHUD;
+@class BButton;
 
 @interface JBQALoginController : UIViewController <UITextFieldDelegate, UIWebViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
@@ -23,21 +23,21 @@
     NSString *JBQAUsername;
     NSString *JBQAPassword;
     
-    UIAlertView* loginAlert;
+    UIAlertView *loginAlert;
     
     UITableView *_tableView;
-    BButton *_login;
+    BButton *_loginButton;
     
     UINavigationBar *_navBar;
     
-    MBProgressHUD *_activityIndicator;
+    id _activityIndicator; //alright, do whatever you want.
 }
 
 @property (nonatomic, getter = isLoggingIn) BOOL loggingIn;
 - (void)loginTapped:(UIButton *)tapped;
 - (void)cancelTapped:(UIBarButtonItem *)button;
-- (void)loginOnWebsite:(NSString*)url username:(NSString*)username password:(NSString*)password;
-- (void)dismissAlert:(UIAlertView*)alert;
+- (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password;
+- (void)dismissAlert:(UIAlertView *)alert;
 
 @end
 

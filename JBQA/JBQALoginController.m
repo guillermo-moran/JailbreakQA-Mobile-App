@@ -9,7 +9,6 @@
 #import "JBQALoginController.h"
 
 #import "BButton.h"
-#import "MBProgressHUD.h"
 
 @interface JBQALoginController ()
 
@@ -42,11 +41,11 @@
     [_tableView setScrollEnabled:NO];
     [[self view] addSubview:_tableView];
     
-    _login = [[BButton alloc] initWithFrame:CGRectMake(24, 180, 270, 46)];
-    [_login setType:BButtonTypeInfo];
-    [_login setTitle:@"Login" forState:UIControlStateNormal];
-    [_login addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [[self view] addSubview:_login];
+    _loginButton = [[BButton alloc] initWithFrame:CGRectMake(24, 180, 270, 46)];
+    [_loginButton setType:BButtonTypeInfo];
+    [_loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    [_loginButton addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [[self view] addSubview:_loginButton];
     
     _navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     
@@ -155,27 +154,20 @@
 
 - (void)loginTapped:(UIButton *)tapped
 {
+    [_password resignFirstResponder];
     
-    if ([_username.text length] == 0 && [_password.text length] == 0) {
-        UIAlertView* loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please provide a username and password" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    if ([_username.text length] < 3 && [_password.text length] < 1) {
+        UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please provide a username and password" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [loginError show];
         return;
     }
-    
-    [self loginOnWebsite:SIGNIN_URL username:_username.text password:_password.text];
-    [_password resignFirstResponder];
+    else
+        [self loginOnWebsite:SIGNIN_URL username:_username.text password:_password.text];
 }
 
-
-
-- (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password {
-    NSLog(@"Attempting login now!");
-    
-    
-    _activityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _activityIndicator.mode = MBProgressHUDModeIndeterminate;
-    _activityIndicator.labelText = @"Logging In";
-    _activityIndicator.detailsLabelText = @"Please Wait";
+- (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
+{
+    NSLog(@"Attempting login");
     
     [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     loginWebView.delegate = self;
@@ -183,25 +175,25 @@
     JBQAPassword = password;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
     NSLog(@"Loading...");
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{    
     NSLog(@"Load Error.");
     
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
     NSLog(@"WebView finished load. ");
     // write javascript code in a string
     
-    NSString* javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
+    NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
     "document.getElementsByName('password')[0].value ='%@';"
     "document.getElementById('blogin').click();",JBQAUsername, JBQAPassword];
-    
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
@@ -214,21 +206,22 @@
     if ([html rangeOfString:[NSString stringWithFormat:@"%@",JBQAUsername]].location == NSNotFound) {
         loginAlert.title = @"Login Failed.";
         loginAlert.message = @"Your username or password is incorrect. Please try again.";
-        
     }
     else {
         loginAlert.title = @"JBQA Login";
         loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
     }
+    
     [loginAlert show];
+    
     [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
-
 }
 
 - (void)dismissAlert:(UIAlertView *)alert
 {
     [alert dismissWithClickedButtonIndex:0 animated:YES];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 @end
