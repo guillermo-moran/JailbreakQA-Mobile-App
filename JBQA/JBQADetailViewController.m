@@ -67,10 +67,11 @@
     [questionView setClipsToBounds:YES];
     
     // Create colored border using CALayer property
-    [[questionView layer] setBorderColor:[[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor]];
+    [[questionView layer] setBorderColor:[[UIColor colorWithRed:0.48f green:0.48f blue:0.51f alpha:1.00f] CGColor]];
+                                                                //distinguish it from the questionController's textView
     [[questionView layer] setBorderWidth:2.75];
     
-    UIBarButtonItem* answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
+    UIBarButtonItem *answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
     self.navigationItem.rightBarButtonItem = answerButton;
     
     if (self.detailItem) {
@@ -83,7 +84,7 @@
                 for (UIView *shadow in [subview subviews])
                     if([shadow isKindOfClass:[UIImageView class]])
                         [shadow setHidden:YES];
-    
+    //lol?
 }
 
 - (void)viewDidLoad
