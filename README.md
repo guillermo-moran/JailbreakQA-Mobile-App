@@ -46,8 +46,6 @@ This project uses:
 - <a href="http://developer.apple.com/library/ios/#samplecode/Reachability/Introduction/Intro.html">Reachability</a>
 - <a href="https://github.com/Sephiroth87/ODRefreshControl">ODRefreshControl</a>
 - <a href="https://github.com/mattlawer/BButton">BButon</a>
-- <a href="https://github.com/jdg/MBProgressHUD">MBProgressHUD</a>
-- <a href="https://github.com/takashisite/TSPopover">TSPopover</a>
 
 Their Licenses are included in this source code as well
 
