@@ -5,7 +5,9 @@
 //  Created by Guillermo Moran on 8/25/12.
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //  All flux's work :p
-//
+//  And thekirbylover's
+
+
 #import "JBQAReachability.h"
 #import "Reachability.h"
 

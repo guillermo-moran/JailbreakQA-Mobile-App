@@ -69,7 +69,7 @@
 - (void)addButtonWithTitle:(NSString *)title block:(void (^)())block 
 {
     [self addButtonWithTitle:title
-                       color:[UIColor grayColor]
+                       color:[UIColor colorWithRed:91.0/255 green:91.0/255 blue:91.0/255 alpha:1.0]
                   titleColor:[UIColor whiteColor]
                  borderWidth:0
                  borderColor:[UIColor blackColor]
@@ -79,7 +79,7 @@
 - (void)destructiveButtonWithTitle:(NSString *)title block:(void (^)())block
 {
     [self addButtonWithTitle:title
-                       color:[UIColor redColor]
+                       color:[UIColor colorWithRed:176.0/255 green:23.0/255 blue:31.0/255 alpha:1.0]
                   titleColor:[UIColor whiteColor]
                  borderWidth:0
                  borderColor:[UIColor blackColor]

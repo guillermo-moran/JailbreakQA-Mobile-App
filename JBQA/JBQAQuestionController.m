@@ -113,13 +113,23 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    questionContent.layer.cornerRadius = 5;
-    [questionContent.layer setBorderColor: [[UIColor grayColor] CGColor]];
-    [questionContent.layer setBorderWidth: 1.0];
+    
+    
+    // Update the user interface for the detail item.
+    
+    // Round corners using CALayer property
+    [[questionContent layer] setCornerRadius:10];
+    [questionContent setClipsToBounds:YES];
+    
+    // Create colored border using CALayer property
+    [[questionContent layer] setBorderColor:[[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor]];
+    [[questionContent layer] setBorderWidth:2.75];
+    
     questionTitleField.delegate = self;
     questionTitleField.returnKeyType = UIReturnKeyNext;
     tagsField.delegate = self;
     questionContent.delegate = self;
+    
     [super viewDidLoad]; 
     // Do any additional setup after loading the view from its nib.
 }

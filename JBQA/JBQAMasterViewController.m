@@ -45,7 +45,7 @@ static BOOL firstRefresh = YES;
     [self startReachability];
     //Add Buttons
     menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(displayUserMenu:event:)];
-    self.navigationItem.rightBarButtonItem = menuBtn; //no need to hide
+    //self.navigationItem.rightBarButtonItem = menuBtn; //no need to hide (I like it hidden, k?)
    
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
@@ -90,14 +90,19 @@ static BOOL firstRefresh = YES;
         actionSheet = [[TSActionSheet alloc] initWithTitle:@"JailbreakQA"];
         
         [actionSheet destructiveButtonWithTitle:@"Logout" block:^{
-            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-            [alert show];
+            
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
+            
+           
+                
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+              
         }];
-        __weak typeof(self) xSelf = self;
+        id cats = self; //I had to rename it "cats".
         //Stupid retain cycles. I don't like this, if you have a cleaner alternative, please do implement it :)
         [actionSheet addButtonWithTitle:@"Ask a Question" block:^{
-            [xSelf ask];
+            [cats ask];
         }];
         
         //[actionSheet cancelButtonWithTitle:@"Cancel" block:nil];
@@ -117,11 +122,15 @@ static BOOL firstRefresh = YES;
 {
     feedParser = [[JBQAFeedParser alloc] init];
     feedParser.delegate = self;
+    
     [refreshControl beginRefreshing];
+    
     if (firstRefresh){
         firstRefresh  = NO;
     }
+    
     [refreshControl beginRefreshing];
+    
     if (reachability.isInternetActive)
         dispatch_async(backgroundQueue, ^(void) {
             NSLog(@"Calling -parseXMLFileAtURL:");
@@ -138,10 +147,10 @@ static BOOL firstRefresh = YES;
 }
 - (void)ask
 {
-    if (reachability.isInternetActive && reachability.isHostReachable) {
-    JBQAQuestionController *qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
-    qController.modalPresentationStyle = UIModalPresentationPageSheet;
-    [self presentViewController:qController animated:YES completion:NULL];
+    if (reachability.isInternetActive) {
+        JBQAQuestionController *qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
+        qController.modalPresentationStyle = UIModalPresentationPageSheet;
+        [self presentViewController:qController animated:YES completion:NULL];
     }
     else
         [self parseErrorOccurred:nil];
@@ -162,7 +171,7 @@ static BOOL firstRefresh = YES;
         [errorAlert show];
     }
     [refreshControl endRefreshing];
-
+    self.navigationItem.rightBarButtonItem = menuBtn; //Unhide it.... because it was hidden.
 }
 
 
@@ -174,6 +183,7 @@ static BOOL firstRefresh = YES;
     
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
+    self.navigationItem.rightBarButtonItem = menuBtn; //Unhide it.... because it was hidden.
 }
 
 
@@ -274,6 +284,7 @@ static BOOL firstRefresh = YES;
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
     self.detailViewController.title = @"Details";
+    
 
 }
  

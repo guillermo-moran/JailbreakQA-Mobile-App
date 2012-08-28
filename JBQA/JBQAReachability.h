@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
- 
+
 @class Reachability;
 @interface JBQAReachability : NSObject
 {

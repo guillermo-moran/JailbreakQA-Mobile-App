@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.SystemVersion">12B19</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
@@ -41,12 +41,11 @@
 					<object class="IBUIWebView" id="795747193">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 91}, {320, 369}}</string>
+						<string key="NSFrame">{{10, 113}, {300, 327}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="979030970">
+						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
@@ -57,7 +56,7 @@
 					<object class="IBUIImageView" id="326224532">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{12, 20}, {50, 50}}</string>
+						<string key="NSFrame">{{20, 13}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="887614451"/>
@@ -68,7 +67,7 @@
 					<object class="IBUILabel" id="62866856">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{170, 64}, {143, 19}}</string>
+						<string key="NSFrame">{{172, 58}, {143, 19}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="795747193"/>
@@ -104,7 +103,10 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="62866856"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="979030970"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEgMAA</bytes>
+						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -198,10 +200,10 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="795747193"/>
-							<reference ref="326224532"/>
-							<reference ref="62866856"/>
 							<reference ref="887614451"/>
+							<reference ref="62866856"/>
+							<reference ref="326224532"/>
+							<reference ref="795747193"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -264,6 +266,7 @@
 						<string key="avatarView">UIImageView</string>
 						<string key="detailDescriptionLabel">UILabel</string>
 						<string key="qAsker">UILabel</string>
+						<string key="qDate">UILabel</string>
 						<string key="qTitle">UITextView</string>
 						<string key="questionView">UIWebView</string>
 					</dictionary>
@@ -278,6 +281,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="qAsker">
 							<string key="name">qAsker</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="qDate">
+							<string key="name">qDate</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="qTitle">

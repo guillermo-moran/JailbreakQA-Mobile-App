@@ -8,6 +8,8 @@
 
 #import "JBQADetailViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface JBQADetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -60,6 +62,17 @@
 {
     // Update the user interface for the detail item.
 
+    // Round corners using CALayer property
+    [[questionView layer] setCornerRadius:10];
+    [questionView setClipsToBounds:YES];
+    
+    // Create colored border using CALayer property
+    [[questionView layer] setBorderColor:[[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor]];
+    [[questionView layer] setBorderWidth:2.75];
+    
+    UIBarButtonItem* answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
+    self.navigationItem.rightBarButtonItem = answerButton;
+    
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
@@ -70,6 +83,7 @@
                 for (UIView *shadow in [subview subviews])
                     if([shadow isKindOfClass:[UIImageView class]])
                         [shadow setHidden:YES];
+    
 }
 
 - (void)viewDidLoad
@@ -77,6 +91,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
 }
 
 - (void)viewDidUnload
@@ -102,6 +117,10 @@
         //self.title = NSLocalizedString(@"Detail", @"Detail");
     }
     return self;
+}
+
+-(void)addResponse {
+    NSLog(@"This feature is not yet available.");
 }
 							
 #pragma mark - Split view

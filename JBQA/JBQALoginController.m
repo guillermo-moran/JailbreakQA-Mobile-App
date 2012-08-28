@@ -155,6 +155,13 @@
 
 - (void)loginTapped:(UIButton *)tapped
 {
+    
+    if ([_username.text length] == 0 && [_password.text length] == 0) {
+        UIAlertView* loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please provide a username and password" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [loginError show];
+        return;
+    }
+    
     [self loginOnWebsite:SIGNIN_URL username:_username.text password:_password.text];
     [_password resignFirstResponder];
 }

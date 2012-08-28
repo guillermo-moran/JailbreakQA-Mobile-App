@@ -22,6 +22,9 @@
 -(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate*)date;
 -(void)setAvatarFromURL:(NSURL*)url;
 
+//-(void)addComment; Will do, later
+-(void)addResponse; //Next on the agenda!
+
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
