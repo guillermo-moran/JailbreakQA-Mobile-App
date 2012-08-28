@@ -54,5 +54,5 @@ Their Licenses are included in this source code as well
 Thanks to:
 
 - <a href="https://github.com/caughtinflux">@Caughtinflux</a>
-- <a href"https://github.com/Cykey">@Cykey</a>
-- <a href="https://github.com/Protosphere7>@Protosphere7</a>
+- <a href="https://github.com/Cykey">@Cykey</a>
+- <a href="https://github.com/Protosphere7">@Protosphere7</a>
