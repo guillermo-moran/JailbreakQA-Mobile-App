@@ -10,15 +10,16 @@
 #import <dispatch/dispatch.h>
 #import "JBQAFeedParser.h"
 
-@class JBQADetailViewController, JBQAFeedParser, JBQAReachability, ODRefreshControl, Reachability, TSActionSheet;
+@class JBQADetailViewController, JBQAFeedParser, JBQAReachability, ODRefreshControl, Reachability;
 
-@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate>
+@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIActionSheetDelegate>
 {    
     //UI
-    UITableView* table;
+    UITableView *table;
     ODRefreshControl *refreshControl;
     UIBarButtonItem *menuBtn;
-    TSActionSheet *actionSheet;
+    UIBarButtonItem *leftFlex;
+    UIActionSheet *menuSheet;
     IBOutlet UIWebView *webView;
     
     //Whatever
