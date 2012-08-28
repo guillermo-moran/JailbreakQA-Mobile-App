@@ -26,8 +26,6 @@
 
 @implementation JBQAMasterViewController
 
-static BOOL firstRefresh = YES;
-
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +43,6 @@ static BOOL firstRefresh = YES;
     [self startReachability];
     //Add Buttons
     menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(displayUserMenu:event:)];
-    //self.navigationItem.rightBarButtonItem = menuBtn; //no need to hide (I like it hidden, k?)
    
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
@@ -86,26 +83,21 @@ static BOOL firstRefresh = YES;
     NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
     
     if ([html rangeOfString:@"login"].location == NSNotFound) {
-    
-        actionSheet = [[TSActionSheet alloc] initWithTitle:@"JailbreakQA"];
         
-        [actionSheet destructiveButtonWithTitle:@"Logout" block:^{
+        actionSheet = [[TSActionSheet alloc] initWithTitle:@"JailbreakQA"];
+        [actionSheet destructiveButtonWithTitle:@"Logout" block:^(void) {
             
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
             
-           
-                
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-              
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            [alert show];
         }];
+        
         id cats = self; //I had to rename it "cats".
-        //Stupid retain cycles. I don't like this, if you have a cleaner alternative, please do implement it :)
         [actionSheet addButtonWithTitle:@"Ask a Question" block:^{
             [cats ask];
         }];
         
-        //[actionSheet cancelButtonWithTitle:@"Cancel" block:nil];
         actionSheet.cornerRadius = 5;
         [actionSheet showWithTouch:event];
         NSLog(@"Already logged in");
@@ -122,12 +114,6 @@ static BOOL firstRefresh = YES;
 {
     feedParser = [[JBQAFeedParser alloc] init];
     feedParser.delegate = self;
-    
-    [refreshControl beginRefreshing];
-    
-    if (firstRefresh){
-        firstRefresh  = NO;
-    }
     
     [refreshControl beginRefreshing];
     
