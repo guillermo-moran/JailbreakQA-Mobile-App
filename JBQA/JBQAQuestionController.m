@@ -12,7 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface JBQAQuestionController ()
-
+- (void)configureView;
 @end
 
 @implementation JBQAQuestionController {}
@@ -27,15 +27,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 -(IBAction)canceledSubmission
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(IBAction)confirmedSubmission
 {
-    if ([questionTitleField text].length > 3 && [questionContent text].length > 10)
+    if ([questionTitleField text].length >= 3 && [questionContent text].length >= 10)
         [self submitQuestionWithTitle:questionTitleField.text content:questionContent.text tags:tagsField.text];
-    else
-    {
+    else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"The title should be a minimum of 3 characters in length and the question should have at least 10 characters" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
     }
@@ -64,14 +63,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     NSLog(@"WebView finished load. ");
-    // write javascript code in a string
     
-    NSString* javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('title')[0].value ='%@';"
+    // write javascript code in a string. Ew javascript.
+    NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('title')[0].value ='%@';"
                                   "document.getElementsByName('tags')[0].value ='%@';"
                                   "document.getElementsByName('text')[0].value ='%@';"
                                   "document.forms['fmask'].submit();",qtitle, qtags, qtext];
     
-    // run javascript in webview:
+    // run javascript in webview. Webviews were bad enough, now they're hidden xD
     [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
     
     NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
@@ -113,15 +112,26 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+
+    //let's do all the configuring in -configureView pls. (More consistent)
+    [self configureView];
     
-    
-    // Update the user interface for the detail item.
-    
+    [super viewDidLoad];
+}
+
+- (void)configureView
+{
     // Round corners using CALayer property
+    [[questionTitleField layer] setCornerRadius:5];
+    [[tagsField layer] setCornerRadius:5];
     [[questionContent layer] setCornerRadius:10];
     [questionContent setClipsToBounds:YES];
     
     // Create colored border using CALayer property
+    [[questionTitleField layer] setBorderColor:[[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor]];
+    [[questionTitleField layer] setBorderWidth:2.75];
+    [[tagsField layer] setBorderColor:[[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor]];
+    [[tagsField layer] setBorderWidth:2.75];
     [[questionContent layer] setBorderColor:[[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor]];
     [[questionContent layer] setBorderWidth:2.75];
     
@@ -129,11 +139,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     questionTitleField.returnKeyType = UIReturnKeyNext;
     tagsField.delegate = self;
     questionContent.delegate = self;
-    
-    [super viewDidLoad]; 
-    // Do any additional setup after loading the view from its nib.
 }
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];

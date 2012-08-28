@@ -18,6 +18,7 @@
 #pragma mark Network Status Check -
 
 -(void)startNetworkStatusNotifications {
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     internetReachable = [Reachability reachabilityForInternetConnection];
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
@@ -34,6 +35,7 @@
     // called after network status changes
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
     self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
+    //Nice cleanup :D, my implementation was a bit more broad. :P
 }
 
 
