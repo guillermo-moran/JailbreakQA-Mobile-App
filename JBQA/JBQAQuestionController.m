@@ -89,7 +89,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
 }
 
--(void)dismissAlert:(UIAlertView *)alert {
+-(void)dismissAlert:(UIAlertView *)alert
+{
     [alert dismissWithClickedButtonIndex:0 animated:YES];
     //[self dismissModalViewControllerAnimated:YES];
 }

@@ -25,7 +25,7 @@
     NSString *qtitle, *qtags, *qtext;
 }
 
--(void)submitQuestionWithTitle:(NSString*)title content:(NSString*)content tags:(NSString*)tags;
+-(void)submitQuestionWithTitle:(NSString *)title content:(NSString *)content tags:(NSString *)tags;
 
 -(IBAction)confirmedSubmission;
 -(IBAction)canceledSubmission;
