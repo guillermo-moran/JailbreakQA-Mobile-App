@@ -19,9 +19,11 @@
 
 #import "ODRefreshControl.h"
 
-@interface JBQAMasterViewController () {
+@interface JBQAMasterViewController ()
+{
     NSMutableArray *_objects;
 }
+- (void)configureView;
 @end
 
 @implementation JBQAMasterViewController
@@ -39,9 +41,13 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     [self startReachability];
-    
+    [self configureView];
+    dispatch_async(backgroundQueue, ^(void){[self refreshData];});
+}
+
+- (void)configureView
+{
     //Add Buttons
     leftFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu:event:)];
@@ -55,8 +61,6 @@
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    
-    dispatch_async(backgroundQueue, ^(void){[self refreshData];});
 }
 
 - (void)viewDidUnload
