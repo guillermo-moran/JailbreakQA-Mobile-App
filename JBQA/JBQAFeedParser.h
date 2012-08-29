@@ -23,8 +23,7 @@
 
 @interface JBQAFeedParser : NSObject <NSXMLParserDelegate>
 {
-    NSXMLParser *rssParser;
-    dispatch_queue_t backgroundQueue;
+    NSXMLParser  *rssParser;
     NSMutableDictionary *item;
 	NSString *currentElement;
 	NSMutableString *currentTitle, *currentDate, *currentSummary, *currentLink, *currentAuthor;
@@ -36,7 +35,10 @@
 
 - (void)parseXMLFileAtURL:(NSString *)URL;
 
-@property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
+@property (weak) NSXMLParser *rssParser;
+@property (strong) NSMutableDictionary *item;
 @property (nonatomic, getter = isParsing) BOOL parsing;
+@property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
+
 
 @end
