@@ -10,6 +10,7 @@
 
 #import "JBQAMasterViewController.h"
 #import "JBQADetailViewController.h"
+
 #import "JBQAQuestionController.h"
 #import "JBQALoginController.h"
 
@@ -86,8 +87,18 @@
     
     if ([html rangeOfString:@"login"].location == NSNotFound) {
         menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles: @"Ask a Question", nil];
-        menuSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-        [menuSheet showFromBarButtonItem:menuBtn animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                [menuSheet showFromBarButtonItem:menuBtn animated:YES];
+            }
+            else {
+                CGRect windowsRect = [self.navigationController.toolbar convertRect:menuBtn.customView.frame toView:self.view.window];
+                [menuSheet showFromRect:windowsRect inView:self.view.window animated:YES];
+            }
+        }
+        else {
+            [menuSheet showFromToolbar:self.navigationController.toolbar];
+        }
     }
     
     else {
