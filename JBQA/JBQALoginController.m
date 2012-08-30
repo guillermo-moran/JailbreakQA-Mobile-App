@@ -53,7 +53,6 @@
     // [_navBar setTintColor:[UIColor blackColor]];
     
     UIBarButtonItem *_leftItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelTapped:)];
-    
     UINavigationItem *_navItem = [[UINavigationItem alloc] initWithTitle:@"Login"];
     [_navItem setLeftBarButtonItem:_leftItem];
     
@@ -155,7 +154,7 @@
 - (void)loginTapped:(UIButton *)tapped
 {
     [_password resignFirstResponder];
-    
+    [_loginButton setTitle:@"Logging In" forState:UIControlStateNormal];
     if ([_username.text length] < 3 && [_password.text length] < 1) {
         UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please provide a username and password" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [loginError show];
@@ -193,13 +192,13 @@
     
     NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
     "document.getElementsByName('password')[0].value ='%@';"
-    "document.getElementById('blogin').click();",JBQAUsername, JBQAPassword];
+    "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
     
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
     
     html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    NSLog(@"Retreived HTML Source: %@",html);
+    //NSLog(@"Retreived HTML Source: %@",html);
     
     loginAlert = [[UIAlertView alloc] init];
     
@@ -221,7 +220,6 @@
 {
     [alert dismissWithClickedButtonIndex:0 animated:YES];
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 @end

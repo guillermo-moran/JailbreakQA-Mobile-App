@@ -8,19 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JBQADetailViewController : UIViewController <UISplitViewControllerDelegate> {
-    
+@interface JBQADetailViewController : UIViewController <UISplitViewControllerDelegate>
+{    
     IBOutlet UIWebView* questionView;
-    IBOutlet UIImageView* avatarView;
-    IBOutlet UILabel* qAsker;
-    IBOutlet UILabel* qDate;
-    IBOutlet UITextView* qTitle;
+    IBOutlet UIImageView *avatarView;
+    IBOutlet UILabel *qAsker;
+    IBOutlet UILabel *qDate;
+    IBOutlet UITextView *qTitle;
     
 }
 
--(void)setQuestionContent:(NSString*)content;
--(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate*)date;
--(void)setAvatarFromURL:(NSURL*)url;
+-(void)setQuestionContent:(NSString *)content;
+-(void)setQuestionTitle:(NSString *)title asker:(NSString*)asker date:(NSDate*)date;
+-(void)setAvatarFromURL:(NSURL *)url;
 
 //-(void)addComment; Will do, later
 -(void)addResponse; //Next on the agenda!

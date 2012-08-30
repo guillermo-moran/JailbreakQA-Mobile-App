@@ -55,7 +55,6 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.toolbarItems = @[leftFlex, menuBtn]; //yay new syntax.
-    [self.navigationController setToolbarHidden:NO animated:NO];
     
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
@@ -71,6 +70,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+    [self.navigationController setToolbarHidden:NO animated:NO];
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
 }
 
@@ -86,7 +86,9 @@
     JBQALoginController *loginView = [[JBQALoginController alloc] init];
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
+    usleep(200000);
     NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    
     NSLog(@"HTML = %@", html); //goddamit, fix this.
     
     if ([html rangeOfString:@"login"].location == NSNotFound) {
@@ -267,6 +269,7 @@
 	    }
         
 	    self.detailViewController.detailItem = object;
+        [self.navigationController setToolbarHidden:YES animated:YES];
         [self.navigationController pushViewController:self.detailViewController animated:YES];
         
     }

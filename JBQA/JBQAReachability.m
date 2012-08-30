@@ -35,7 +35,6 @@
     // called after network status changes
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
     self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
-    //Nice cleanup :D, my implementation was a bit more broad. :P
 }
 
 

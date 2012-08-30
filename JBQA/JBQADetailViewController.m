@@ -7,7 +7,7 @@
 //
 
 #import "JBQADetailViewController.h"
-
+#import "JBQAAnswerController.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -120,8 +120,10 @@
     return self;
 }
 
--(void)addResponse {
-    NSLog(@"This feature is not yet available.");
+-(void)addResponse
+{
+    JBQAAnswerController *answerController = [[JBQAAnswerController alloc] initWithNibName:@"JBQAAnswerController" bundle:nil];
+    [self presentViewController:answerController animated:YES completion:NULL];
 }
 							
 #pragma mark - Split view

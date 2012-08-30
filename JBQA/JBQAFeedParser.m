@@ -52,8 +52,11 @@
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{   if ([self.delegate respondsToSelector:@selector(parseErrorOccurred:)])
+{
+    if ([self.delegate respondsToSelector:@selector(parseErrorOccurred:)])
         [self.delegate parseErrorOccurred:parseError];
+    else
+        NSLog(@"Parser encountered error: %@", parseError.description);
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -110,8 +113,10 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    if ([self.delegate respondsToSelector:@selector(parserDidEndDocumentWithResults:)]);
+    if ([self.delegate respondsToSelector:@selector(parserDidEndDocumentWithResults:)])
         [self.delegate parserDidEndDocumentWithResults:parseResults];
+    else
+        NSLog(@"Finished parsing");
 }
 
 @end

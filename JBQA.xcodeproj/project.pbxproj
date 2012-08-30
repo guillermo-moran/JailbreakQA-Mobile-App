@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877EB1315EF350A004EF159 /* JBQAAnswerController.m */; };
+		4877EB1615EF350A004EF159 /* JBQAAnswerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */; };
 		FD55120015E1632400214372 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5511FF15E1632400214372 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */; };
 		FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */; };
@@ -44,6 +46,9 @@
 
 /* Begin PBXFileReference section */
 		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		4877EB1215EF350A004EF159 /* JBQAAnswerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerController.h; sourceTree = "<group>"; };
+		4877EB1315EF350A004EF159 /* JBQAAnswerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerController.m; sourceTree = "<group>"; };
+		4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAAnswerController.xib; sourceTree = "<group>"; };
 		FD5511FE15E1632400214372 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD5511FF15E1632400214372 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FD5ECF3615D6ABCB0061E472 /* JBQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +191,9 @@
 				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
 				FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */,
 				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
+				4877EB1215EF350A004EF159 /* JBQAAnswerController.h */,
+				4877EB1315EF350A004EF159 /* JBQAAnswerController.m */,
+				4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */,
 				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
 				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
 				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
@@ -305,6 +313,7 @@
 				FD621D4615EA98B2007EEE78 /* light_noise_diagonal_@2X.png in Resources */,
 				FD621D4715EA98B2007EEE78 /* retina_wood.png in Resources */,
 				FD621D4815EA98B2007EEE78 /* retina_wood_@2X.png in Resources */,
+				4877EB1615EF350A004EF159 /* JBQAAnswerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +351,7 @@
 				FDF4DA6515E9364600FD223E /* JBQAReachability.m in Sources */,
 				FD621D2715EA7406007EEE78 /* ODRefreshControl.m in Sources */,
 				FD621D2C15EA8009007EEE78 /* BButton.m in Sources */,
+				4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
