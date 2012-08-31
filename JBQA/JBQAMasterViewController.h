@@ -23,7 +23,7 @@
     IBOutlet UIWebView *webView;
     
     //Whatever
-    JBQAFeedParser *feedParser;
+    JBQAFeedParser __strong *feedParser;
 	CGSize cellSize;
     NSMutableArray *stories;
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations

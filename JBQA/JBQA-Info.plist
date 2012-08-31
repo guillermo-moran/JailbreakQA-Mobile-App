@@ -22,8 +22,6 @@
 			<true/>
 		</dict>
 	</dict>
-	<key>SBUsesNetwork</key>
-	<true/>
 	<key>CFBundleIdentifier</key>
 	<string>com.jailbreakqa.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

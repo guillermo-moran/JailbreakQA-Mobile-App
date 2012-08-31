@@ -8,18 +8,22 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "JBQAAnswerController.h"
+#import "AJNotificationView.h"
 
 @interface JBQAAnswerController ()
-
+//privy stuff, outlets should be here, but who gives a fuck?
 @end
 
-@implementation JBQAAnswerController
+@implementation JBQAAnswerController {}
+
+#pragma mark Synth -
 @synthesize navBar = _navBar;
 @synthesize submitButton = _submitButton;
 @synthesize cancelButton = _cancelButton;
 @synthesize answerWebView = _answerWebView;
 @synthesize answerTextField = _answerTextField;
 
+#pragma mark UI stuff -
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -78,6 +82,7 @@
         [self dismiss:nil];
 }
 
+#pragma mark Answering -
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     NSLog(@"Loading...");
@@ -86,6 +91,7 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error Occurred");
+    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An error occurred. Please try submitting your answer again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
 }
 
 - (void)submitAnswerWithText:(NSString *)answer forQuestion:(int)questionID
@@ -105,12 +111,12 @@
                                                     "document.forms['fmanswer'].submit();", self.answerTextField.text];
     NSLog(@"Processing javascript");
     [webView stringByEvaluatingJavaScriptFromString:javascriptString]; //send answer
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"Your answer has been submitted" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-    [alert show];
-    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:2];
+    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Your answer has been submitted" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+    [self performSelector:@selector(dismiss:) withObject:nil afterDelay:3.0f];
 }
 
 
+#pragma mark -
 - (void)dismiss:(UIAlertView *)alert
 {
     if (alert)
@@ -118,11 +124,5 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return NO;
-}
 
 @end

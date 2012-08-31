@@ -9,6 +9,8 @@
 #import "JBQAQuestionController.h"
 #import "JBQALinks.h"
 
+#import "AJNotificationView.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 @interface JBQAQuestionController ()
@@ -77,8 +79,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     NSLog(@"Retreived HTML Source: %@",html);
     
     if ([html rangeOfString:[NSString stringWithFormat:@"%@",qtext]].location == NSNotFound) {
-        questionAlert.title = @"Error";
-        questionAlert.message = @"An error occured while posting your question. Please try again.";
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Error. Your question was not posted, please try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     else {
         questionAlert.title = @"JailbreakQA";

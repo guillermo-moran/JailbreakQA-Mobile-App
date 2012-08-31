@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48022E8215F0817B009D1DBF /* AJNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48022E8115F0817B009D1DBF /* AJNotificationView.m */; };
 		4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877EB1315EF350A004EF159 /* JBQAAnswerController.m */; };
 		4877EB1615EF350A004EF159 /* JBQAAnswerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */; };
 		FD55120015E1632400214372 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5511FF15E1632400214372 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -45,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48022E8015F0817B009D1DBF /* AJNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNotificationView.h; sourceTree = "<group>"; };
+		48022E8115F0817B009D1DBF /* AJNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNotificationView.m; sourceTree = "<group>"; };
 		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		4877EB1215EF350A004EF159 /* JBQAAnswerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerController.h; sourceTree = "<group>"; };
 		4877EB1315EF350A004EF159 /* JBQAAnswerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerController.m; sourceTree = "<group>"; };
@@ -118,9 +121,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48022E7F15F0817B009D1DBF /* AJNotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				48022E8015F0817B009D1DBF /* AJNotificationView.h */,
+				48022E8115F0817B009D1DBF /* AJNotificationView.m */,
+			);
+			path = AJNotificationView;
+			sourceTree = "<group>";
+		};
 		48A2ADC715EB3E5000A520CE /* External Classes */ = {
 			isa = PBXGroup;
 			children = (
+				48022E7F15F0817B009D1DBF /* AJNotificationView */,
 				FD621D2815EA8009007EEE78 /* BButton */,
 				FD621D2415EA7406007EEE78 /* ODRefreshControl */,
 				FD5511FD15E1632400214372 /* Reachability */,
@@ -352,6 +365,7 @@
 				FD621D2715EA7406007EEE78 /* ODRefreshControl.m in Sources */,
 				FD621D2C15EA8009007EEE78 /* BButton.m in Sources */,
 				4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */,
+				48022E8215F0817B009D1DBF /* AJNotificationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

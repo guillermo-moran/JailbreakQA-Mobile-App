@@ -18,6 +18,7 @@
 #import "JBQAFeedParser.h"
 
 #import "ODRefreshControl.h"
+#import "AJNotificationView.h"
 
 @interface JBQAMasterViewController ()
 {
@@ -27,6 +28,9 @@
 @end
 
 @implementation JBQAMasterViewController
+
+static BOOL isFirstRefresh = YES;
+
 
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,6 +47,9 @@
 {
     [self startReachability];
     [self configureView];
+    feedParser = [[JBQAFeedParser alloc] init];
+    feedParser.delegate = self;
+    feedParser.parsing = YES;
     dispatch_async(backgroundQueue, ^(void){[self refreshData];});
 }
 
@@ -79,60 +86,82 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-#pragma mark Login and Refresh Methods -
+#pragma mark Internet Check Notifier Setup -
+- (void)startReachability
+{
+    //Reachability!
+    reachability = [[JBQAReachability alloc] init];
+    [reachability startNetworkStatusNotifications];
+    //register for notifications, notify user when connection is lost. k?
+    [reachability addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
+}
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqual:@"internetActive"]) {
+        if (!reachability.isInternetActive) {
+            if (feedParser.isParsing)
+                ;//do nothing
+            else
+                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
+        }
+        if (reachability.isInternetActive) {
+            if (isFirstRefresh)
+                ;//do nothing
+            else
+                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh Now" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+        }
+    }
+}
+
+
+#pragma mark JBQA Interaction Methods -
 - (void)refreshData
 {
-    feedParser = [[JBQAFeedParser alloc] init];
-    feedParser.delegate = self;
-    
     [refreshControl beginRefreshing];
     if (reachability.isInternetActive)
-        dispatch_async(backgroundQueue, ^(void) {
-            [feedParser parseXMLFileAtURL:RSS_FEED];
-        });
+        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:RSS_FEED];});
     else
         [self parseErrorOccurred:nil];
 }
 
 - (void)displayUserMenu:(id)sender event:(UIEvent *)event
 {
-    JBQALoginController *loginView = [[JBQALoginController alloc] init];
+    if (reachability.isInternetActive) {
+        JBQALoginController *loginView = [[JBQALoginController alloc] init];
     
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
-    usleep(200000);
-    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
+        usleep(200000);
+        NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
     
-    NSLog(@"HTML = %@", html); //goddamit, fix this.
+        NSLog(@"HTML = %@", html); //goddamit, fix this.
     
-    if ([html rangeOfString:@"login"].location == NSNotFound) {
-        menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles: @"Ask a Question", nil];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-                [menuSheet showFromBarButtonItem:menuBtn animated:YES];
+        if ([html rangeOfString:@"login"].location == NSNotFound) {
+            menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout"     otherButtonTitles: @"Ask a Question", nil];
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                    [menuSheet showFromBarButtonItem:menuBtn animated:YES];
+                }
+                else {
+                    CGRect windowsRect = [self.navigationController.toolbar convertRect:menuBtn.customView.frame toView:self.view.window];
+                    [menuSheet showFromRect:windowsRect inView:self.view.window animated:YES];
+                }
             }
             else {
-                CGRect windowsRect = [self.navigationController.toolbar convertRect:menuBtn.customView.frame toView:self.view.window];
-                [menuSheet showFromRect:windowsRect inView:self.view.window animated:YES];
+                [menuSheet showFromToolbar:self.navigationController.toolbar];
             }
         }
+        
         else {
-            [menuSheet showFromToolbar:self.navigationController.toolbar];
+            loginView.modalPresentationStyle = UIModalPresentationFormSheet;
+            [self presentViewController:loginView animated:YES completion:NULL];
         }
+
     }
-    
-    else {
-        loginView.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:loginView animated:YES completion:NULL];
-    }
+    else
+        [self parseErrorOccurred:nil];
 }
 
-- (void)startReachability
-{
-    //Reachability!
-    reachability = [[JBQAReachability alloc] init];
-    [reachability startNetworkStatusNotifications];
-}
 - (void)ask
 {
     if (reachability.isInternetActive) {
@@ -143,6 +172,7 @@
     else
         [self parseErrorOccurred:nil];
 }
+
 #pragma mark UIActionSheet Delegate Method -
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -153,8 +183,7 @@
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies])
                 [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"You are now logged out of JailbreakQA." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"You Are Now Logged Out Of JBQA" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
         
     } else if (buttonIndex != actionSheet.cancelButtonIndex)
         [self ask];
@@ -166,14 +195,12 @@
 - (void)parseErrorOccurred:(NSError *)parseError
 {
     feedParser.parsing = NO;
+    isFirstRefresh = NO;
     if (reachability.isInternetActive && reachability.isHostReachable) {
-        NSString *errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [errorAlert show];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable To Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     else {
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Connection failed" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-        [errorAlert show];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     [refreshControl endRefreshing];
 }
@@ -182,7 +209,7 @@
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
     stories = parseResults;
-    
+    isFirstRefresh = NO;
     [self.tableView reloadData];
     NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
