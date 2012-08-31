@@ -31,14 +31,16 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     _answerTextField.layer.cornerRadius = 10;
     _answerTextField.clipsToBounds = YES;
+    
+    //make this pretty, someone, it no worky!
     _answerTextField.layer.borderColor = [[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor];
     _answerTextField.backgroundColor = [UIColor whiteColor];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -61,13 +63,13 @@
 {
     if ([sender.title isEqualToString:@"Submit"]) {
         NSLog(@"User wants to submit answer");
-        if (self.answerTextField.text.length > 10) {
+        if (self.answerTextField.text.length > 5) {
             NSLog(@"Answer length is valid");
             [self submitAnswerWithText:self.answerTextField.text forQuestion:117991]; //the test question's ID :D
         }
         else {
             NSLog(@"User is an idiot");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"Make sure your answer is at least 10 characters in length" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"Make sure your answer is at least 5 characters in length" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             [alert show];
         }
     }
@@ -87,8 +89,8 @@
 
 - (void)submitAnswerWithText:(NSString *)answer forQuestion:(int)questionID
 {
-    NSString *questionLink = [NSString stringWithFormat:@"http://www.jailbreakqa.com/questions/%i", questionID];
-    self.questionID = questionID;
+    NSString *questionLink = [NSString stringWithFormat:@"http://www.jailbreakqa.com/questions/%@", self.questionID];
+    NSLog(@"Question link is: %@", questionLink);
     [self.answerWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:questionLink]]];
     self.answerWebView.delegate = self;
 }
@@ -114,4 +116,12 @@
         [alert dismissWithClickedButtonIndex:-1 animated:YES];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
+}
+
 @end
