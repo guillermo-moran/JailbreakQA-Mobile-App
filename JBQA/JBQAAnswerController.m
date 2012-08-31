@@ -40,6 +40,7 @@
     _answerTextField.layer.borderColor = [[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor];
     _answerTextField.backgroundColor = [UIColor whiteColor];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    [[self answerTextField] setDelegate:self];
     [super viewDidLoad];
 }
 
