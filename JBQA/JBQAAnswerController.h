@@ -11,7 +11,7 @@
 @interface JBQAAnswerController : UIViewController <UITextFieldDelegate, UIWebViewDelegate>
 {
     NSString *_answerText;
-    int _questionID;
+    NSString  *_questionID;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
@@ -19,8 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UIWebView *answerWebView;
 @property (weak, nonatomic) IBOutlet UITextField *answerTextField;
-@property (nonatomic) int questionID;
-
+@property (nonatomic) NSString *questionID;
 
 - (void)submitAnswerWithText:(NSString *)answer forQuestion:(int)questionID;
 

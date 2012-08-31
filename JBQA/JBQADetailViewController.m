@@ -17,9 +17,12 @@
 @end
 
 @implementation JBQADetailViewController
+@synthesize answersCell;
+@synthesize answersCount;
 @synthesize masterPopoverController,detailItem,detailDescriptionLabel;
 
--(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate *)date {
+-(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate *)date
+{
     qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDoesRelativeDateFormatting:YES];
@@ -58,9 +61,17 @@
     }        
 }
 
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    [self configureView];
+}
+
 - (void)configureView
 {
-    // Update the user interface for the detail item.
 
     // Round corners using CALayer property
     [[questionView layer] setCornerRadius:10];
@@ -74,9 +85,8 @@
     UIBarButtonItem *answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
     self.navigationItem.rightBarButtonItem = answerButton;
     
-    if (self.detailItem) {
+    if (self.detailItem)
         self.detailDescriptionLabel.text = [self.detailItem description];
-    }
     
     if (questionView)
         for (UIView *subview in [questionView subviews])
@@ -84,19 +94,18 @@
                 for (UIView *shadow in [subview subviews])
                     if([shadow isKindOfClass:[UIImageView class]])
                         [shadow setHidden:YES];
-    //lol?
+    
 }
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+   //For any extra configuration
 }
 
 - (void)viewDidUnload
 {
+    [self setAnswersCell:nil];
+    [self setAnswersCount:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
@@ -120,9 +129,11 @@
     return self;
 }
 
+
 -(void)addResponse
 {
     JBQAAnswerController *answerController = [[JBQAAnswerController alloc] initWithNibName:@"JBQAAnswerController" bundle:nil];
+    [answerController setQuestionID:self.questionID];
     [self presentViewController:answerController animated:YES completion:NULL];
 }
 							
