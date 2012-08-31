@@ -33,12 +33,11 @@
     int totalLines;
 }
 
-- (void)parseXMLFileAtURL:(NSString *)URL;
-
 @property (weak) NSXMLParser *rssParser;
 @property (strong) NSMutableDictionary *item;
 @property (nonatomic, getter = isParsing) BOOL parsing;
 @property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
 
+- (void)parseXMLFileAtURL:(NSString *)URL;
 
 @end

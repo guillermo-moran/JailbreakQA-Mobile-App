@@ -107,6 +107,7 @@
         }else if ([currentElement isEqualToString:@"dc:creator"]) {
             [currentAuthor appendString:string];
         }
+        
     }
     
 }
