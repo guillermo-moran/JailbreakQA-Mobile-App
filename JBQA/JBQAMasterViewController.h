@@ -32,13 +32,14 @@
     JBQAReachability *reachability;
 }
 
+@property (strong, nonatomic) JBQADetailViewController *detailViewController;
+@property (strong, nonatomic) NSMutableArray *stories;
+@property (strong, nonatomic) JBQAReachability *reachability;
+@property (nonatomic) BOOL isLoggedIn;
+
 - (void)refreshData;
 - (void)ask;
 - (void)displayUserMenu:(id)sender event:(UIEvent *)event;
-
-@property (strong, nonatomic) JBQADetailViewController *detailViewController;
-@property (nonatomic, retain) NSMutableArray *stories;
-@property (strong, nonatomic) JBQAReachability *reachability;
 
 @end
 

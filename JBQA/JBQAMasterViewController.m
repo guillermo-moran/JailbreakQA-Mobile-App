@@ -70,7 +70,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-    [self.navigationController setToolbarHidden:NO animated:NO];
+    [self.navigationController setToolbarHidden:NO animated:YES];
     cellSize = CGSizeMake([self.tableView bounds].size.width, 60);
 }
 
@@ -80,6 +80,20 @@
 }
 
 #pragma mark Login and Refresh Methods -
+
+- (void)refreshData
+{
+    feedParser = [[JBQAFeedParser alloc] init];
+    feedParser.delegate = self;
+    
+    [refreshControl beginRefreshing];
+    if (reachability.isInternetActive)
+        dispatch_async(backgroundQueue, ^(void) {
+            [feedParser parseXMLFileAtURL:RSS_FEED];
+        });
+    else
+        [self parseErrorOccurred:nil];
+}
 
 - (void)displayUserMenu:(id)sender event:(UIEvent *)event
 {
@@ -113,19 +127,6 @@
     }
 }
 
-- (void)refreshData
-{
-    feedParser = [[JBQAFeedParser alloc] init];
-    feedParser.delegate = self;
-    
-    [refreshControl beginRefreshing];
-    if (reachability.isInternetActive)
-        dispatch_async(backgroundQueue, ^(void) {
-            [feedParser parseXMLFileAtURL:RSS_FEED];
-        });
-    else
-        [self parseErrorOccurred:nil];
-}
 - (void)startReachability
 {
     //Reachability!
@@ -181,6 +182,7 @@
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
     stories = parseResults;
+    
     [self.tableView reloadData];
     NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
@@ -226,9 +228,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return NO
-
-;
+    return NO;
 }
 
 /*
@@ -285,9 +285,10 @@
     [self.detailViewController setQuestionTitle:title asker:asker date:date];
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
+        
+    NSArray *URLComponents = [[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]] pathComponents]; //I'm bored again
     self.detailViewController.title = @"Details";
-    
-
+    NSString *questionID = [URLComponents objectAtIndex:2];
+    self.detailViewController.questionID = questionID; //PLEASE, LET'S CREATE A JBQADATACONTROLLER CLASS.....DO YOU EVER READ THE DOCS, fr0st?
 }
- 
 @end
