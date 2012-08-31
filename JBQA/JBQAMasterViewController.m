@@ -109,7 +109,7 @@ static BOOL isFirstRefresh = YES;
             if (isFirstRefresh)
                 ;//do nothing
             else
-                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh Now" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
         }
     }
 }

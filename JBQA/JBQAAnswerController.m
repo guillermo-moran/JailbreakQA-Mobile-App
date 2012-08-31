@@ -91,7 +91,7 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Error Occurred");
-    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An error occurred. Please try submitting your answer again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An error occurred. Try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
 }
 
 - (void)submitAnswerWithText:(NSString *)answer forQuestion:(int)questionID
