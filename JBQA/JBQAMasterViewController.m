@@ -217,6 +217,8 @@ static BOOL isFirstRefresh = YES;
 {
     NSLog(@"Load Error.");
     [hud done];
+    [hud setText:@"Done"];
+    [hud hide];
     
     
 }
