@@ -10,9 +10,11 @@
 #import <dispatch/dispatch.h>
 #import "JBQAFeedParser.h"
 
+#import "UIProgressHUD.h"
+
 @class JBQADetailViewController, JBQAFeedParser, JBQAReachability, ODRefreshControl, Reachability;
 
-@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIActionSheetDelegate>
+@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate>
 {    
     //UI
     UITableView *table;
@@ -20,7 +22,13 @@
     UIBarButtonItem *menuBtn;
     UIBarButtonItem *leftFlex;
     UIActionSheet *menuSheet;
+    
     IBOutlet UIWebView *webView;
+    UIProgressHUD* hud;
+    
+    //Pretty stupid, I know, but hey. Whatever.
+    BOOL isCheckingLogin;
+    BOOL isLoggingOut;
     
     //Whatever
     JBQAFeedParser __strong *feedParser;

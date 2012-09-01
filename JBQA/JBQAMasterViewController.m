@@ -20,6 +20,8 @@
 #import "ODRefreshControl.h"
 #import "AJNotificationView.h"
 
+#import "UIProgressHUD.h"
+
 @interface JBQAMasterViewController ()
 {
     NSMutableArray *_objects;
@@ -67,6 +69,8 @@ static BOOL isFirstRefresh = YES;
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    
+    webView.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -128,35 +132,13 @@ static BOOL isFirstRefresh = YES;
 - (void)displayUserMenu:(id)sender event:(UIEvent *)event
 {
     if (reachability.isInternetActive) {
-        JBQALoginController *loginView = [[JBQALoginController alloc] init];
+        
+        isCheckingLogin = YES; //Check if user is logged in, and specify what we're doing.
+        
+        //JBQALoginController *loginView = [[JBQALoginController alloc] init];
     
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
-        usleep(200000);
-        NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    
-        NSLog(@"HTML = %@", html); //goddamit, fix this.
-    
-        if ([html rangeOfString:@"login"].location == NSNotFound) {
-            menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout"     otherButtonTitles: @"Ask a Question", nil];
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-                    [menuSheet showFromBarButtonItem:menuBtn animated:YES];
-                }
-                else {
-                    CGRect windowsRect = [self.navigationController.toolbar convertRect:menuBtn.customView.frame toView:self.view.window];
-                    [menuSheet showFromRect:windowsRect inView:self.view.window animated:YES];
-                }
-            }
-            else {
-                [menuSheet showFromToolbar:self.navigationController.toolbar];
-            }
-        }
         
-        else {
-            loginView.modalPresentationStyle = UIModalPresentationFormSheet;
-            [self presentViewController:loginView animated:YES completion:NULL];
-        }
-
     }
     else
         [self parseErrorOccurred:nil];
@@ -178,15 +160,18 @@ static BOOL isFirstRefresh = YES;
 {
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
         
+        isLoggingOut = YES;
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies])
                 [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"You Are Now Logged Out Of JBQA" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
-        
-    } else if (buttonIndex != actionSheet.cancelButtonIndex)
+       
+    }
+    else if (buttonIndex != actionSheet.cancelButtonIndex) {
         [self ask];
+    }
+        
     
 }
 
@@ -216,9 +201,94 @@ static BOOL isFirstRefresh = YES;
     [refreshControl endRefreshing];
 }
 
+#pragma mark UIWebViewDelegate - 
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    NSLog(@"Loading...");
+    hud = [[UIProgressHUD alloc] init];
+    [hud setText:@"Loading"];
+    [hud showInView:self.view];
+    
+    
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Load Error.");
+    [hud done];
+    
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)elWebView
+{
+    
+    NSLog(@"WebView finished load. ");
+    // write javascript code in a string
+    
+    NSString *html = [elWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    
+    // run javascript in webview:
+    [webView stringByEvaluatingJavaScriptFromString:html];
+    
+    if ([html rangeOfString:@"login"].location == NSNotFound) {
+        _isLoggedIn = YES;
+        NSLog(@"Logged in");
+        
+          
+    }
+    else {
+        _isLoggedIn = NO;
+        NSLog(@"Not logged in.");
+    }
+    
+    if (isCheckingLogin) {
+        
+        
+        if (_isLoggedIn) {
+            
+            menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Ask a Question", nil];
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                
+                if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                    [menuSheet showFromBarButtonItem:menuBtn animated:YES];
+                }
+                else {
+                    CGRect windowsRect = [self.navigationController.toolbar convertRect:menuBtn.customView.frame toView:self.view.window];
+                    [menuSheet showFromRect:windowsRect inView:self.view.window animated:YES];
+                }
+            }
+            else {
+                [menuSheet showFromToolbar:self.navigationController.toolbar];
+            }
+        }
+        
+        else {
+            JBQALoginController* loginView = [[JBQALoginController alloc] init];
+            loginView.modalPresentationStyle = UIModalPresentationFormSheet;
+            [self presentViewController:loginView animated:YES completion:NULL];
+        }
+        isCheckingLogin = NO; //Reset it please, kthxbai
+    }
+    
+    if (isLoggingOut) {
+        if (_isLoggedIn) {
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"An error occured, please try again." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        }
+        else {
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"You Are Now Logged Out Of JBQA" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        }
+        isLoggingOut = NO;
+    }
+        
+    [hud hide];
+}
 
 
 #pragma mark Table -
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
