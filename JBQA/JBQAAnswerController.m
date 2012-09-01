@@ -84,7 +84,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         NSLog(@"User wants to submit answer");
         if (self.answerTextField.text.length > 5) {
             NSLog(@"Answer length is valid");
-            [self submitAnswerWithText:self.answerTextField.text forQuestion:117991]; //the test question's ID :D
+            [self submitAnswerWithText:self.answerTextField.text forQuestion:self.questionID];
         }
         else {
             NSLog(@"User is an idiot");
@@ -108,9 +108,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An error occurred. Try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
 }
 
-- (void)submitAnswerWithText:(NSString *)answer forQuestion:(int)questionID
+- (void)submitAnswerWithText:(NSString *)answer forQuestion:(NSString *)questionID
 {
-    NSString *questionLink = [NSString stringWithFormat:@"http://www.jailbreakqa.com/questions/%@", self.questionID];
+    NSString *questionLink = [NSString stringWithFormat:@"http://www.jailbreakqa.com/questions/%@", questionID];
     NSLog(@"Question link is: %@", questionLink);
     [self.answerWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:questionLink]]];
     self.answerWebView.delegate = self;

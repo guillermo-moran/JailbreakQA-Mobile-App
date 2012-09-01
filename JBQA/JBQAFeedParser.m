@@ -48,7 +48,7 @@
         }
         else
             NSLog(@"Begin parse");
-        }
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError

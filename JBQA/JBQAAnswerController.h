@@ -23,6 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *answerTextField;
 @property (nonatomic) NSString *questionID;
 
-- (void)submitAnswerWithText:(NSString *)answer forQuestion:(int)questionID;
+- (void)submitAnswerWithText:(NSString *)answer forQuestion:(NSString *)questionID;
 
 @end
