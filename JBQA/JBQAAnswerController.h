@@ -12,7 +12,7 @@
 {
     NSString *_answerText;
     NSString  *_questionID;
-    
+    IBOutlet UIBarButtonItem *submitButton;
     CGFloat animatedDistance;
 }
 

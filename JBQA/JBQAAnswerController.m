@@ -43,7 +43,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)viewDidLoad
 {
     // Do any additional setup after loading the view from its nib.
-    self.navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
+    //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
+    
+    submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(barButtonItemTapped:)];
+    
+    self.navigationItem.rightBarButtonItem = submitButton;
+    self.navigationItem.title = @"Answer";
     
     [[_answerTextField layer] setCornerRadius:10];
     [_answerTextField setClipsToBounds:YES];

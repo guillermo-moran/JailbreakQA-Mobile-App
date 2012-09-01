@@ -134,7 +134,8 @@
 {
     JBQAAnswerController *answerController = [[JBQAAnswerController alloc] initWithNibName:@"JBQAAnswerController" bundle:nil];
     [answerController setQuestionID:self.questionID];
-    [self presentViewController:answerController animated:YES completion:NULL];
+    //[self presentViewController:answerController animated:YES completion:NULL];
+    [self.navigationController pushViewController:answerController animated:YES];
 }
 							
 #pragma mark - Split view
