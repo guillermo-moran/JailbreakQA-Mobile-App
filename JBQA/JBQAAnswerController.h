@@ -8,17 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JBQAAnswerController : UIViewController <UITextFieldDelegate, UIWebViewDelegate>
+@interface JBQAAnswerController : UIViewController <UITextViewDelegate, UIWebViewDelegate>
 {
     NSString *_answerText;
     NSString  *_questionID;
+    
+    CGFloat animatedDistance;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *submitButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UIWebView *answerWebView;
-@property (weak, nonatomic) IBOutlet UITextField *answerTextField;
+@property (weak, nonatomic) IBOutlet UITextView *answerTextField;
 @property (nonatomic) NSString *questionID;
 
 - (void)submitAnswerWithText:(NSString *)answer forQuestion:(int)questionID;

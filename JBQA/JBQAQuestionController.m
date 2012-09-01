@@ -129,6 +129,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [[questionContent layer] setCornerRadius:10];
     [questionContent setClipsToBounds:YES];
     
+    questionContent.backgroundColor = [UIColor whiteColor];
+    
     // Create colored border using CALayer property
     [[questionTitleField layer] setBorderColor:[[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f] CGColor]];
     [[questionTitleField layer] setBorderWidth:2.75];
