@@ -139,8 +139,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 {
     CGRect textFieldRect = [self.view.window convertRect:textView.bounds fromView:textView];
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
-    CGFloat midline = textFieldRect.origin.y + 0.35 * textFieldRect.size.height;
-    //0.35 works better than 0.5 :)
+    CGFloat midline = textFieldRect.origin.y + 0.38 * textFieldRect.size.height;
+
     CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
     CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
     CGFloat heightFraction = numerator / denominator;
