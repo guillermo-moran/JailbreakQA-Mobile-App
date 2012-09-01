@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIProgressHUD.h"
 
 @interface JBQAAnswerController : UIViewController <UITextViewDelegate, UIWebViewDelegate>
 {
@@ -14,6 +15,8 @@
     NSString  *_questionID;
     IBOutlet UIBarButtonItem *submitButton;
     CGFloat animatedDistance;
+    
+    UIProgressHUD* hud;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;

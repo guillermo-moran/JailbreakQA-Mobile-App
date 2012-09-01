@@ -20,8 +20,6 @@
 #import "ODRefreshControl.h"
 #import "AJNotificationView.h"
 
-#import "UIProgressHUD.h"
-
 @interface JBQAMasterViewController ()
 {
     NSMutableArray *_objects;

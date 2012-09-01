@@ -177,11 +177,20 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     NSLog(@"Loading...");
+    hud = [[UIProgressHUD alloc] init];
+    [hud setText:@"Loading"];
+    [hud showInView:self.view];
+    
+    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{    
+{
     NSLog(@"Load Error.");
+    [hud done];
+    [hud setText:@"Done"];
+    [hud hide];
+    
     
 }
 
@@ -214,6 +223,7 @@
     [loginAlert show];
     
     [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
+    [hud hide];
 }
 
 - (void)dismissAlert:(UIAlertView *)alert

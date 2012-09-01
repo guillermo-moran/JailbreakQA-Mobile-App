@@ -9,6 +9,7 @@
 
 
 #import "JBQALinks.h"
+#import "UIProgressHUD.h"
 
 @class BButton;
 
@@ -19,6 +20,7 @@
     
     UIWebView *loginWebView;
     NSString *html;
+    UIProgressHUD* hud;
     
     NSString *JBQAUsername;
     NSString *JBQAPassword;

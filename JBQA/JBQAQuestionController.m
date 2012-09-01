@@ -53,13 +53,23 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
 }
 
--(void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
     NSLog(@"Loading...");
+    hud = [[UIProgressHUD alloc] init];
+    [hud setText:@"Loading"];
+    [hud showInView:self.view];
+    
+    
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Load Error.");
+    [hud done];
+    [hud setText:@"Done"];
+    [hud hide];
     
-    NSLog(@"Load error.");
     
 }
 
@@ -87,13 +97,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     [questionAlert show];
     [self performSelector:@selector(dismissAlert:) withObject:questionAlert afterDelay:2.0];
+    [hud hide];
     
 }
 
 -(void)dismissAlert:(UIAlertView *)alert
 {
     [alert dismissWithClickedButtonIndex:0 animated:YES];
-    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 

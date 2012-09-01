@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-
+#import "UIProgressHUD.h"
 
 @interface JBQAQuestionController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIWebViewDelegate>
 {
@@ -17,6 +17,8 @@
     CGFloat animatedDistance;
     
     IBOutlet UINavigationBar *navBar;
+    
+    UIProgressHUD* hud;
     
     IBOutlet UIWebView *questionWebView;
     
