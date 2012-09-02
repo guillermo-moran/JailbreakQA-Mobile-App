@@ -11,10 +11,11 @@
 #import "JBQALinks.h"
 #import "UIProgressHUD.h"
 
-@class BButton;
+@class JBQADataController, BButton;
 
 @interface JBQALoginController : UIViewController <UITextFieldDelegate, UIWebViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
+    JBQADataController *dataController;
     UITextField *_username;
     UITextField *_password;
     

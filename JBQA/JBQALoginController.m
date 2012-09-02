@@ -7,6 +7,7 @@
 //
 
 #import "JBQALoginController.h"
+#import "JBQADataController.h"
 
 #import "BButton.h"
 
@@ -31,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    dataController = [JBQADataController sharedDataController];
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 60, 290, 100) style:UITableViewStyleGrouped];
@@ -176,7 +177,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"Loading...");
+    NSLog(@"Logging In");
     hud = [[UIProgressHUD alloc] init];
     [hud setText:@"Loading"];
     [hud showInView:self.view];
@@ -190,8 +191,6 @@
     [hud done];
     [hud setText:@"Done"];
     [hud hide];
-    
-    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -211,7 +210,7 @@
     
     loginAlert = [[UIAlertView alloc] init];
     
-    if ([html rangeOfString:[NSString stringWithFormat:@"%@",JBQAUsername]].location == NSNotFound) {
+    if ([html rangeOfString:@"login"].location == NSNotFound) {
         loginAlert.title = @"Login Failed.";
         loginAlert.message = @"Your username or password is incorrect. Please try again.";
     }
