@@ -43,7 +43,6 @@
 		FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDA61F415E4074E0059896C /* JBQALoginController.m */; };
 		FDDC8B6715E92D3400DC305F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDC8B6615E92D3400DC305F /* QuartzCore.framework */; };
 		FDF4DA5D15E933FE00FD223E /* JBQAFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */; };
-		FDF4DA6515E9364600FD223E /* JBQAReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4DA6415E9364600FD223E /* JBQAReachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,8 +101,6 @@
 		FDDC8B6615E92D3400DC305F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FDF4DA5B15E933FE00FD223E /* JBQAFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAFeedParser.h; sourceTree = "<group>"; };
 		FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAFeedParser.m; sourceTree = "<group>"; };
-		FDF4DA6315E9364600FD223E /* JBQAReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAReachability.h; sourceTree = "<group>"; };
-		FDF4DA6415E9364600FD223E /* JBQAReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAReachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,8 +197,6 @@
 				489BD64415F3342400B62978 /* JBQADataController.h */,
 				489BD64515F3342400B62978 /* JBQADataController.m */,
 				489BD64715F33EF100B62978 /* JBQADataControllerDelegate-Protocol.h */,
-				FDF4DA6315E9364600FD223E /* JBQAReachability.h */,
-				FDF4DA6415E9364600FD223E /* JBQAReachability.m */,
 				FDF4DA5B15E933FE00FD223E /* JBQAFeedParser.h */,
 				FDF4DA5C15E933FE00FD223E /* JBQAFeedParser.m */,
 				FD5ECF4C15D6ABCB0061E472 /* JBQAMasterViewController.h */,
@@ -353,7 +348,6 @@
 				FDDA61F515E4074E0059896C /* JBQALoginController.m in Sources */,
 				FD92F33D15E47130002D50E2 /* JBQAQuestionController.m in Sources */,
 				FDF4DA5D15E933FE00FD223E /* JBQAFeedParser.m in Sources */,
-				FDF4DA6515E9364600FD223E /* JBQAReachability.m in Sources */,
 				FD621D2715EA7406007EEE78 /* ODRefreshControl.m in Sources */,
 				FD621D2C15EA8009007EEE78 /* BButton.m in Sources */,
 				4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */,
