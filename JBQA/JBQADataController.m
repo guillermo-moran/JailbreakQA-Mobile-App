@@ -7,17 +7,21 @@
 //
 
 #import "JBQADataController.h"
+#import "Reachability.h"
 
-@implementation JBQADataController
+@implementation JBQADataController {}
 
-static BOOL loggedIn;
-
+#pragma mark Singleton -
 + (id)sharedDataController
 {
     __strong static JBQADataController *sharedDataController;
     if (!sharedDataController) sharedDataController = [[self alloc] init];
     return sharedDataController;
 }
+
+#pragma mark Login Check -
+
+static BOOL loggedIn;
 
 - (void)checkLoginStatus
 {
@@ -30,18 +34,15 @@ static BOOL loggedIn;
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     for (id delegate in delegateArray)
-    {
         if ([delegate respondsToSelector:@selector(dataControllerDidBeginCheckingLogin)])
             [delegate dataControllerDidBeginCheckingLogin];
-    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    for (id delegate in delegateArray) {
+    for (id delegate in delegateArray)
         if ([delegate respondsToSelector:@selector(dataControllerFailedLoadWithError:)])
             [delegate dataControllerFailedLoadWithError:error];
-    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -54,10 +55,9 @@ static BOOL loggedIn;
     if ([html rangeOfString:@"logout"].location == NSNotFound) loggedIn = NO;
     else loggedIn = YES;
     
-    for (id delegate in delegateArray) {
+    for (id delegate in delegateArray)
         if ([delegate respondsToSelector:@selector(dataControllerFinishedCheckingLoginWithResult:)])
             [delegate dataControllerFinishedCheckingLoginWithResult:loggedIn];
-    }
 }
 
 - (void)setDelegate:(id)delegate
@@ -69,6 +69,27 @@ static BOOL loggedIn;
 - (id)delegateArray
 {
     return delegateArray;
+}
+
+#pragma mark Reachability Methods -
+-(void)startNetworkStatusNotifications
+{    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
+    [internetReachable startNotifier];
+    NSLog(@"starting up notifier");
+    //Check if JailbreakQA is alive :P
+    hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
+    self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
+    [hostReachable startNotifier];
+}
+
+-(void)networkStatusChanged:(NSNotification *)notice
+{
+    // called after network status changes
+    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
+    self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
 }
 
 @end
