@@ -33,6 +33,7 @@
 {
     [super viewDidLoad];
     dataController = [JBQADataController sharedDataController];
+    
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 60, 290, 100) style:UITableViewStyleGrouped];
@@ -63,13 +64,17 @@
     
     loginWebView = [[UIWebView alloc] init];
     loginWebView.frame = CGRectZero;
-    [self.view addSubview:loginWebView];
+    [self.view addSubview:loginWebView]; //why? tell. me. why.
     [loginWebView setHidden:YES];
     
 }
 
 - (void)viewDidUnload
 {
+    //set UI elements to nil when viewDidUnload is called, free memory :P
+    _tableView = nil;
+    _loginButton = nil;
+    loginWebView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -181,8 +186,6 @@
     hud = [[UIProgressHUD alloc] init];
     [hud setText:@"Loading"];
     [hud showInView:self.view];
-    
-    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -199,8 +202,8 @@
     // write javascript code in a string
     
     NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
-    "document.getElementsByName('password')[0].value ='%@';"
-    "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
+                                                             "document.getElementsByName('password')[0].value ='%@';"
+                                                             "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
     
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
@@ -213,11 +216,16 @@
     if ([html rangeOfString:@"login"].location == NSNotFound) {
         loginAlert.title = @"Login Failed.";
         loginAlert.message = @"Your username or password is incorrect. Please try again.";
+        dataController.loggedIn = NO;
     }
     else {
         loginAlert.title = @"JBQA Login";
         loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
+        dataController.loggedIn = YES;
     }
+    
+    // the loggedIn property for the shared controller can now replace the insane wait to show the action sheet.
+    //Set a BOOL for first launch, and then use JBQADataController's properties for login checks after the first one. 
     
     [loginAlert show];
     

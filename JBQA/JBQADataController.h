@@ -20,6 +20,7 @@
     Reachability *hostReachable; //JBQA check
 }
 
+@property (nonatomic, getter = isLoggedIn) BOOL loggedIn;
 @property (nonatomic, getter = isCheckingLogin) BOOL checkingLogin;
 @property (nonatomic, getter = isParsing) BOOL parsing;
 @property (strong) NSMutableArray *questionsArray;

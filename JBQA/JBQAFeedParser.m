@@ -120,4 +120,9 @@
         NSLog(@"Finished parsing");
 }
 
+- (void)getAnswersForQuestionID:(NSString *)questionID
+{
+    //stub implementation to fix warnings, TBD
+}
+
 @end
