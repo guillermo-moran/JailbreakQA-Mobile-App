@@ -34,6 +34,9 @@
     UINavigationBar *_navBar;
     
     id _activityIndicator; //alright, do whatever you want.
+    
+    BOOL isAttemptingLogin;
+    BOOL isCheckingLogin;
 }
 
 @property (nonatomic, getter = isLoggingIn) BOOL loggingIn;
