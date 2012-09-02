@@ -142,7 +142,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
     [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Your answer has been submitted" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     [self performSelector:@selector(dismiss:) withObject:nil afterDelay:3.0f];
-    [webView stopLoading];
+    
+    self.answerWebView.delegate = nil; //Set the delegate to nil to stop looping, stopping the webView from loading throws an error, and sometimes does not post the answer. This works everytime.
+    
     [hud hide];
 }
 
