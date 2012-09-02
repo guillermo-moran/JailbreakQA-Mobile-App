@@ -232,15 +232,15 @@ static BOOL isFirstRefresh = YES;
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString:html];
     
-    if ([html rangeOfString:@"login"].location == NSNotFound) {
-        _isLoggedIn = YES;
-        NSLog(@"Logged in");
+    if ([html rangeOfString:@"logout"].location == NSNotFound) {
+        _isLoggedIn = NO;
+        NSLog(@"Not logged in");
         
           
     }
     else {
-        _isLoggedIn = NO;
-        NSLog(@"Not logged in.");
+        _isLoggedIn = YES;
+        NSLog(@"Logged in.");
     }
     
     if (isCheckingLogin) {
