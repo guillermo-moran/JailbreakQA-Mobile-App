@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <dispatch/dispatch.h>
+
+#import "JBQADataControllerDelegate-Protocol.h"
 #import "JBQAFeedParser.h"
 
 #import "UIProgressHUD.h"
 
 @class JBQADetailViewController, JBQAFeedParser, JBQAReachability, ODRefreshControl, Reachability;
 
-@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate>
-{    
+@interface JBQAMasterViewController : UITableViewController <JBQADataControllerDelegate, JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate>
+{
+    JBQADataController *dataController;
+    
     //UI
     UITableView *table;
     ODRefreshControl *refreshControl;
@@ -37,7 +41,6 @@
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
     
-    JBQAReachability *reachability;
 }
 
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
@@ -47,7 +50,7 @@
 
 - (void)refreshData;
 - (void)ask;
-- (void)displayUserMenu:(id)sender event:(UIEvent *)event;
+- (void)displayUserMenu;
 
 @end
 

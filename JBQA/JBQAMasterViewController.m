@@ -14,7 +14,7 @@
 #import "JBQAQuestionController.h"
 #import "JBQALoginController.h"
 
-#import "JBQAReachability.h"
+#import "JBQADataController.h"
 #import "JBQAFeedParser.h"
 
 #import "ODRefreshControl.h"
@@ -45,10 +45,12 @@ static BOOL isFirstRefresh = YES;
 
 - (void)viewDidLoad
 {
+    dataController = [JBQADataController sharedDataController];
+    [dataController setDelegate:self];
     [self startReachability];
     [self configureView];
     feedParser = [[JBQAFeedParser alloc] init];
-    feedParser.delegate = self;
+    [feedParser setDelegate:self];
     feedParser.parsing = YES;
     dispatch_async(backgroundQueue, ^(void){[self refreshData];});
 }
@@ -57,7 +59,7 @@ static BOOL isFirstRefresh = YES;
 {
     //Add Buttons
     leftFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu:event:)];
+    menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu)];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
@@ -69,6 +71,7 @@ static BOOL isFirstRefresh = YES;
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     
     webView.delegate = self;
+    
 }
 
 - (void)viewDidUnload
@@ -91,23 +94,20 @@ static BOOL isFirstRefresh = YES;
 #pragma mark Internet Check Notifier Setup -
 - (void)startReachability
 {
-    //Reachability!
-    reachability = [[JBQAReachability alloc] init];
-    [reachability startNetworkStatusNotifications];
-    //register for notifications, notify user when connection is lost. k?
-    [reachability addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
+    [dataController startNetworkStatusNotifications];
+    [dataController addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqual:@"internetActive"]) {
-        if (!reachability.isInternetActive) {
+        if (!dataController.isInternetActive) {
             if (feedParser.isParsing)
                 ;//do nothing
             else
                 [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
         }
-        if (reachability.isInternetActive) {
+        if (dataController.isInternetActive) {
             if (isFirstRefresh)
                 ;//do nothing
             else
@@ -121,22 +121,17 @@ static BOOL isFirstRefresh = YES;
 - (void)refreshData
 {
     [refreshControl beginRefreshing];
-    if (reachability.isInternetActive)
+    if (dataController.isInternetActive)
         dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:RSS_FEED];});
     else
         [self parseErrorOccurred:nil];
 }
 
-- (void)displayUserMenu:(id)sender event:(UIEvent *)event
+- (void)displayUserMenu
 {
-    if (reachability.isInternetActive) {
-        
+    if (dataController.isInternetActive) {
+        [dataController checkLoginStatus];
         isCheckingLogin = YES; //Check if user is logged in, and specify what we're doing.
-        
-        //JBQALoginController *loginView = [[JBQALoginController alloc] init];
-    
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
-        
     }
     else
         [self parseErrorOccurred:nil];
@@ -144,7 +139,7 @@ static BOOL isFirstRefresh = YES;
 
 - (void)ask
 {
-    if (reachability.isInternetActive) {
+    if (dataController.isInternetActive) {
         JBQAQuestionController *qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
         qController.modalPresentationStyle = UIModalPresentationPageSheet;
         [self presentViewController:qController animated:YES completion:NULL];
@@ -163,8 +158,6 @@ static BOOL isFirstRefresh = YES;
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies])
                 [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-        
-       
     }
     else if (buttonIndex != actionSheet.cancelButtonIndex) {
         [self ask];
@@ -179,7 +172,7 @@ static BOOL isFirstRefresh = YES;
 {
     feedParser.parsing = NO;
     isFirstRefresh = NO;
-    if (reachability.isInternetActive && reachability.isHostReachable) {
+    if (dataController.isInternetActive && dataController.isHostReachable) {
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable To Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     else {
@@ -199,55 +192,30 @@ static BOOL isFirstRefresh = YES;
     [refreshControl endRefreshing];
 }
 
-#pragma mark UIWebViewDelegate - 
+#pragma mark Data Controller Delegate - 
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+- (void)dataControllerDidBeginCheckingLogin
 {
     NSLog(@"Loading...");
     hud = [[UIProgressHUD alloc] init];
     [hud setText:@"Loading"];
     [hud showInView:self.view];
-    
-    
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
+- (void)dataControllerFailedLoadWithError:(NSError *)error{
     NSLog(@"Load Error.");
     [hud done];
     [hud setText:@"Done"];
     [hud hide];
-    
-    
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)elWebView
+- (void)dataControllerFinishedCheckingLoginWithResult:(BOOL)isLoggedIn
 {
-    
-    NSLog(@"WebView finished load. ");
-    // write javascript code in a string
-    
-    NSString *html = [elWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    
-    // run javascript in webview:
-    [webView stringByEvaluatingJavaScriptFromString:html];
-    
-    if ([html rangeOfString:@"logout"].location == NSNotFound) {
-        _isLoggedIn = NO;
-        NSLog(@"Not logged in");
-        
-          
-    }
-    else {
-        _isLoggedIn = YES;
-        NSLog(@"Logged in.");
-    }
+    _isLoggedIn = isLoggedIn;
     
     if (isCheckingLogin) {
         
-        
         if (_isLoggedIn) {
-            
             menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Ask a Question", nil];
             
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -282,7 +250,7 @@ static BOOL isFirstRefresh = YES;
         }
         isLoggingOut = NO;
     }
-        
+
     [hud hide];
 }
 
