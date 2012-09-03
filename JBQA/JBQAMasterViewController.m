@@ -35,11 +35,12 @@ static BOOL isFirstRefresh = YES;
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"JBQA";
     }
-    backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
+    
     return self;
 }
 
