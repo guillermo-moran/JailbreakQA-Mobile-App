@@ -167,6 +167,22 @@ static BOOL isFirstRefresh = YES;
     
 }
 
+#pragma mark UIWebViewDelegate -
+
+-(void)webViewDidStartLoad:(UIWebView *)webView {
+    
+    if (isLoggingOut) {
+        
+        [dataController checkLoginStatus];
+        isLoggingOut = YES; //Check if user is logged in, and specify what we're doing.
+    }
+    
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An Error occured. Please Try again later." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+}
+
 #pragma mark Parser Delegate Methods -
 
 - (void)parseErrorOccurred:(NSError *)parseError

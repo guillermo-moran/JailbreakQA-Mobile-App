@@ -52,8 +52,14 @@ static BOOL loggedIn;
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString:html];
     
-    if ([html rangeOfString:@"logout"].location == NSNotFound) loggedIn = NO;
-    else loggedIn = YES;
+    if ([html rangeOfString:@"logout"].location == NSNotFound) {
+        NSLog(@"Not logged in.");
+        loggedIn = NO;
+    }
+    else {
+        NSLog(@"Logged in.");
+        loggedIn = YES;
+    }
     
     for (id delegate in delegateArray)
         if ([delegate respondsToSelector:@selector(dataControllerFinishedCheckingLoginWithResult:)])

@@ -178,14 +178,19 @@
     loginWebView.delegate = self;
     JBQAUsername = username;
     JBQAPassword = password;
+    isAttemptingLogin = YES;
+    isCheckingLogin = NO;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"Logging In");
-    hud = [[UIProgressHUD alloc] init];
-    [hud setText:@"Loading"];
-    [hud showInView:self.view];
+    if (isAttemptingLogin) {
+        NSLog(@"Logging In");
+        hud = [[UIProgressHUD alloc] init];
+        [hud setText:@"Loading"];
+        [hud showInView:self.view];
+    }
+    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -201,36 +206,46 @@
     NSLog(@"WebView finished load. ");
     // write javascript code in a string
     
-    NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
-                                                             "document.getElementsByName('password')[0].value ='%@';"
-                                                             "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
-    
-    // run javascript in webview:
-    [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
-    
-    html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    //NSLog(@"Retreived HTML Source: %@",html);
-    
-    loginAlert = [[UIAlertView alloc] init];
-    
-    if ([html rangeOfString:@"login"].location == NSNotFound) {
-        loginAlert.title = @"Login Failed.";
-        loginAlert.message = @"Your username or password is incorrect. Please try again.";
-        dataController.loggedIn = NO;
-    }
-    else {
-        loginAlert.title = @"JBQA Login";
-        loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
-        dataController.loggedIn = YES;
+    if (isAttemptingLogin) {
+        NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
+                                      "document.getElementsByName('password')[0].value ='%@';"
+                                      "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
+        [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
+        
+        loginWebView.delegate = self;
+        isAttemptingLogin = NO;
+        isCheckingLogin = YES;
+        
+        //[loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
+        return;
     }
     
+    if (isCheckingLogin) {
+        NSLog(@"Checking login");
+        // run javascript in webview:
+        html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        loginAlert = [[UIAlertView alloc] init];
+        
+        if ([html rangeOfString:@"logout"].location == NSNotFound) {
+            loginAlert.title = @"Login Failed.";
+            loginAlert.message = @"Your username or password is incorrect. Please try again.";
+            dataController.loggedIn = NO;
+        }
+        else {
+            loginAlert.title = @"JBQA Login";
+            loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
+            dataController.loggedIn = YES;
+        }
+        loginWebView.delegate = nil;
+        [loginAlert show];
+        
+        [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
+        [hud hide];
+    }
+    
+        
     // the loggedIn property for the shared controller can now replace the insane wait to show the action sheet.
     //Set a BOOL for first launch, and then use JBQADataController's properties for login checks after the first one. 
-    
-    [loginAlert show];
-    
-    [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
-    [hud hide];
 }
 
 - (void)dismissAlert:(UIAlertView *)alert

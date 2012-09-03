@@ -20,6 +20,9 @@
     
     UIProgressHUD* hud;
     
+    BOOL isSubmittingQuestion;
+    BOOL isCheckingSuccess;
+    
     IBOutlet UIWebView *questionWebView;
     
     UIAlertView *questionAlert;
