@@ -98,14 +98,27 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 #pragma mark Answering -
 
+- (void)submitAnswerWithText:(NSString *)answer forQuestion:(NSString *)questionID
+{
+    NSString *questionLink = [NSString stringWithFormat:@"http://www.jailbreakqa.com/questions/%@", questionID];
+    NSLog(@"Question link is: %@", questionLink);
+    self.answerWebView.delegate = self;
+    
+    isSubmittingAnswer = YES;
+    isCheckingSuccess = NO;
+    
+    [self.answerWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:questionLink]]];
+    [self.answerTextField resignFirstResponder];
+}
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"Loading...");
-    hud = [[UIProgressHUD alloc] init];
-    [hud setText:@"Loading"];
-    [hud showInView:self.view];
-    
-    
+    if (isSubmittingAnswer) {
+        NSLog(@"Loading...");
+        hud = [[UIProgressHUD alloc] init];
+        [hud setText:@"Loading"];
+        [hud showInView:self.view];
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -119,33 +132,43 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
 }
 
-- (void)submitAnswerWithText:(NSString *)answer forQuestion:(NSString *)questionID
-{
-    NSString *questionLink = [NSString stringWithFormat:@"http://www.jailbreakqa.com/questions/%@", questionID];
-    NSLog(@"Question link is: %@", questionLink);
-    [self.answerWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:questionLink]]];
-    [self.answerTextField resignFirstResponder];
-    self.answerWebView.delegate = self;
-}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"did finish loading webview");
+    NSLog(@"Finished loading");
     
-    NSLog(@"Answer is %@", self.answerTextField.text);
+    if (isSubmittingAnswer) {
+        NSLog(@"Attempting submission: %@", self.answerTextField.text);
+        
+        NSString *javascriptString = [NSString stringWithFormat:@"document.getElementsByName('text')[0].value = '%@';" "document.forms['fmanswer'].submit();", self.answerTextField.text];
+        NSLog(@"Processing javascript");
+        [webView stringByEvaluatingJavaScriptFromString:javascriptString];
+        isCheckingSuccess = YES;
+        isSubmittingAnswer = NO;
+        
+        self.answerWebView.delegate = self;
+        
+        return;
+    }
     
-    NSString *javascriptString = [NSString
-                                  stringWithFormat:@"document.getElementsByName('text')[0].value = '%@';"
-                                                    "document.forms['fmanswer'].submit();", self.answerTextField.text];
-    NSLog(@"Processing javascript");
-    [webView stringByEvaluatingJavaScriptFromString:javascriptString]; //send answer
-    
-    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Your answer has been submitted" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
-    [self performSelector:@selector(dismiss:) withObject:nil afterDelay:3.0f];
-    
-    self.answerWebView.delegate = nil; //Set the delegate to nil to stop looping, stopping the webView from loading throws an error, and sometimes does not post the answer. This works everytime.
-    
-    [hud hide];
+    if (isCheckingSuccess) {
+        NSLog(@"Checking Success");
+        // run javascript in webview:
+        NSString* html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        
+        if (([html rangeOfString:self.answerTextField.text].location == NSNotFound)) {
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An error occurred. Try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        }
+        else {
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Your answer has been submitted" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        }
+        
+        [self performSelector:@selector(dismiss:) withObject:nil afterDelay:3.0f];
+        
+        self.answerWebView.delegate = nil; //Set the delegate to nil to stop looping, stopping the webView from loading throws an error, and sometimes does not post the answer. This works everytime.
+        
+        [hud hide];
+    }    
 }
 
 #pragma mark TextField, TextView Delegate(s) -
@@ -230,8 +253,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     if (alert)
         [alert dismissWithClickedButtonIndex:-1 animated:YES];
     
-    //[self dismissViewControllerAnimated:YES completion:NULL];
-    [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

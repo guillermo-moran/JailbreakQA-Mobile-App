@@ -17,6 +17,9 @@
     CGFloat animatedDistance;
     
     UIProgressHUD* hud;
+    
+    BOOL isSubmittingAnswer;
+    BOOL isCheckingSuccess;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;

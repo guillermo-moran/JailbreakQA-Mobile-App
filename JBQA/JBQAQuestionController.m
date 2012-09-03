@@ -47,6 +47,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [questionWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:QUESTION_URL]]];
     questionWebView.delegate = self;
     
+    isSubmittingQuestion = YES;
+    isCheckingSuccess = NO;
+    
     qtitle = title;
     qtags = tags;
     qtext = content;
@@ -55,10 +58,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"Loading...");
-    hud = [[UIProgressHUD alloc] init];
-    [hud setText:@"Loading"];
-    [hud showInView:self.view];
+    if (isSubmittingQuestion) {
+        NSLog(@"Loading...");
+        hud = [[UIProgressHUD alloc] init];
+        [hud setText:@"Loading"];
+        [hud showInView:self.view];
+    }
+    
     
     
 }
@@ -76,29 +82,38 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     NSLog(@"WebView finished load. ");
     
-    // write javascript code in a string. Ew javascript.
-    NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('title')[0].value ='%@';"
-                                  "document.getElementsByName('tags')[0].value ='%@';"
-                                  "document.getElementsByName('text')[0].value ='%@';"
-                                  "document.forms['fmask'].submit();",qtitle, qtags, qtext];
-    
-    // run javascript in webview. Webviews were bad enough, now they're hidden xD
-    [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
-    
-    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    NSLog(@"Retreived HTML Source: %@",html);
-    
-    if ([html rangeOfString:[NSString stringWithFormat:@"%@",qtext]].location == NSNotFound) {
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Error. Your question was not posted, please try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+    if (isSubmittingQuestion) {
+        // write javascript code in a string. Ew javascript.
+        NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('title')[0].value ='%@';"
+                                      "document.getElementsByName('tags')[0].value ='%@';"
+                                      "document.getElementsByName('text')[0].value ='%@';"
+                                      "document.forms['fmask'].submit();",qtitle, qtags, qtext];
+        
+        // run javascript in webview. Webviews were bad enough, now they're hidden xD        
+        questionWebView.delegate = self;
+        isCheckingSuccess = YES;
+        isSubmittingQuestion = NO;
+        
+        [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
+        return;
     }
-    else {
-        questionAlert.title = @"JailbreakQA";
-        questionAlert.message = @"Your question has been posted.";
-    }
-    [questionAlert show];
-    [self performSelector:@selector(dismissAlert:) withObject:questionAlert afterDelay:2.0];
-    [hud hide];
     
+    if (isCheckingSuccess) {
+        NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        //NSLog(@"Retreived HTML Source: %@",html);
+        
+        if ([html rangeOfString:[NSString stringWithFormat:@"%@",qtext]].location == NSNotFound) {
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Error. Your question was not posted, please try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        }
+        else {
+            questionAlert.title = @"JailbreakQA";
+            questionAlert.message = @"Your question has been posted.";
+        }
+        
+        [questionAlert show];
+        [self performSelector:@selector(dismissAlert:) withObject:questionAlert afterDelay:2.0];
+        [hud hide];
+    }
 }
 
 -(void)dismissAlert:(UIAlertView *)alert
