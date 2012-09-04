@@ -11,6 +11,9 @@
 #import "JBQAMasterViewController.h"
 
 #import "JBQADetailViewController.h"
+#import "JBQADataController.h"
+
+#import "AJNotificationView.h"
 
 @implementation JBQAAppDelegate
 @synthesize window,navigationController,splitViewController;
@@ -18,6 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    dataController = [JBQADataController sharedDataController];
+    [dataController startNetworkStatusNotifications]; 
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         JBQAMasterViewController *masterViewController = [[JBQAMasterViewController alloc] initWithNibName:@"JBQAMasterViewController_iPhone" bundle:nil];
@@ -39,6 +44,7 @@
         self.window.rootViewController = self.splitViewController;
     }
     [self.window makeKeyAndVisible];
+    [dataController addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
     return YES;
 }
 
@@ -68,5 +74,18 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqual:@"internetActive"]) {
+        if (!dataController.isInternetActive) {
+            [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
+        }
+        if (dataController.isInternetActive) {
+            [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+        }
+    }
+}
+
 
 @end
