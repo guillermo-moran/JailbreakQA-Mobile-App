@@ -8,6 +8,7 @@
 
 #import "JBQALoginController.h"
 
+#import "JBQATextFieldCell.h"
 #import "BButton.h"
 
 @interface JBQALoginController ()
@@ -23,42 +24,32 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
+        
     }
+    
     return self;
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[[self navigationController] navigationBar] setTintColor:[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f]];
+    [[self tableView] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    [[self tableView] setScrollEnabled:NO];
     
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 60, 290, 100) style:UITableViewStyleGrouped];
-    [_tableView setDelegate:self];
-    [_tableView setDataSource:self];
-    [_tableView setBackgroundColor:[UIColor clearColor]];
-    [_tableView setScrollEnabled:NO];
-    [[self view] addSubview:_tableView];
-    
-    _loginButton = [[BButton alloc] initWithFrame:CGRectMake(24, 180, 270, 46)];
+    _loginButton = [[BButton alloc] initWithFrame:CGRectMake(24, 120, 270, 46)];
     [_loginButton setType:BButtonTypeInfo];
     [_loginButton setTitle:@"Login" forState:UIControlStateNormal];
     [_loginButton addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:_loginButton];
     
-    _navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    
-    _navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
-    // [_navBar setTintColor:[UIColor blackColor]];
-    
     UIBarButtonItem *_leftItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelTapped:)];
-    UINavigationItem *_navItem = [[UINavigationItem alloc] initWithTitle:@"Login"];
-    [_navItem setLeftBarButtonItem:_leftItem];
     
-    
-    [_navBar pushNavigationItem:_navItem animated:NO];
-    [[self view] addSubview:_navBar];
+    [[self navigationItem] setLeftBarButtonItem:_leftItem];
+    [[self navigationItem] setTitle:@"Log in"];
     
     loginWebView = [[UIWebView alloc] init];
     loginWebView.frame = CGRectZero;
@@ -86,61 +77,86 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.isLoggingIn)
-        return 0;
-    else
-        return 2;
+    switch (section) {
+        case 0:
+            if (self.isLoggingIn)
+                return 0;
+            else
+                return 2;
+        case 1:
+            return 1;
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *TextFieldCellIdentifier = @"TextFieldCell";
+    static NSString *ButtonCellIdentifier = @"ButtonCellIdentifier";
+    
     if (self.isLoggingIn){
-        cell = nil;
+        return nil;
+    }
+        
+    if ([indexPath section] == 0) {
+        JBQATextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TextFieldCellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[JBQATextFieldCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:TextFieldCellIdentifier];
+        }
+    
+        if ([indexPath row] == 0) {
+            [[cell textField] setPlaceholder:@"Username"];
+            [[cell textField] setDelegate:self];
+            [[cell textField] setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+            [[cell textField] setReturnKeyType:UIReturnKeyNext];
+            [[cell textField] setText:JBQAUsername];
+        } else if ([indexPath row] == 1) {
+            [[cell textField] setPlaceholder:@"Password"];
+            [[cell textField] setDelegate:self];
+            [[cell textField] setSecureTextEntry:YES];
+            [[cell textField] setText:JBQAPassword];
+        }
+        
+        [[cell textField] setAutocorrectionType:UITextAutocorrectionTypeNo];
+        [cell setTag:[indexPath row]];
+        [[cell textField] setTag:[indexPath row]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ButtonCellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:TextFieldCellIdentifier];
+            
+            // Set up the button as a cell. I couldn't be bothered.
+        }
+        
         return cell;
     }
-    else {
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    if (indexPath.row == 0) {
-        _username = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
-        [_username setAdjustsFontSizeToFitWidth:YES];
-        [_username setPlaceholder:@"Username"];
-        [_username setTag:1];
-        [_username setDelegate:self];
-        [_username setKeyboardAppearance:UIKeyboardAppearanceDefault];
-        [_username setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-        [_username setAutocorrectionType:UITextAutocorrectionTypeNo];
-        [_username setReturnKeyType:UIReturnKeyNext];
-        [cell setAccessoryView:_username];
-    } else if (indexPath.row == 1) {
-        _password = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
-        [_password setAdjustsFontSizeToFitWidth:YES];
-        [_password setPlaceholder:@"Password"];
-        [_password setTag:2];
-        [_password setDelegate:self];
-        [_password setKeyboardAppearance:UIKeyboardAppearanceDefault];
-        [_password setAutocorrectionType:UITextAutocorrectionTypeNo];
-        [_password setSecureTextEntry:YES];
-        [cell setAccessoryView:_password];
-    }
-    
-    //[cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    return cell;
-    }
 }
+
 #pragma mark UITextFieldDelegate -
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ([textField tag] == 0)
+        JBQAUsername = [textField text];
+    else
+        JBQAPassword = [textField text];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == _username)
-        [_password becomeFirstResponder];
+    JBQATextFieldCell *passwordCell = (JBQATextFieldCell *)[[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    
+    if ([textField tag] == 0)
+        [[passwordCell textField] becomeFirstResponder];
     else
-        [textField resignFirstResponder];
+        [[passwordCell textField] resignFirstResponder];
+    
     return NO;
 }
 
@@ -153,15 +169,15 @@
 
 - (void)loginTapped:(UIButton *)tapped
 {
-    [_password resignFirstResponder];
     [_loginButton setTitle:@"Logging In" forState:UIControlStateNormal];
-    if ([_username.text length] < 3 && [_password.text length] < 1) {
+    
+    if ([JBQAUsername length] < 3 && [JBQAPassword length] < 1) {
         UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please provide a username and password" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [loginError show];
         return;
     }
     else
-        [self loginOnWebsite:SIGNIN_URL username:_username.text password:_password.text];
+        [self loginOnWebsite:SIGNIN_URL username:JBQAUsername password:JBQAPassword];
 }
 
 - (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
@@ -170,8 +186,6 @@
     
     [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     loginWebView.delegate = self;
-    JBQAUsername = username;
-    JBQAPassword = password;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView

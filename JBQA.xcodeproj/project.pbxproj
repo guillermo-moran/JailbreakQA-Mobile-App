@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0347E16A15F2F85C00A0C4E3 /* JBQATextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0347E16915F2F85C00A0C4E3 /* JBQATextFieldCell.m */; };
 		48022E8215F0817B009D1DBF /* AJNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48022E8115F0817B009D1DBF /* AJNotificationView.m */; };
 		4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877EB1315EF350A004EF159 /* JBQAAnswerController.m */; };
 		4877EB1615EF350A004EF159 /* JBQAAnswerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */; };
@@ -46,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0347E16815F2F85C00A0C4E3 /* JBQATextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQATextFieldCell.h; sourceTree = "<group>"; };
+		0347E16915F2F85C00A0C4E3 /* JBQATextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQATextFieldCell.m; sourceTree = "<group>"; };
 		48022E8015F0817B009D1DBF /* AJNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNotificationView.h; sourceTree = "<group>"; };
 		48022E8115F0817B009D1DBF /* AJNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNotificationView.m; sourceTree = "<group>"; };
 		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
@@ -204,6 +207,8 @@
 				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
 				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
 				FDDA61F415E4074E0059896C /* JBQALoginController.m */,
+				0347E16815F2F85C00A0C4E3 /* JBQATextFieldCell.h */,
+				0347E16915F2F85C00A0C4E3 /* JBQATextFieldCell.m */,
 				FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */,
 				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
 				4877EB1215EF350A004EF159 /* JBQAAnswerController.h */,
@@ -351,6 +356,7 @@
 				FD621D2C15EA8009007EEE78 /* BButton.m in Sources */,
 				4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */,
 				48022E8215F0817B009D1DBF /* AJNotificationView.m in Sources */,
+				0347E16A15F2F85C00A0C4E3 /* JBQATextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
