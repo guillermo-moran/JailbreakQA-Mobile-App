@@ -84,7 +84,7 @@ static BOOL loggedIn;
     internetReachable = [Reachability reachabilityForInternetConnection];
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
     [internetReachable startNotifier];
-    NSLog(@"starting up notifier");
+    NSLog(@"Starting up notifier");
     //Check if JailbreakQA is alive :P
     hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
     self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
