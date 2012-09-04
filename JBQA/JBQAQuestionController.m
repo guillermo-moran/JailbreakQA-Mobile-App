@@ -94,15 +94,18 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         isCheckingSuccess = YES;
         isSubmittingQuestion = NO;
         
-        [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
+        [webView stringByEvaluatingJavaScriptFromString:javaScriptString];
         return;
     }
     
     if (isCheckingSuccess) {
+        
+        NSLog(@"Checking success");
+        
         NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
         //NSLog(@"Retreived HTML Source: %@",html);
         
-        if ([html rangeOfString:[NSString stringWithFormat:@"%@",qtext]].location == NSNotFound) {
+        if ([html rangeOfString:qtext].location == NSNotFound) {
             [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Error. Your question was not posted, please try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
         }
         else {

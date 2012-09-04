@@ -10,6 +10,8 @@
 #import "JBQAAnswerController.h"
 #import "AJNotificationView.h"
 
+#import "JBQALinks.h"
+
 @interface JBQAAnswerController ()
 //privy stuff, outlets should be here, but who gives a fuck?
 //Not me.
@@ -100,7 +102,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)submitAnswerWithText:(NSString *)answer forQuestion:(NSString *)questionID
 {
-    NSString *questionLink = [NSString stringWithFormat:@"http://www.jailbreakqa.com/questions/%@", questionID];
+    NSString *questionLink = [NSString stringWithFormat:@"%@/questions/%@", SERVICE_URL, questionID];
     NSLog(@"Question link is: %@", questionLink);
     self.answerWebView.delegate = self;
     
@@ -142,16 +144,23 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         NSString *javascriptString = [NSString stringWithFormat:@"document.getElementsByName('text')[0].value = '%@';" "document.forms['fmanswer'].submit();", self.answerTextField.text];
         NSLog(@"Processing javascript");
+        
         [webView stringByEvaluatingJavaScriptFromString:javascriptString];
+        webView.delegate = self;
         isCheckingSuccess = YES;
         isSubmittingAnswer = NO;
-        
-        self.answerWebView.delegate = self;
-        
+         
         return;
     }
     
     if (isCheckingSuccess) {
+        
+        /* 
+         For some reason, this returns an Error on GBQA, but not JBQA. The question is posted, but throws the user an error. Must look into that later.
+         
+         - fr0st
+         */
+        
         NSLog(@"Checking Success");
         // run javascript in webview:
         NSString* html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];

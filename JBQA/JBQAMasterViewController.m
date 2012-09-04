@@ -13,6 +13,7 @@
 
 #import "JBQAQuestionController.h"
 #import "JBQALoginController.h"
+#import "JBQAFeedPickerController.h"
 
 #import "JBQADataController.h"
 #import "JBQAFeedParser.h"
@@ -46,30 +47,41 @@ static BOOL isFirstRefresh = YES;
 
 - (void)viewDidLoad
 {
+    
     dataController = [JBQADataController sharedDataController];
     [dataController setDelegate:self];
     [self startReachability];
     [self configureView];
+    
     feedParser = [[JBQAFeedParser alloc] init];
     [feedParser setDelegate:self];
     feedParser.parsing = YES;
-    dispatch_async(backgroundQueue, ^(void){[self refreshData];});
+    
+    dispatch_async(backgroundQueue, ^(void){
+        [self refreshData:RSS_FEED];
+    });
+    
+    _currentURL = RSS_FEED;
+    
 }
 
 - (void)configureView
 {
     //Add Buttons
     leftFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem* moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(displaySelectionView)];
+    
     menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu)];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
-    self.toolbarItems = @[leftFlex, menuBtn]; //yay new syntax.
+    self.toolbarItems = @[leftFlex, moreButton, menuBtn]; //yay new syntax.
     
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(refreshCurrent) forControlEvents:UIControlEventValueChanged];
     
     webView.delegate = self;
     
@@ -117,13 +129,34 @@ static BOOL isFirstRefresh = YES;
     }
 }
 
+#pragma mark Feed Picker -
+
+-(void)displaySelectionView {
+    
+    
+    JBQAFeedPickerController* feedPickerView = [[JBQAFeedPickerController alloc] initWithNibName:@"JBQAFeedPicker_iPhone" bundle:nil];
+    
+    [self.navigationController pushViewController:feedPickerView animated:YES];
+}
 
 #pragma mark JBQA Interaction Methods -
-- (void)refreshData
-{
+
+-(void)refreshCurrent {
+    
     [refreshControl beginRefreshing];
     if (dataController.isInternetActive)
-        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:RSS_FEED];});
+        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:_currentURL];});
+    else
+        [self parseErrorOccurred:nil];
+}
+
+- (void)refreshData:(NSString*)feedURL
+{
+    [refreshControl beginRefreshing];
+    NSLog(@"Refeshing URL:%@",feedURL);
+    [refreshControl beginRefreshing];
+    if (dataController.isInternetActive)
+        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:feedURL];});
     else
         [self parseErrorOccurred:nil];
 }
