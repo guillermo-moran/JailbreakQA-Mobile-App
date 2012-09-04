@@ -12,9 +12,8 @@
 #import "JBQAFeedParser.h"
 
 @class JBQAFeedParser, JBQADataController;
-@interface JBQAResponseList : UITableViewController <JBQAParserDelegate, JBQADataControllerDelegate> {
-    
-    
+@interface JBQAResponseList : UITableViewController <JBQAParserDelegate, JBQADataControllerDelegate>
+{
     JBQADataController *dataController;
     NSString* questionID;
     //Whatever

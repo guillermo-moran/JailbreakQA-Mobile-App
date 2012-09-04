@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JBQAFeedPickerController : UITableViewController {
+@interface JBQAFeedPickerController : UITableViewController
+{
     
 }
 

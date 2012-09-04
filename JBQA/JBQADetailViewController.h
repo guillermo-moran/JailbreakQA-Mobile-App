@@ -25,13 +25,12 @@
 - (void)setAvatarFromURL:(NSURL *)url;                                                                          
 - (void)addResponse;
 
-- (IBAction)viewResponses;
 
 @property (strong, nonatomic) id detailItem;                                                                    
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel; 
 @property (strong, nonatomic) NSString *questionID;
 @property (weak, nonatomic) IBOutlet UITableViewCell *answersCell;
 @property (strong, nonatomic) IBOutlet UILabel *answersCount;
+@property (weak, nonatomic) IBOutlet UIButton *answersViewButton;
 
 
 

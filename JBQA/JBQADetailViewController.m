@@ -21,10 +21,12 @@
 @implementation JBQADetailViewController
 @synthesize answersCell;
 @synthesize answersCount;
-@synthesize masterPopoverController,detailItem,detailDescriptionLabel;
+@synthesize answersViewButton;
+@synthesize masterPopoverController,detailItem;
 
--(IBAction)viewResponses {
-    JBQAResponseList* list = [[JBQAResponseList alloc] initWithNibName:@"JBQAResponseList_iPhone" bundle:nil];
+-(IBAction)viewResponses
+{
+    JBQAResponseList *list = [[JBQAResponseList alloc] initWithNibName:@"JBQAResponseList_iPhone" bundle:nil];
     NSLog(@"Question ID: %@",self.questionID);
     [list setQuestionID:self.questionID];
     [self.navigationController pushViewController:list animated:YES];
@@ -94,9 +96,6 @@
     UIBarButtonItem *answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
     self.navigationItem.rightBarButtonItem = answerButton;
     
-    if (self.detailItem)
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    
     if (questionView)
         for (UIView *subview in [questionView subviews])
             if ([subview isKindOfClass:[UIScrollView class]])
@@ -115,9 +114,10 @@
 {
     [self setAnswersCell:nil];
     [self setAnswersCount:nil];
+    [self setAnswersViewButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    self.detailDescriptionLabel = nil;
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

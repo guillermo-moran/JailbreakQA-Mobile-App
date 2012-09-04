@@ -18,7 +18,6 @@
 @end
 
 @implementation JBQAResponseList
-
 #pragma mark meh -
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -37,9 +36,6 @@
     dataController = [JBQADataController sharedDataController];
     [dataController setDelegate:self];
     
-    [dataController startNetworkStatusNotifications];
-    [dataController addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
-    
     [self loadAnswers];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -47,22 +43,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqual:@"internetActive"]) {
-        if (!dataController.isInternetActive) {
-            if (feedParser.isParsing)
-                ;//do nothing
-            else
-                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
-        }
-        if (dataController.isInternetActive) {
-            
-                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
-        }
-    }
 }
 
 - (void)viewDidUnload
@@ -105,10 +85,8 @@
     if (dataController.isInternetActive && dataController.isHostReachable) {
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable To Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
-    else {
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
-    }
-    
+    else
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];    
 }
 
 

@@ -109,7 +109,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    JBQAMasterViewController* master = [[JBQAMasterViewController alloc] init];
+    JBQAMasterViewController *master = [[JBQAMasterViewController alloc] init];
     NSLog(@"meh");
     
     switch (indexPath.row) {

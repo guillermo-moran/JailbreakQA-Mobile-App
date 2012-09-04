@@ -50,7 +50,7 @@ static BOOL isFirstRefresh = YES;
     
     dataController = [JBQADataController sharedDataController];
     [dataController setDelegate:self];
-    [self startReachability];
+
     [self configureView];
     
     feedParser = [[JBQAFeedParser alloc] init];
@@ -105,29 +105,8 @@ static BOOL isFirstRefresh = YES;
 }
 
 #pragma mark Internet Check Notifier Setup -
-- (void)startReachability
-{
-    [dataController startNetworkStatusNotifications];
-    [dataController addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
-}
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqual:@"internetActive"]) {
-        if (!dataController.isInternetActive) {
-            if (feedParser.isParsing)
-                ;//do nothing
-            else
-                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
-        }
-        if (dataController.isInternetActive) {
-            if (isFirstRefresh)
-                ;//do nothing
-            else
-                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
-        }
-    }
-}
+
 
 #pragma mark Feed Picker -
 
