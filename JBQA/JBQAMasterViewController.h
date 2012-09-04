@@ -16,9 +16,10 @@
 
 @class JBQADetailViewController, JBQAFeedParser, JBQAReachability, ODRefreshControl, Reachability;
 
-@interface JBQAMasterViewController : UITableViewController <JBQADataControllerDelegate, JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate>
+@interface JBQAMasterViewController : UITableViewController <JBQADataControllerDelegate, JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate, UIPickerViewDelegate>
 {
     JBQADataController *dataController;
+    
     
     //UI
     UITableView *table;
@@ -46,9 +47,16 @@
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
 @property (strong, nonatomic) NSMutableArray *stories;
 @property (strong, nonatomic) JBQAReachability *reachability;
+
+@property (strong, nonatomic) NSString* currentURL;
+
 @property (nonatomic) BOOL isLoggedIn;
 
-- (void)refreshData;
+- (void)refreshData:(NSString*)feedURL;
+- (void)refreshCurrent;
+
+- (void)displaySelectionView;
+
 - (void)ask;
 - (void)displayUserMenu;
 

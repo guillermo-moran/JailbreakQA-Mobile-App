@@ -8,6 +8,8 @@
 
 #import "JBQADetailViewController.h"
 #import "JBQAAnswerController.h"
+#import "JBQAResponseList.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -20,6 +22,13 @@
 @synthesize answersCell;
 @synthesize answersCount;
 @synthesize masterPopoverController,detailItem,detailDescriptionLabel;
+
+-(IBAction)viewResponses {
+    JBQAResponseList* list = [[JBQAResponseList alloc] initWithNibName:@"JBQAResponseList_iPhone" bundle:nil];
+    NSLog(@"Question ID: %@",self.questionID);
+    [list setQuestionID:self.questionID];
+    [self.navigationController pushViewController:list animated:YES];
+}
 
 -(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate *)date
 {
