@@ -50,7 +50,7 @@
 
 -(void)setQuestionContent:(NSString *)content {
     
-    NSString *cssString = @"<style>body {font-family: Helvetica;} img {width: 300px; height: auto;}</style>";
+    NSString *cssString = @"<style>body {font-family: HelveticaNeue;} img {width: 300px; height: auto;}</style>";
     NSString *htmlString = [NSString stringWithFormat:@"%@%@",cssString,content];
     
     [questionView loadHTMLString:htmlString baseURL:nil];
