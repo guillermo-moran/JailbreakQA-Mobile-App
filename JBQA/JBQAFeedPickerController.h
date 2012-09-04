@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class JBQADataController;
 @interface JBQAFeedPickerController : UITableViewController
 {
-    
+    JBQADataController *dataController;
 }
 
 @end

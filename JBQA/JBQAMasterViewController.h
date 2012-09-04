@@ -48,12 +48,9 @@
 @property (strong, nonatomic) NSMutableArray *stories;
 @property (strong, nonatomic) JBQAReachability *reachability;
 
-@property (strong, nonatomic) NSString* currentURL;
-
 @property (nonatomic) BOOL isLoggedIn;
 
-- (void)refreshData:(NSString*)feedURL;
-- (void)refreshCurrent;
+- (void)refreshData;
 
 - (void)displaySelectionView;
 
@@ -61,4 +58,3 @@
 - (void)displayUserMenu;
 
 @end
-

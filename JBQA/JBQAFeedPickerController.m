@@ -10,6 +10,7 @@
 #import "JBQAMasterViewController.h"
 
 #import "JBQALinks.h"
+#import "JBQADataController.h"
 
 @interface JBQAFeedPickerController ()
 
@@ -21,7 +22,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    
+    dataController = [JBQADataController sharedDataController];
     self.navigationItem.title = @"Select a feed";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -75,9 +75,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
+    NSString *title;
     
-    NSString* title;
-   
     switch (indexPath.row) {
         case 0:
             title = @"Active Questions";
@@ -108,34 +107,32 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    /* you mad. Really. alloc'ing another instance of it is not going to put it on the screen >_<
     JBQAMasterViewController *master = [[JBQAMasterViewController alloc] init];
     NSLog(@"meh");
-    
+    */
     switch (indexPath.row) {
         case 0:     //Active
             
             NSLog(@"Selected 0");
-            [master refreshData:RSS_FEED];
-            master.currentURL = RSS_FEED;
+            dataController.currentFeed = RSS_FEED;
             break;
             
         case 1:     //Newest
             NSLog(@"Selected 1");
-            [master refreshData:NEWEST_FEED];
-            master.currentURL = NEWEST_FEED;
+            NSLog(@"%@", dataController.currentFeed);
+            dataController.currentFeed = [NSMutableString stringWithString:NEWEST_FEED];
+            NSLog(@"%@", dataController.currentFeed);
             break;
             
         case 2:     //Unanswered
             NSLog(@"Selected 2");
-            [master refreshData:UNANSWERED_FEED];
-            master.currentURL = UNANSWERED_FEED;
+            dataController.currentFeed = UNANSWERED_FEED;
             break;
             
         case 3:     //Most Voted
             NSLog(@"Selected 3");
-            [master refreshData:VOTED_FEED];
-            master.currentURL = VOTED_FEED;
+            dataController.currentFeed = VOTED_FEED;
             break;
             
         default:

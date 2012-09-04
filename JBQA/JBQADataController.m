@@ -77,6 +77,22 @@ static BOOL loggedIn;
     return delegateArray;
 }
 
+- (NSMutableString *)currentFeed
+{
+    if (!currentFeed)
+        currentFeed = [[NSMutableString alloc] initWithString:RSS_FEED];
+    return currentFeed;
+}
+
+- (void)setCurrentFeed:(NSMutableString *)currentFeedz
+{
+    if (!currentFeed)
+        currentFeed = [[NSMutableString alloc] initWithString:currentFeedz];
+    else
+        currentFeed = currentFeedz;
+    
+}
+
 #pragma mark Reachability Methods -
 -(void)startNetworkStatusNotifications
 {    

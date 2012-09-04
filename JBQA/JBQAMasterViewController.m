@@ -50,7 +50,7 @@ static BOOL isFirstRefresh = YES;
     
     dataController = [JBQADataController sharedDataController];
     [dataController setDelegate:self];
-
+    [dataController addObserver:self forKeyPath:@"currentFeed" options:NSKeyValueObservingOptionNew context:NULL];
     [self configureView];
     
     feedParser = [[JBQAFeedParser alloc] init];
@@ -58,10 +58,9 @@ static BOOL isFirstRefresh = YES;
     feedParser.parsing = YES;
     
     dispatch_async(backgroundQueue, ^(void){
-        [self refreshData:RSS_FEED];
+        [self refreshData]; //can use this, since I overrode the getter to return the main JBQA URL if the string is nil :D
+        NSLog(@"current feed = %@", dataController.currentFeed);
     });
-    
-    _currentURL = RSS_FEED;
     
 }
 
@@ -104,14 +103,18 @@ static BOOL isFirstRefresh = YES;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-#pragma mark Internet Check Notifier Setup -
-
-
-
+#pragma mark KVO -
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqual:@"currentFeed"]) {
+        NSLog(@"refreshing data for feed %@", dataController.currentFeed);
+        [self refreshData];
+    }
+}
 #pragma mark Feed Picker -
 
--(void)displaySelectionView {
-    
+- (void)displaySelectionView
+{
     
     JBQAFeedPickerController* feedPickerView = [[JBQAFeedPickerController alloc] initWithNibName:@"JBQAFeedPicker_iPhone" bundle:nil];
     
@@ -120,22 +123,11 @@ static BOOL isFirstRefresh = YES;
 
 #pragma mark JBQA Interaction Methods -
 
--(void)refreshCurrent {
-    
-    [refreshControl beginRefreshing];
-    if (dataController.isInternetActive)
-        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:_currentURL];});
-    else
-        [self parseErrorOccurred:nil];
-}
-
-- (void)refreshData:(NSString*)feedURL
+- (void)refreshData
 {
     [refreshControl beginRefreshing];
-    NSLog(@"Refeshing URL:%@",feedURL);
-    [refreshControl beginRefreshing];
     if (dataController.isInternetActive)
-        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:feedURL];});
+        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:dataController.currentFeed];});
     else
         [self parseErrorOccurred:nil];
 }
