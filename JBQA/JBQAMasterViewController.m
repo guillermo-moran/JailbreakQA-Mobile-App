@@ -123,6 +123,13 @@ static BOOL isFirstRefresh = YES;
 
 #pragma mark JBQA Interaction Methods -
 
+- (void)refreshCurrent
+{
+    dispatch_async(backgroundQueue, ^(void){
+        [self refreshData];
+    });
+}
+
 - (void)refreshData
 {
     [refreshControl beginRefreshing];
@@ -355,7 +362,6 @@ static BOOL isFirstRefresh = YES;
 	    }
         
 	    self.detailViewController.detailItem = object;
-        [self.navigationController setToolbarHidden:YES animated:YES];
         [self.navigationController pushViewController:self.detailViewController animated:YES];
         
     }
