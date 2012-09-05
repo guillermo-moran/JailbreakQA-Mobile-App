@@ -97,7 +97,7 @@
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable to Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     else
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check Your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed.\nPlease Check Your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     [refreshControl endRefreshing];
 }
 
@@ -110,7 +110,7 @@
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
     if (stories.count == 0) {
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"No Answers Found.\n Please answer this question yourself if you can." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:5.0f];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"No Answers Found.Please answer this question yourself if you can." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:5.0f];
     }
 }
 

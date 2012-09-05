@@ -15,6 +15,8 @@
 @implementation JBQAAppDelegate
 @synthesize window,navigationController,splitViewController;
 
+static BOOL isFirstLaunch = YES;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -78,10 +80,13 @@
         if (!dataController.isInternetActive) {
             [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
         }
-        if (dataController.isInternetActive) {
-            [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+    if (!isFirstLaunch) {
+            if (dataController.isInternetActive) {
+                [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+            }
         }
     }
+    isFirstLaunch = NO;
 }
 
 
