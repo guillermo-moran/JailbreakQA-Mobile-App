@@ -115,9 +115,8 @@ static BOOL isFirstRefresh = YES;
 
 - (void)displaySelectionView
 {
-    
     JBQAFeedPickerController* feedPickerView = [[JBQAFeedPickerController alloc] initWithNibName:@"JBQAFeedPicker_iPhone" bundle:nil];
-    
+
     [self.navigationController pushViewController:feedPickerView animated:YES];
 }
 

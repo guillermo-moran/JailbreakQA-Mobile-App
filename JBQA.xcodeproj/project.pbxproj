@@ -11,6 +11,8 @@
 		4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877EB1315EF350A004EF159 /* JBQAAnswerController.m */; };
 		4877EB1615EF350A004EF159 /* JBQAAnswerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */; };
 		489BD64615F3342400B62978 /* JBQADataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 489BD64515F3342400B62978 /* JBQADataController.m */; };
+		48F5352115F748D100D24EB2 /* JBQAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */; };
+		48F5352215F748D100D24EB2 /* JBQAAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */; };
 		FD55120015E1632400214372 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5511FF15E1632400214372 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */; };
 		FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */; };
@@ -60,6 +62,9 @@
 		489BD64415F3342400B62978 /* JBQADataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQADataController.h; sourceTree = "<group>"; };
 		489BD64515F3342400B62978 /* JBQADataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQADataController.m; sourceTree = "<group>"; };
 		489BD64715F33EF100B62978 /* JBQADataControllerDelegate-Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JBQADataControllerDelegate-Protocol.h"; sourceTree = "<group>"; };
+		48F5351E15F748D100D24EB2 /* JBQAAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerViewController.h; sourceTree = SOURCE_ROOT; };
+		48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerViewController.m; sourceTree = SOURCE_ROOT; };
+		48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAAnswerViewController.xib; sourceTree = SOURCE_ROOT; };
 		FD5511FE15E1632400214372 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD5511FF15E1632400214372 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FD5ECF3615D6ABCB0061E472 /* JBQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +149,24 @@
 			path = AJNotificationView;
 			sourceTree = "<group>";
 		};
+		480D987115F741A300CE6D4A /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */,
+				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
+				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
+				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
+				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
+				FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */,
+				FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */,
+				FDD2A1A015F54B5400E135DE /* JBQAFeedPicker_iPhone.xib */,
+				FDD2A1A215F54B6D00E135DE /* JBQAFeedPicker_iPad.xib */,
+				FDD2A1B015F584CF00E135DE /* JBQAResponseList_iPhone.xib */,
+				48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
 		48A2ADC715EB3E5000A520CE /* External Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,11 +238,10 @@
 				FD5ECF4D15D6ABCB0061E472 /* JBQAMasterViewController.m */,
 				FDD2A1AC15F5819600E135DE /* JBQAResponseList.h */,
 				FDD2A1AD15F5819700E135DE /* JBQAResponseList.m */,
-				FDD2A1B015F584CF00E135DE /* JBQAResponseList_iPhone.xib */,
+				48F5351E15F748D100D24EB2 /* JBQAAnswerViewController.h */,
+				48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */,
 				FDD2A19D15F547D000E135DE /* JBQAFeedPickerController.h */,
 				FDD2A19E15F547D000E135DE /* JBQAFeedPickerController.m */,
-				FDD2A1A015F54B5400E135DE /* JBQAFeedPicker_iPhone.xib */,
-				FDD2A1A215F54B6D00E135DE /* JBQAFeedPicker_iPad.xib */,
 				FD5ECF4F15D6ABCB0061E472 /* JBQADetailViewController.h */,
 				FD5ECF5015D6ABCB0061E472 /* JBQADetailViewController.m */,
 				FDDA61F315E4074E0059896C /* JBQALoginController.h */,
@@ -228,13 +250,7 @@
 				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
 				4877EB1215EF350A004EF159 /* JBQAAnswerController.h */,
 				4877EB1315EF350A004EF159 /* JBQAAnswerController.m */,
-				4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */,
-				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
-				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
-				FD5ECF5815D6ABCB0061E472 /* JBQADetailViewController_iPhone.xib */,
-				FD5ECF5B15D6ABCB0061E472 /* JBQADetailViewController_iPad.xib */,
-				FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */,
-				FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */,
+				480D987115F741A300CE6D4A /* Nibs */,
 				FD5ECF4115D6ABCB0061E472 /* Supporting Files */,
 			);
 			path = JBQA;
@@ -352,6 +368,7 @@
 				FDD2A1A115F54B5400E135DE /* JBQAFeedPicker_iPhone.xib in Resources */,
 				FDD2A1A315F54B6D00E135DE /* JBQAFeedPicker_iPad.xib in Resources */,
 				FDD2A1B115F584CF00E135DE /* JBQAResponseList_iPhone.xib in Resources */,
+				48F5352215F748D100D24EB2 /* JBQAAnswerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +394,7 @@
 				489BD64615F3342400B62978 /* JBQADataController.m in Sources */,
 				FDD2A19F15F547D000E135DE /* JBQAFeedPickerController.m in Sources */,
 				FDD2A1AE15F5819700E135DE /* JBQAResponseList.m in Sources */,
+				48F5352115F748D100D24EB2 /* JBQAAnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

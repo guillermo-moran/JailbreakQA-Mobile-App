@@ -20,7 +20,6 @@
 
 @implementation JBQADetailViewController
 @synthesize answersCell;
-@synthesize answersCount;
 @synthesize answersViewButton;
 @synthesize masterPopoverController,detailItem;
 
@@ -32,7 +31,7 @@
     [self.navigationController pushViewController:list animated:YES];
 }
 
--(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate *)date
+-(void)setQuestionTitle:(NSString *)title asker:(NSString*)asker date:(NSDate *)date
 {
     qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -44,12 +43,13 @@
     qTitle.text = title;
 }
 
--(void)setAvatarFromURL:(NSURL*)url {
+- (void)setAvatarFromURL:(NSURL*)url
+{
     avatarView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
 }
 
--(void)setQuestionContent:(NSString *)content {
-    
+- (void)setQuestionContent:(NSString *)content
+{
     NSString *cssString = @"<style>body {font-family: HelveticaNeue;} img {width: 300px; height: auto;}</style>";
     NSString *htmlString = [NSString stringWithFormat:@"%@%@",cssString,content];
     
@@ -113,7 +113,6 @@
 - (void)viewDidUnload
 {
     [self setAnswersCell:nil];
-    [self setAnswersCount:nil];
     [self setAnswersViewButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.

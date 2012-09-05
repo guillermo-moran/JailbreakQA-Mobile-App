@@ -15,7 +15,6 @@
     IBOutlet UILabel *qAsker;
     IBOutlet UILabel *qDate; 
     IBOutlet UITextView *qTitle;                                                                                
-    IBOutlet UILabel *answersCount;
     NSString *questionID;
                                                                                                                 
 }                                                                                                               
@@ -29,7 +28,6 @@
 @property (strong, nonatomic) id detailItem;                                                                    
 @property (strong, nonatomic) NSString *questionID;
 @property (weak, nonatomic) IBOutlet UITableViewCell *answersCell;
-@property (strong, nonatomic) IBOutlet UILabel *answersCount;
 @property (weak, nonatomic) IBOutlet UIButton *answersViewButton;
 
 

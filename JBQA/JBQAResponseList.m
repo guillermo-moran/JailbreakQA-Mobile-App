@@ -10,8 +10,10 @@
 #import "JBQAFeedParser.h"
 
 #import "JBQADataController.h"
+#import "JBQAAnswerViewController.h"
 
 #import "AJNotificationView.h"
+#import "ODRefreshControl.h"
 
 @interface JBQAResponseList ()
 
@@ -32,12 +34,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
+    
+    [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [refreshControl addTarget:self action:@selector(loadAnswers) forControlEvents:UIControlEventValueChanged];
+
+    
     dataController = [JBQADataController sharedDataController];
     [dataController setDelegate:self];
     
     [self loadAnswers];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -59,17 +67,19 @@
 
 #pragma mark Parser Delegate Methods -
 
-- (void)setQuestionID:(NSString*)questionIdentifier {
+- (void)setQuestionID:(NSString*)questionIdentifier
+{
     questionID = questionIdentifier;
 }
 
-- (void)loadAnswers {
-    
+- (void)loadAnswers
+{
     if (dataController.isInternetActive) {
-        
+        [refreshControl beginRefreshing];
         NSLog(@"Loading answers from ID: %@",questionID);
-        
         dispatch_async(backgroundQueue, ^(void) {
+            feedParser = [[JBQAFeedParser alloc] init];
+            feedParser.delegate = self;
             [feedParser parseXMLFileAtURL:[NSString stringWithFormat:@"%@/questions/%@/%@",SERVICE_URL, questionID, ANSWERS_FEED]];
         });
     }
@@ -86,7 +96,8 @@
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable To Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     else
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];    
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+    [refreshControl endRefreshing];
 }
 
 
@@ -95,8 +106,8 @@
     stories = parseResults;
 
     [self.tableView reloadData];
-    NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
+    [refreshControl endRefreshing];
 }
 
 #pragma mark - Table view data source
@@ -124,11 +135,7 @@
     int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
     
     NSString *questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
-    NSString *questionAuthor = [[stories objectAtIndex:storyIndex] objectForKey:@"author"];
-    
 	cell.textLabel.text = questionTitle;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Asked by: %@",questionAuthor];
-    
 	return cell;
 }
 
@@ -155,9 +162,13 @@
  */
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
+    NSString *answer = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
+    JBQAAnswerViewController *answerViewController = [[JBQAAnswerViewController alloc] initWithNibName:@"JBQAAnswerViewController" bundle:nil];
+    answerViewController.answerText = answer;
+    [self presentViewController:answerViewController animated:YES completion:NULL];
 }
 
 @end

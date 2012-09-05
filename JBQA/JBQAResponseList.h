@@ -11,7 +11,7 @@
 #import "JBQADataControllerDelegate-Protocol.h"
 #import "JBQAFeedParser.h"
 
-@class JBQAFeedParser, JBQADataController;
+@class JBQAFeedParser, JBQADataController, ODRefreshControl;
 @interface JBQAResponseList : UITableViewController <JBQAParserDelegate, JBQADataControllerDelegate>
 {
     JBQADataController *dataController;
@@ -22,9 +22,11 @@
     NSMutableArray *stories;
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
+    
+    ODRefreshControl *refreshControl;
 }
 
 - (void)loadAnswers;
-- (void)setQuestionID:(NSString*)questionIdentifier;
+- (void)setQuestionID:(NSString *)questionIdentifier;
 
 @end
