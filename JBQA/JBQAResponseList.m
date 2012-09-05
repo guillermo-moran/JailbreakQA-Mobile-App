@@ -94,10 +94,10 @@
 {
     feedParser.parsing = NO;
     if (dataController.isInternetActive && dataController.isHostReachable) {
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable To Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable to Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     else
-        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check Your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     [refreshControl endRefreshing];
 }
 
@@ -109,10 +109,8 @@
     [self.tableView reloadData];
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
-    NSLog(@"Stories: %@", stories);
     if (stories.count == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No answers" message:@"Oops, it appears that there are no answers to this question yet! Consider answering it yourself if you can" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-        [alert show];
+        [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"No Answers Found.\n Please answer this question yourself if you can." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:5.0f];
     }
 }
 
