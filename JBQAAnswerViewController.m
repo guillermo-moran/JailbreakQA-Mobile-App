@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     if (answerView)
         for (UIView *subview in [answerView subviews])
             if ([subview isKindOfClass:[UIScrollView class]])
@@ -36,7 +37,6 @@
                     if([shadow isKindOfClass:[UIImageView class]])
                         [shadow setHidden:YES];
     
-
     NSString *cssString = @"<style>body {font-family: HelveticaNeue;} img {width: 300px; height: auto;}</style>";
     NSString *htmlString = [NSString stringWithFormat:@"%@%@",cssString,_answerText];
 
