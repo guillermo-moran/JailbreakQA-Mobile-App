@@ -11,7 +11,7 @@
 #import "JBQADataControllerDelegate-Protocol.h"
 #import "JBQAFeedParser.h"
 
-@class JBQAFeedParser, JBQADataController, ODRefreshControl;
+@class JBQADataController, ODRefreshControl;
 @interface JBQAResponseList : UITableViewController <JBQAParserDelegate, JBQADataControllerDelegate>
 {
     JBQADataController *dataController;

@@ -19,8 +19,9 @@
 
 @end
 
-@implementation JBQAResponseList
-#pragma mark meh -
+@implementation JBQAResponseList {}
+
+#pragma mark ViewController -
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -108,6 +109,11 @@
     [self.tableView reloadData];
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
+    NSLog(@"Stories: %@", stories);
+    if (stories.count == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No answers" message:@"Oops, it appears that there are no answers to this question yet! Consider answering it yourself if you can" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - Table view data source

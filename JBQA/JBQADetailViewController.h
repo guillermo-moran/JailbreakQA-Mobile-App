@@ -16,7 +16,8 @@
     IBOutlet UILabel *qDate; 
     IBOutlet UITextView *qTitle;                                                                                
     NSString *questionID;
-                                                                                                                
+
+    UIBarButtonItem *answerButton;
 }                                                                                                               
                                                                                         
 - (void)setQuestionContent:(NSString *)content;                                                                 

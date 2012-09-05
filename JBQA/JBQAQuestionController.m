@@ -7,8 +7,6 @@
 //  Made a gazillion times better, all thanks to flux.
 
 #import "JBQAQuestionController.h"
-#import "JBQALinks.h"
-
 #import "AJNotificationView.h"
 
 #import <QuartzCore/QuartzCore.h>

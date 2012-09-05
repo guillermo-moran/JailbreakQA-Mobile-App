@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#import "JBQALinks.h"
-
 #import "JBQAMasterViewController.h"
 #import "JBQADetailViewController.h"
 
@@ -15,7 +13,6 @@
 #import "JBQALoginController.h"
 #import "JBQAFeedPickerController.h"
 
-#import "JBQADataController.h"
 #import "JBQAFeedParser.h"
 
 #import "ODRefreshControl.h"
@@ -31,7 +28,6 @@
 @implementation JBQAMasterViewController
 
 static BOOL isFirstRefresh = YES;
-
 
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -380,6 +376,6 @@ static BOOL isFirstRefresh = YES;
     NSArray *URLComponents = [[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]] pathComponents]; //I'm bored again
     self.detailViewController.title = @"Details";
     NSString *questionID = [URLComponents objectAtIndex:2];
-    self.detailViewController.questionID = questionID; //PLEASE, LET'S CREATE A JBQADATACONTROLLER CLASS.....DO YOU EVER READ THE DOCS, fr0st? // Nope - fr0st.
+    self.detailViewController.questionID = questionID;
 }
 @end

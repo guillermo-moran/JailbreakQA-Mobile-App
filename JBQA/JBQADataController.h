@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JBQALinks.h"
 #import "JBQADataControllerDelegate-Protocol.h"
 
 @class Reachability;

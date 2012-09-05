@@ -7,8 +7,6 @@
 //
 
 #import "JBQALoginController.h"
-#import "JBQADataController.h"
-
 #import "BButton.h"
 
 @interface JBQALoginController ()

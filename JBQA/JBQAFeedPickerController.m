@@ -7,10 +7,6 @@
 //
 
 #import "JBQAFeedPickerController.h"
-#import "JBQAMasterViewController.h"
-
-#import "JBQALinks.h"
-#import "JBQADataController.h"
 
 @interface JBQAFeedPickerController ()
 

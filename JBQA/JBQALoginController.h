@@ -7,8 +7,6 @@
 //  Copyright © 2012 Fr0st Development. All rights reserved.
 //
 
-
-#import "JBQALinks.h"
 #import "UIProgressHUD.h"
 
 @class JBQADataController, BButton;

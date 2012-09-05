@@ -18,11 +18,97 @@
 - (void)configureView;
 @end
 
-@implementation JBQADetailViewController
+@implementation JBQADetailViewController {}
+
 @synthesize answersCell;
 @synthesize answersViewButton;
 @synthesize masterPopoverController,detailItem;
 
+#pragma mark - Managing the detail item
+
+- (void)setDetailItem:(id)newDetailItem
+{
+    if (self.detailItem != newDetailItem) {
+        self.detailItem = newDetailItem;
+        
+        // Update the view.
+        [self configureView];
+    }
+    
+    if (self.masterPopoverController != nil) {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
+}
+
+#pragma mark ViewController Methods -
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+    [self configureView];
+}
+
+- (void)configureView
+{
+    
+    // Round corners using CALayer property
+    [[questionView layer] setCornerRadius:10];
+    [questionView setClipsToBounds:YES];
+    
+    // Create colored border using CALayer property
+    [[questionView layer] setBorderColor:[[UIColor colorWithRed:0.48f green:0.48f blue:0.51f alpha:1.00f] CGColor]];
+    //distinguish it from the questionController's textView
+    [[questionView layer] setBorderWidth:2.75];
+    
+    answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
+    self.navigationItem.rightBarButtonItem = answerButton;
+    
+    if (questionView)
+        for (UIView *subview in [questionView subviews])
+            if ([subview isKindOfClass:[UIScrollView class]])
+                for (UIView *shadow in [subview subviews])
+                    if([shadow isKindOfClass:[UIImageView class]])
+                        [shadow setHidden:YES];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //For any extra configuration
+}
+
+- (void)viewDidUnload
+{
+    [self setAnswersCell:nil];
+    [self setAnswersViewButton:nil];
+    answerButton = nil;
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    } else {
+        return YES;
+    }
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        //self.title = NSLocalizedString(@"Detail", @"Detail");
+    }
+    return self;
+}
+
+
+
+#pragma mark Our methods -
 -(IBAction)viewResponses
 {
     JBQAResponseList *list = [[JBQAResponseList alloc] initWithNibName:@"JBQAResponseList_iPhone" bundle:nil];
@@ -55,88 +141,6 @@
     
     [questionView loadHTMLString:htmlString baseURL:nil];
 }
-
-#pragma mark - Managing the detail item
-
-- (void)setDetailItem:(id)newDetailItem
-{
-    if (self.detailItem != newDetailItem) {
-        self.detailItem = newDetailItem;
-
-        // Update the view.
-        [self configureView];
-    }
-
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
-}
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    [self configureView];
-}
-
-- (void)configureView
-{
-
-    // Round corners using CALayer property
-    [[questionView layer] setCornerRadius:10];
-    [questionView setClipsToBounds:YES];
-    
-    // Create colored border using CALayer property
-    [[questionView layer] setBorderColor:[[UIColor colorWithRed:0.48f green:0.48f blue:0.51f alpha:1.00f] CGColor]];
-                                                                //distinguish it from the questionController's textView
-    [[questionView layer] setBorderWidth:2.75];
-    
-    UIBarButtonItem *answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
-    self.navigationItem.rightBarButtonItem = answerButton;
-    
-    if (questionView)
-        for (UIView *subview in [questionView subviews])
-            if ([subview isKindOfClass:[UIScrollView class]])
-                for (UIView *shadow in [subview subviews])
-                    if([shadow isKindOfClass:[UIImageView class]])
-                        [shadow setHidden:YES];
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-   //For any extra configuration
-}
-
-- (void)viewDidUnload
-{
-    [self setAnswersCell:nil];
-    [self setAnswersViewButton:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        //self.title = NSLocalizedString(@"Detail", @"Detail");
-    }
-    return self;
-}
-
 
 -(void)addResponse
 {

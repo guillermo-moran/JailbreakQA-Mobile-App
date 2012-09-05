@@ -10,11 +10,8 @@
 #import "JBQAAnswerController.h"
 #import "AJNotificationView.h"
 
-#import "JBQALinks.h"
-
 @interface JBQAAnswerController ()
-//privy stuff, outlets should be here, but who gives a fuck?
-//Not me.
+
 @end
 
 @implementation JBQAAnswerController {}

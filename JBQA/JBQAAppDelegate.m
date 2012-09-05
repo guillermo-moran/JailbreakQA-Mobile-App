@@ -7,11 +7,8 @@
 //
 
 #import "JBQAAppDelegate.h"
-
 #import "JBQAMasterViewController.h"
-
 #import "JBQADetailViewController.h"
-#import "JBQADataController.h"
 
 #import "AJNotificationView.h"
 
