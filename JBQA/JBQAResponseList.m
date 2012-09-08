@@ -36,6 +36,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Answers";
+    
     backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
@@ -172,7 +174,8 @@
     NSString *answer = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
     JBQAAnswerViewController *answerViewController = [[JBQAAnswerViewController alloc] initWithNibName:@"JBQAAnswerViewController" bundle:nil];
     answerViewController.answerText = answer;
-    [self presentViewController:answerViewController animated:YES completion:NULL];
+    //[self presentViewController:answerViewController animated:YES completion:NULL];
+    [self.navigationController pushViewController:answerViewController animated:YES];
 }
 
 @end

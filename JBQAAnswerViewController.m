@@ -29,7 +29,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
+    
+    
+    self.navigationItem.title = @"View Answer";
+    
     if (answerView)
         for (UIView *subview in [answerView subviews])
             if ([subview isKindOfClass:[UIScrollView class]])
