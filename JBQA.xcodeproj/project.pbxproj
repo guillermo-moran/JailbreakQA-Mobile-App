@@ -503,15 +503,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Guillermo Moran";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Guillermo Moran";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Laws (5PG53H8462)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dylan Laws (5PG53H8462)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBQA/JBQA-Prefix.pch";
 				INFOPLIST_FILE = "JBQA/JBQA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -520,15 +520,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Guillermo Moran";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Guillermo Moran";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Laws (5PG53H8462)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dylan Laws (5PG53H8462)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBQA/JBQA-Prefix.pch";
 				INFOPLIST_FILE = "JBQA/JBQA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

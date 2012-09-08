@@ -8,6 +8,7 @@
 
 #import "JBQALoginController.h"
 #import "BButton.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface JBQALoginController ()
 
@@ -158,14 +159,24 @@
 - (void)loginTapped:(UIButton *)tapped
 {
     [_password resignFirstResponder];
-    [_loginButton setTitle:@"Logging In" forState:UIControlStateNormal];
     if ([_username.text length] < 3 && [_password.text length] < 1) {
-        UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please provide a username and password" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-        [loginError show];
-        return;
+        
+        CABasicAnimation *animation =
+        [CABasicAnimation animationWithKeyPath:@"position"];
+        [animation setDuration:0.05];
+        [animation setRepeatCount:3];
+        [animation setAutoreverses:YES];
+        [animation setFromValue:[NSValue valueWithCGPoint:
+                                 CGPointMake([_tableView center].x - 20.0f, [_tableView center].y)]];
+        [animation setToValue:[NSValue valueWithCGPoint:
+                               CGPointMake([_tableView center].x + 20.0f, [_tableView center].y)]];
+        [[_tableView layer] addAnimation:animation forKey:@"position"];
+        
     }
-    else
+    else {
+        [_loginButton setTitle:@"Logging In" forState:UIControlStateNormal];
         [self loginOnWebsite:SIGNIN_URL username:_username.text password:_password.text];
+    }
 }
 
 - (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
