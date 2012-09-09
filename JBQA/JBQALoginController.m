@@ -106,36 +106,36 @@
         return cell;
     }
     else {
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    if (indexPath.row == 0) {
-        _username = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
-        [_username setAdjustsFontSizeToFitWidth:YES];
-        [_username setPlaceholder:@"Username"];
-        [_username setTag:1];
-        [_username setDelegate:self];
-        [_username setKeyboardAppearance:UIKeyboardAppearanceDefault];
-        [_username setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-        [_username setAutocorrectionType:UITextAutocorrectionTypeNo];
-        [_username setReturnKeyType:UIReturnKeyNext];
-        [cell setAccessoryView:_username];
-    } else if (indexPath.row == 1) {
-        _password = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
-        [_password setAdjustsFontSizeToFitWidth:YES];
-        [_password setPlaceholder:@"Password"];
-        [_password setTag:2];
-        [_password setDelegate:self];
-        [_password setKeyboardAppearance:UIKeyboardAppearanceDefault];
-        [_password setAutocorrectionType:UITextAutocorrectionTypeNo];
-        [_password setSecureTextEntry:YES];
-        [cell setAccessoryView:_password];
-    }
-    
-    //[cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    return cell;
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        if (indexPath.row == 0) {
+            _username = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
+            [_username setAdjustsFontSizeToFitWidth:YES];
+            [_username setPlaceholder:@"Username"];
+            [_username setTag:1];
+            [_username setDelegate:self];
+            [_username setKeyboardAppearance:UIKeyboardAppearanceDefault];
+            [_username setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+            [_username setAutocorrectionType:UITextAutocorrectionTypeNo];
+            [_username setReturnKeyType:UIReturnKeyNext];
+            [cell setAccessoryView:_username];
+        } else if (indexPath.row == 1) {
+            _password = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 20)];
+            [_password setAdjustsFontSizeToFitWidth:YES];
+            [_password setPlaceholder:@"Password"];
+            [_password setTag:2];
+            [_password setDelegate:self];
+            [_password setKeyboardAppearance:UIKeyboardAppearanceDefault];
+            [_password setAutocorrectionType:UITextAutocorrectionTypeNo];
+            [_password setSecureTextEntry:YES];
+            [cell setAccessoryView:_password];
+        }
+        
+        //[cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return cell;
     }
 }
 #pragma mark UITextFieldDelegate -
@@ -212,7 +212,6 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"WebView finished load. ");
     // write javascript code in a string
     
     if (isAttemptingLogin) {
@@ -230,37 +229,34 @@
     }
     
     if (isCheckingLogin) {
-        NSLog(@"Checking login");
+        
         // run javascript in webview:
         html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-        loginAlert = [[UIAlertView alloc] init];
         
         if ([html rangeOfString:@"logout"].location == NSNotFound) {
-            loginAlert.title = @"Login Failed.";
-            loginAlert.message = @"Your username or password is incorrect. Please try again.";
+            [AJNotificationView showNoticeInView:self.view title:@"Your username or password is incorrect. Please try again."];
             dataController.loggedIn = NO;
-        }
-        else {
-            loginAlert.title = @"JBQA Login";
-            loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
+        } else {
+            [AJNotificationView showNoticeInView:self.view title:[NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername]];
+            [_loginButton setTitle:@"Logged in" forState:UIControlStateNormal];
             dataController.loggedIn = YES;
         }
-        loginWebView.delegate = nil;
-        [loginAlert show];
         
-        [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
+        loginWebView.delegate = nil;
         [hud hide];
+        
+        if (dataController.loggedIn)
+            [self performSelector:@selector(dismissModalViewController) withObject:nil afterDelay:2.5];
     }
     
-        
+    
     // the loggedIn property for the shared controller can now replace the insane wait to show the action sheet.
-    //Set a BOOL for first launch, and then use JBQADataController's properties for login checks after the first one. 
+    //Set a BOOL for first launch, and then use JBQADataController's properties for login checks after the first one.
 }
 
-- (void)dismissAlert:(UIAlertView *)alert
+- (void)dismissModalViewController
 {
-    [alert dismissWithClickedButtonIndex:0 animated:YES];
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
