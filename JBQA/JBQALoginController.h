@@ -8,6 +8,7 @@
 //
 
 #import "UIProgressHUD.h"
+#import "AJNotificationView.h"
 
 @class JBQADataController, BButton;
 
@@ -24,8 +25,6 @@
     NSString *JBQAUsername;
     NSString *JBQAPassword;
     
-    UIAlertView *loginAlert;
-    
     UITableView *_tableView;
     BButton *_loginButton;
     
@@ -41,7 +40,6 @@
 - (void)loginTapped:(UIButton *)tapped;
 - (void)cancelTapped:(UIBarButtonItem *)button;
 - (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password;
-- (void)dismissAlert:(UIAlertView *)alert;
-
+- (void)dismissModalViewController;
 @end
 

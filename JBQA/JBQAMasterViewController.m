@@ -112,7 +112,7 @@ static BOOL isFirstRefresh = YES;
 - (void)displaySelectionView
 {
     JBQAFeedPickerController* feedPickerView = [[JBQAFeedPickerController alloc] initWithNibName:@"JBQAFeedPicker_iPhone" bundle:nil];
-
+    
     [self.navigationController pushViewController:feedPickerView animated:YES];
 }
 
@@ -164,12 +164,12 @@ static BOOL isFirstRefresh = YES;
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies])
-                [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
     else if (buttonIndex != actionSheet.cancelButtonIndex) {
         [self ask];
     }
-        
+    
     
 }
 
@@ -215,7 +215,7 @@ static BOOL isFirstRefresh = YES;
     [refreshControl endRefreshing];
 }
 
-#pragma mark Data Controller Delegate - 
+#pragma mark Data Controller Delegate -
 
 - (void)dataControllerDidBeginCheckingLogin
 {
@@ -269,11 +269,11 @@ static BOOL isFirstRefresh = YES;
             [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"An error occured, please try again." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
         }
         else {
-            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"You Are Now Logged Out Of JBQA" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"Logged out." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
         }
         isLoggingOut = NO;
     }
-
+    
     [hud hide];
 }
 
@@ -372,7 +372,7 @@ static BOOL isFirstRefresh = YES;
     [self.detailViewController setQuestionTitle:title asker:asker date:date];
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
-        
+    
     NSArray *URLComponents = [[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]] pathComponents]; //I'm bored again
     self.detailViewController.title = @"Details";
     NSString *questionID = [URLComponents objectAtIndex:2];
