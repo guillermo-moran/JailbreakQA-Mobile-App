@@ -21,8 +21,6 @@
 
 #pragma mark Login Check -
 
-static BOOL loggedIn;
-
 - (void)checkLoginStatus
 {
     loginChecker = [[UIWebView alloc] init];
@@ -54,16 +52,16 @@ static BOOL loggedIn;
     
     if ([html rangeOfString:@"logout"].location == NSNotFound) {
         NSLog(@"Not logged in.");
-        loggedIn = NO;
+        self.loggedIn = NO;
     }
     else {
         NSLog(@"Logged in.");
-        loggedIn = YES;
+        self.loggedIn = YES;
     }
     
     for (id delegate in delegateArray)
         if ([delegate respondsToSelector:@selector(dataControllerFinishedCheckingLoginWithResult:)])
-            [delegate dataControllerFinishedCheckingLoginWithResult:loggedIn];
+            [delegate dataControllerFinishedCheckingLoginWithResult:self.loggedIn];
 }
 
 - (void)setDelegate:(id)delegate

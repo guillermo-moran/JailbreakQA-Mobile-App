@@ -28,6 +28,7 @@
 @implementation JBQAMasterViewController
 
 static BOOL isFirstRefresh = YES;
+static BOOL firstCheck = YES;
 
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -57,6 +58,8 @@ static BOOL isFirstRefresh = YES;
         [self refreshData]; //can use this, since I overrode the getter to return the main JBQA URL if the string is nil :D
         NSLog(@"current feed = %@", dataController.currentFeed);
     });
+    [dataController checkLoginStatus];
+    firstCheck = NO;
     
 }
 
@@ -136,12 +139,37 @@ static BOOL isFirstRefresh = YES;
 
 - (void)displayUserMenu
 {
-    if (dataController.isInternetActive) {
-        [dataController checkLoginStatus];
-        isCheckingLogin = YES; //Check if user is logged in, and specify what we're doing.
+    if (firstCheck) {
+        if (dataController.isInternetActive) {
+            [dataController checkLoginStatus];
+            isCheckingLogin = YES; //Check if user is logged in, and specify what we're doing.
+        }
+        else
+            [self parseErrorOccurred:nil];
     }
-    else
-        [self parseErrorOccurred:nil];
+    else if (dataController.isLoggedIn) {
+        
+        menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Ask a Question", nil];
+    
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            
+            if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                [menuSheet showFromBarButtonItem:menuBtn animated:YES];
+            }
+            else {
+                CGRect windowsRect = [self.navigationController.toolbar convertRect:menuBtn.customView.frame toView:self.view.window];
+                [menuSheet showFromRect:windowsRect inView:self.view.window animated:YES];
+            }
+        }
+        else {
+            [menuSheet showFromToolbar:self.navigationController.toolbar];
+        }
+    }
+    else {
+        JBQALoginController* loginView = [[JBQALoginController alloc] init];
+        loginView.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:loginView animated:YES completion:NULL];
+    }
 }
 
 - (void)ask
@@ -177,8 +205,8 @@ static BOOL isFirstRefresh = YES;
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
     
-    if (isLoggingOut) {
-        
+    if (isLoggingOut)
+    {
         [dataController checkLoginStatus];
         isLoggingOut = YES; //Check if user is logged in, and specify what we're doing.
     }
@@ -219,7 +247,7 @@ static BOOL isFirstRefresh = YES;
 
 - (void)dataControllerDidBeginCheckingLogin
 {
-    NSLog(@"Loading...");
+    NSLog(@"Loading for login check...");
     hud = [[UIProgressHUD alloc] init];
     [hud setText:@"Loading"];
     [hud showInView:self.view];
