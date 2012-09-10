@@ -24,6 +24,7 @@
     UITableView *table;
     ODRefreshControl *refreshControl;
     UIBarButtonItem *menuBtn;
+    UIBarButtonItem *moreButton;
     UIBarButtonItem *leftFlex;
     UIActionSheet *menuSheet;
     

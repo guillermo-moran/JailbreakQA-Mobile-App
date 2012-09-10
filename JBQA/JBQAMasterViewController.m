@@ -67,10 +67,8 @@ static BOOL firstCheck = YES;
 {
     //Add Buttons
     leftFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem* moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(displaySelectionView)];
-    
     menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu)];
+    moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(displaySelectionView)];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
@@ -203,8 +201,8 @@ static BOOL firstCheck = YES;
 
 #pragma mark UIWebViewDelegate -
 
--(void)webViewDidStartLoad:(UIWebView *)webView {
-    
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
     if (isLoggingOut)
     {
         [dataController checkLoginStatus];
@@ -247,17 +245,22 @@ static BOOL firstCheck = YES;
 
 - (void)dataControllerDidBeginCheckingLogin
 {
+    menuBtn.enabled = NO;
+    moreButton.enabled = NO;
     NSLog(@"Loading for login check...");
     hud = [[UIProgressHUD alloc] init];
     [hud setText:@"Loading"];
     [hud showInView:self.view];
 }
 
-- (void)dataControllerFailedLoadWithError:(NSError *)error{
+- (void)dataControllerFailedLoadWithError:(NSError *)error
+{
     NSLog(@"Load Error.");
     [hud done];
     [hud setText:@"Done"];
     [hud hide];
+    menuBtn.enabled = YES;
+    moreButton.enabled = YES;
 }
 
 - (void)dataControllerFinishedCheckingLoginWithResult:(BOOL)isLoggedIn
@@ -303,6 +306,8 @@ static BOOL firstCheck = YES;
     }
     
     [hud hide];
+    menuBtn.enabled = YES;
+    moreButton.enabled = YES;
 }
 
 
