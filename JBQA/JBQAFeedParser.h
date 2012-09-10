@@ -40,6 +40,5 @@
 @property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
 
 - (void)parseXMLFileAtURL:(NSString *)URL;
-- (void)getAnswersForQuestionID:(NSString *)questionID;
 
 @end
