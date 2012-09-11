@@ -94,7 +94,6 @@
 
 - (void)parseErrorOccurred:(NSError *)parseError
 {
-    feedParser.parsing = NO;
     if (dataController.isInternetActive && dataController.isHostReachable) {
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable to Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
@@ -107,7 +106,6 @@
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
     stories = parseResults;
-
     [self.tableView reloadData];
     feedParser.parsing = NO;
     [refreshControl endRefreshing];

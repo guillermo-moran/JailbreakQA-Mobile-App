@@ -68,6 +68,7 @@
 {
     if (!delegateArray) delegateArray = [[NSMutableArray alloc] init];
     [delegateArray addObject:delegate];
+    NSLog(@"Added object to the delegate array. no of objects is: %i", delegateArray.count);
 }
 
 - (id)delegateArray

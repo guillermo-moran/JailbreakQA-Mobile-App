@@ -258,12 +258,12 @@
 		FD5ECF3915D6ABCB0061E472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */,
+				FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */,
 				FDDC8B6615E92D3400DC305F /* QuartzCore.framework */,
 				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
 				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
 				FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */,
-				FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */,
-				FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */,
 				48070B8515D8E1EC0087D034 /* CoreFoundation.framework */,
 				FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */,
 				FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */,
@@ -502,6 +502,7 @@
 				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
 				SDKROOT = iphoneos5.1;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -544,6 +545,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
+				"STRIPFLAGS[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

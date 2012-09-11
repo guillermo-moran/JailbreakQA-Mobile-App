@@ -14,8 +14,8 @@
 
 - (void)parseXMLFileAtURL:(NSString *)URL
 {
+    dataController = [JBQADataController sharedDataController];
     @autoreleasepool {
-        self.parsing = YES;
         NSURL *xmlURL = [NSURL URLWithString:URL];
         NSError *error = nil;
         NSString *xmlFileString = [NSString stringWithContentsOfURL:xmlURL
@@ -37,15 +37,16 @@
     }
 }
 
-//Forward NSXMLParser's delegated methods to self.delegate
+//Forward NSXMLParser's delegated methods to delegate
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
+    dataController.parsing = YES;
     @autoreleasepool {
+        self.parsing = YES;
         parseResults = [[NSMutableArray alloc] init];
-        if ([self.delegate respondsToSelector:@selector(parserDidStartDocument:)]) {
-            NSLog(@"Delegate responds to %@, sending to delegate", NSStringFromSelector(_cmd));
+        if ([self.delegate respondsToSelector:@selector(parserDidStartDocument:)])
             [self.delegate parserDidStartDocument];
-        }
+            
         else
             NSLog(@"Begin parse");
     }
@@ -53,8 +54,10 @@
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
+    dataController.parsing = NO;
     if ([self.delegate respondsToSelector:@selector(parseErrorOccurred:)])
         [self.delegate parseErrorOccurred:parseError];
+        
     else
         NSLog(@"Parser encountered error: %@", parseError.description);
 }
@@ -104,7 +107,7 @@
             [currentSummary appendString:string];
         } else if ([currentElement isEqualToString:@"pubDate"]) {
             [currentDate appendString:string];
-        }else if ([currentElement isEqualToString:@"dc:creator"]) {
+        } else if ([currentElement isEqualToString:@"dc:creator"]) {
             [currentAuthor appendString:string];
         }
         
@@ -114,10 +117,13 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
+    dataController.parsing = NO;
+    
     if ([self.delegate respondsToSelector:@selector(parserDidEndDocumentWithResults:)])
         [self.delegate parserDidEndDocumentWithResults:parseResults];
     else
         NSLog(@"Finished parsing");
+    
 }
 
 @end
