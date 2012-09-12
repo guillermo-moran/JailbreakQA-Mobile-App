@@ -138,8 +138,10 @@
     
     int storyIndex = [indexPath indexAtPosition: [indexPath length] -1];
     
-    NSString *questionTitle = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
-	cell.textLabel.text = questionTitle;
+	cell.textLabel.text = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
+    
+    cell.detailTextLabel.numberOfLines = 3; //for answer preview
+    cell.detailTextLabel.text = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
 	return cell;
 }
 
@@ -147,6 +149,11 @@
 {
     // Return NO if you do not want the specified item to be editable.
     return NO;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80.0f; //for answer preview
 }
 
 /*

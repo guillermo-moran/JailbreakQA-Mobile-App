@@ -16,12 +16,15 @@
 @synthesize window,navigationController,splitViewController;
 
 static BOOL isFirstLaunch = YES;
+static BOOL currentNetworkState = NO;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     dataController = [JBQADataController sharedDataController];
     [dataController startNetworkStatusNotifications]; 
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         JBQAMasterViewController *masterViewController = [[JBQAMasterViewController alloc] initWithNibName:@"JBQAMasterViewController_iPhone" bundle:nil];
@@ -42,8 +45,12 @@ static BOOL isFirstLaunch = YES;
         
         self.window.rootViewController = self.splitViewController;
     }
+    
     [self.window makeKeyAndVisible];
+    
     [dataController addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
+    currentNetworkState = dataController.isInternetActive;
+    
     return YES;
 }
 
@@ -82,11 +89,15 @@ static BOOL isFirstLaunch = YES;
         }
     if (!isFirstLaunch) {
             if (dataController.isInternetActive) {
-                [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+                if (currentNetworkState != dataController.isInternetActive) {
+                    [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+                    //No more irritation when swithching from Wifi to cellular :P
+                }
             }
         }
     }
     isFirstLaunch = NO;
+    currentNetworkState = dataController.isInternetActive;
 }
 
 

@@ -121,9 +121,10 @@ static BOOL firstCheck = YES;
 
 - (void)refreshCurrent
 {
-    dispatch_async(backgroundQueue, ^(void){
-        [self refreshData];
-    });
+    if (dataController.isInternetActive)
+        dispatch_async(backgroundQueue, ^(void){[self refreshData];});
+    else
+        [self parseErrorOccurred:nil];
 }
 
 - (void)refreshData

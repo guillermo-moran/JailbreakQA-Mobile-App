@@ -23,10 +23,12 @@
 
 - (void)checkLoginStatus
 {
+    if (self.isInternetActive) {
     loginChecker = [[UIWebView alloc] init];
     [loginChecker setDelegate:self];
     [loginChecker loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
     self.checkingLogin = YES;
+    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -45,6 +47,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSLog(@"Finished loading for login check");
     NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
 
     // run javascript in webview:
@@ -68,7 +71,7 @@
 {
     if (!delegateArray) delegateArray = [[NSMutableArray alloc] init];
     [delegateArray addObject:delegate];
-    NSLog(@"Added object to the delegate array. no of objects is: %i", delegateArray.count);
+    NSLog(@"Added object to the delegate array. No. of objects is: %i", delegateArray.count);
 }
 
 - (id)delegateArray
@@ -93,20 +96,23 @@
 }
 
 #pragma mark Reachability Methods -
--(void)startNetworkStatusNotifications
+- (void)startNetworkStatusNotifications
 {    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     internetReachable = [Reachability reachabilityForInternetConnection];
+    
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
+    
     [internetReachable startNotifier];
     NSLog(@"Starting up notifier");
-    //Check if JailbreakQA is alive :P
+
     hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
     self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
+    
     [hostReachable startNotifier];
 }
 
--(void)networkStatusChanged:(NSNotification *)notice
+- (void)networkStatusChanged:(NSNotification *)notice
 {
     // called after network status changes
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
