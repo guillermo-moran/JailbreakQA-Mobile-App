@@ -10,11 +10,11 @@
 
 @protocol JBQAParserDelegate
 
+@required
 - (void)parseErrorOccurred:(NSError *)error;
 - (void)parserDidEndDocumentWithResults:(id)parseResults;
 
 @optional
-
 - (void)parserDidStartDocument;
 
 @end
@@ -28,10 +28,8 @@
     NSMutableDictionary *item;
 	NSString *currentElement;
 	NSMutableString *currentTitle, *currentDate, *currentSummary, *currentLink, *currentAuthor;
-    NSString *xmlString;
     NSMutableArray *parseResults;
     id <JBQAParserDelegate> delegate;
-    int totalLines;
 }
 
 @property (weak) NSXMLParser *rssParser;

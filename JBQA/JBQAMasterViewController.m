@@ -59,8 +59,6 @@ static BOOL firstCheck = YES;
         NSLog(@"current feed = %@", dataController.currentFeed);
     });
     [dataController checkLoginStatus];
-    firstCheck = NO;
-    
 }
 
 - (void)configureView
@@ -85,6 +83,12 @@ static BOOL firstCheck = YES;
 
 - (void)viewDidUnload
 {
+    //release the memory if memory warning is received when invisible.
+    menuBtn = nil;
+    moreButton = nil;
+    leftFlex = nil;
+    refreshControl = nil;
+    hud = nil;
     [super viewDidUnload];
 }
 
@@ -246,6 +250,7 @@ static BOOL firstCheck = YES;
 
 - (void)dataControllerDidBeginCheckingLogin
 {
+    
     menuBtn.enabled = NO;
     moreButton.enabled = NO;
     NSLog(@"Loading for login check...");

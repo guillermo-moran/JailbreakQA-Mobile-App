@@ -87,7 +87,7 @@ static BOOL currentNetworkState = NO;
         if (!dataController.isInternetActive) {
             [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
         }
-    if (!isFirstLaunch) {
+        if (!isFirstLaunch) {
             if (dataController.isInternetActive) {
                 if (currentNetworkState != dataController.isInternetActive) {
                     [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];

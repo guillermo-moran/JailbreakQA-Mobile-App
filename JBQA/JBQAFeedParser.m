@@ -17,22 +17,16 @@
     dataController = [JBQADataController sharedDataController];
     @autoreleasepool {
         NSURL *xmlURL = [NSURL URLWithString:URL];
-        NSError *error = nil;
-        NSString *xmlFileString = [NSString stringWithContentsOfURL:xmlURL
-                                                       encoding:NSUTF8StringEncoding
-                                                          error:&error];
-    
-        totalLines = [xmlFileString componentsSeparatedByString:@"\n"].count;
-        // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
-        // this may be necessary only for the toolchain
         rssParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
         
         // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
         [rssParser setDelegate:self];
+ 
         // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
         [rssParser setShouldProcessNamespaces:NO];
         [rssParser setShouldReportNamespacePrefixes:NO];
         [rssParser setShouldResolveExternalEntities:NO];
+        
         [rssParser parse];
     }
 }
@@ -59,7 +53,7 @@
         [self.delegate parseErrorOccurred:parseError];
         
     else
-        NSLog(@"Parser encountered error: %@", parseError.description);
+        NSLog(@"Parser encountered error: %@, delegate doesn't conform to protocol", parseError.description);
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -122,7 +116,7 @@
     if ([self.delegate respondsToSelector:@selector(parserDidEndDocumentWithResults:)])
         [self.delegate parserDidEndDocumentWithResults:parseResults];
     else
-        NSLog(@"Finished parsing");
+        NSLog(@"Finished parsing, delegate doesn't conform to protocol");
     
 }
 
