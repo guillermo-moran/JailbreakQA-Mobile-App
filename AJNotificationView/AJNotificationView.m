@@ -188,16 +188,16 @@
             break;
         }
         case AJNotificationTypeBlue: { //Blue
-            firstColor = RGBA(0, 193, 254, 1.0);
+            firstColor = RGBA(45, 150, 181, 1.0);
             secondColor = RGBA(0, 129, 182, 1.0);
-            toplineColor = RGBA(20, 230, 255, 1.0);
+            toplineColor = RGBA(17, 98, 122, 1.0);
             self.titleLabel.textColor = [UIColor whiteColor];
             break;
         }
         case AJNotificationTypeGreen: { //Green
             firstColor = RGBA(147, 207, 11, 1.0);
             secondColor = RGBA(99, 168, 1, 1.0);
-            toplineColor = RGBA(167, 227, 31, 1.0);
+            toplineColor = RGBA(19, 114, 143, 1.0);
             self.titleLabel.textColor = [UIColor whiteColor];
             break;
         }
