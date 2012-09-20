@@ -50,9 +50,11 @@
 @property (nonatomic) BOOL isLoggedIn;
 
 - (void)refreshData;
-- (void)refreshCurrent;
 - (void)displaySelectionView;
 - (void)ask;
 - (void)displayUserMenu;
+
+- (void)showHUD;
+- (void)hideHUD;
 
 @end

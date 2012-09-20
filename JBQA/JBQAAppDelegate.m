@@ -20,6 +20,10 @@ static BOOL currentNetworkState = NO;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
+                                                animated:YES]; //Fuck tinted Statusbar, iOS 6
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     dataController = [JBQADataController sharedDataController];

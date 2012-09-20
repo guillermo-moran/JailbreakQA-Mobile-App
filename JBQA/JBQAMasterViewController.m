@@ -58,7 +58,7 @@ static BOOL firstCheck = YES;
         [self refreshData]; //can use this, since I overrode the getter to return the main JBQA URL if the string is nil :D
         NSLog(@"current feed = %@", dataController.currentFeed);
     });
-    [dataController checkLoginStatus];
+    //[dataController checkLoginStatus]; No.
 }
 
 - (void)configureView
@@ -104,12 +104,33 @@ static BOOL firstCheck = YES;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+#pragma mark HUD - 
+
+-(void)showHUD {
+    menuBtn.enabled = NO;
+    moreButton.enabled = NO;
+    hud = [[UIProgressHUD alloc] init];
+    [hud setText:@"Loading"];
+    [hud showInView:self.view];
+}
+
+
+-(void)hideHUD {
+    [hud done];
+    [hud setText:@"Done"];
+    [hud hide];
+    menuBtn.enabled = YES;
+    moreButton.enabled = YES;
+}
+
 #pragma mark KVO -
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqual:@"currentFeed"]) {
+        [self showHUD];
         NSLog(@"refreshing data for feed %@", dataController.currentFeed);
-        [self refreshData];
+        
+        dispatch_async(backgroundQueue, ^(void) {[self refreshData];});
     }
 }
 #pragma mark Feed Picker -
@@ -122,14 +143,6 @@ static BOOL firstCheck = YES;
 }
 
 #pragma mark JBQA Interaction Methods -
-
-- (void)refreshCurrent
-{
-    if (dataController.isInternetActive)
-        dispatch_async(backgroundQueue, ^(void){[self refreshData];});
-    else
-        [self parseErrorOccurred:nil];
-}
 
 - (void)refreshData
 {
@@ -233,6 +246,7 @@ static BOOL firstCheck = YES;
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     [refreshControl endRefreshing];
+    [self hideHUD];
 }
 
 
@@ -244,29 +258,23 @@ static BOOL firstCheck = YES;
     NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
+    [self hideHUD];
+    return;
 }
 
 #pragma mark Data Controller Delegate -
 
 - (void)dataControllerDidBeginCheckingLogin
 {
-    
-    menuBtn.enabled = NO;
-    moreButton.enabled = NO;
+    [self showHUD];
     NSLog(@"Loading for login check...");
-    hud = [[UIProgressHUD alloc] init];
-    [hud setText:@"Loading"];
-    [hud showInView:self.view];
+    
 }
 
 - (void)dataControllerFailedLoadWithError:(NSError *)error
 {
     NSLog(@"Load Error.");
-    [hud done];
-    [hud setText:@"Done"];
-    [hud hide];
-    menuBtn.enabled = YES;
-    moreButton.enabled = YES;
+    
 }
 
 - (void)dataControllerFinishedCheckingLoginWithResult:(BOOL)isLoggedIn
@@ -311,9 +319,7 @@ static BOOL firstCheck = YES;
         isLoggingOut = NO;
     }
     
-    [hud hide];
-    menuBtn.enabled = YES;
-    moreButton.enabled = YES;
+    [self hideHUD];
 }
 
 

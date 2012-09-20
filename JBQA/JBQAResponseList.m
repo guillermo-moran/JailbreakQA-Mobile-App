@@ -106,6 +106,7 @@
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
     stories = parseResults;
+    NSLog(@"Done.");
     [self.tableView reloadData];
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
@@ -141,7 +142,12 @@
 	cell.textLabel.text = [[stories objectAtIndex:storyIndex] objectForKey:@"title"];
     
     cell.detailTextLabel.numberOfLines = 3; //for answer preview
-    cell.detailTextLabel.text = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
+    
+    NSString* textPreview = [[stories objectAtIndex:storyIndex] objectForKey:@"summary"];
+    textPreview = [textPreview stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    textPreview = [textPreview stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+    
+    cell.detailTextLabel.text = textPreview;
 	return cell;
 }
 

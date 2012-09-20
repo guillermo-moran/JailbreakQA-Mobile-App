@@ -34,11 +34,12 @@
 		FD621D4615EA98B2007EEE78 /* light_noise_diagonal_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D4015EA98B2007EEE78 /* light_noise_diagonal_@2X.png */; };
 		FD621D4715EA98B2007EEE78 /* retina_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D4115EA98B2007EEE78 /* retina_wood.png */; };
 		FD621D4815EA98B2007EEE78 /* retina_wood_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */; };
+		FD668222160B6A7500FC1B7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD668221160B6A7500FC1B7B /* Default-568h@2x.png */; };
+		FD668224160B6C3800FC1B7B /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FD668223160B6C3800FC1B7B /* libxml2.2.dylib */; };
 		FD92F33D15E47130002D50E2 /* JBQAQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */; };
 		FD92F33E15E47130002D50E2 /* JBQAQuestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */; };
 		FD92F34015E47168002D50E2 /* JBQAQuestionController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */; };
 		FDAB15AC15D99D91001B8FA5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */; };
-		FDAB15AE15D99D98001B8FA5 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */; };
 		FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */; };
 		FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */; };
 		FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */; };
@@ -95,13 +96,14 @@
 		FD621D4015EA98B2007EEE78 /* light_noise_diagonal_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_noise_diagonal_@2X.png"; sourceTree = "<group>"; };
 		FD621D4115EA98B2007EEE78 /* retina_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina_wood.png; sourceTree = "<group>"; };
 		FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retina_wood_@2X.png"; sourceTree = "<group>"; };
+		FD668221160B6A7500FC1B7B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		FD668223160B6C3800FC1B7B /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAQuestionController.h; sourceTree = "<group>"; };
 		FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAQuestionController.m; sourceTree = "<group>"; };
 		FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController.xib; sourceTree = "<group>"; };
 		FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController_iPad.xib; sourceTree = "<group>"; };
 		FD92F34115E4739A002D50E2 /* JBQALinks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBQALinks.h; sourceTree = "<group>"; };
 		FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 		FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -125,11 +127,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD668224160B6C3800FC1B7B /* libxml2.2.dylib in Frameworks */,
 				FDDC8B6715E92D3400DC305F /* QuartzCore.framework in Frameworks */,
 				FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */,
 				FDAB15B215D99DB3001B8FA5 /* MobileCoreServices.framework in Frameworks */,
 				FDAB15B015D99DAF001B8FA5 /* CFNetwork.framework in Frameworks */,
-				FDAB15AE15D99D98001B8FA5 /* libxml2.2.7.3.dylib in Frameworks */,
 				FDAB15AC15D99D91001B8FA5 /* libz.1.2.5.dylib in Frameworks */,
 				FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */,
 				FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */,
@@ -239,6 +241,7 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
+				FD668221160B6A7500FC1B7B /* Default-568h@2x.png */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				48A2ADC715EB3E5000A520CE /* External Classes */,
 				FD621D3C15EA98B2007EEE78 /* Artwork */,
@@ -258,8 +261,8 @@
 		FD5ECF3915D6ABCB0061E472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD668223160B6C3800FC1B7B /* libxml2.2.dylib */,
 				FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */,
-				FDAB15AD15D99D98001B8FA5 /* libxml2.2.7.3.dylib */,
 				FDDC8B6615E92D3400DC305F /* QuartzCore.framework */,
 				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
 				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
@@ -358,7 +361,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = JBQA;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Fr0st Development";
 			};
 			buildConfigurationList = FD5ECF3015D6ABCB0061E472 /* Build configuration list for PBXProject "JBQA" */;
@@ -401,6 +404,7 @@
 				FDD2A1A315F54B6D00E135DE /* JBQAFeedPicker_iPad.xib in Resources */,
 				FDD2A1B115F584CF00E135DE /* JBQAResponseList_iPhone.xib in Resources */,
 				48F5352215F748D100D24EB2 /* JBQAAnswerViewController.xib in Resources */,
+				FD668222160B6A7500FC1B7B /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,8 +487,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Laws (5PG53H8462)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dylan Laws (5PG53H8462)";
+				CODE_SIGN_IDENTITY = "Guillermo Moran";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Guillermo Moran";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -498,10 +502,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
-				SDKROOT = iphoneos5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -514,19 +518,19 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Laws (5PG53H8462)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dylan Laws (5PG53H8462)";
+				CODE_SIGN_IDENTITY = "Guillermo Moran";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Guillermo Moran";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
-				SDKROOT = iphoneos5.1;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -536,15 +540,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Laws (5PG53H8462)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dylan Laws (5PG53H8462)";
+				CODE_SIGN_IDENTITY = "Guillermo Moran";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Guillermo Moran";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBQA/JBQA-Prefix.pch";
 				INFOPLIST_FILE = "JBQA/JBQA-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				"STRIPFLAGS[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -554,15 +558,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Laws (5PG53H8462)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dylan Laws (5PG53H8462)";
+				CODE_SIGN_IDENTITY = "Guillermo Moran";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Guillermo Moran";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JBQA/JBQA-Prefix.pch";
 				INFOPLIST_FILE = "JBQA/JBQA-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDD98B71-2A9F-401F-9C81-D887C3AEAD06";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

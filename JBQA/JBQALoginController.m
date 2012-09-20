@@ -38,7 +38,7 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 60, 290, 100) style:UITableViewStyleGrouped];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
-    [_tableView setBackgroundColor:[UIColor clearColor]];
+    _tableView.backgroundColor = [UIColor clearColor];
     [_tableView setScrollEnabled:NO];
     [[self view] addSubview:_tableView];
     
