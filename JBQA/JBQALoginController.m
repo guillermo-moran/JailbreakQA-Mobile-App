@@ -35,20 +35,30 @@
     
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 60, 290, 100) style:UITableViewStyleGrouped];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(120, 100, 290, 100) style:UITableViewStyleGrouped];
+        
+        _loginButton = [[BButton alloc] initWithFrame:CGRectMake(130, 220, 270, 46)];
+    }
+    else {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(14, 60, 290, 100) style:UITableViewStyleGrouped];
+        
+        _loginButton = [[BButton alloc] initWithFrame:CGRectMake(24, 180, 270, 46)];
+    }
+    
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
-    _tableView.backgroundColor = [UIColor clearColor];
+    [_tableView setBackgroundColor:[UIColor clearColor]];
     [_tableView setScrollEnabled:NO];
     [[self view] addSubview:_tableView];
     
-    _loginButton = [[BButton alloc] initWithFrame:CGRectMake(24, 180, 270, 46)];
+    
     [_loginButton setType:BButtonTypeInfo];
     [_loginButton setTitle:@"Login" forState:UIControlStateNormal];
     [_loginButton addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:_loginButton];
     
-    _navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    _navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     
     _navBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     // [_navBar setTintColor:[UIColor blackColor]];

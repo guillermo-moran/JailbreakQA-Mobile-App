@@ -52,6 +52,8 @@
 - (void)configureView
 {
     
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
+    
     // Round corners using CALayer property
     [[questionView layer] setCornerRadius:10];
     [questionView setClipsToBounds:YES];
@@ -70,6 +72,8 @@
                 for (UIView *shadow in [subview subviews])
                     if([shadow isKindOfClass:[UIImageView class]])
                         [shadow setHidden:YES];
+    
+    
     
 }
 
@@ -112,10 +116,22 @@
 #pragma mark Our methods -
 -(IBAction)viewResponses
 {
-    JBQAResponseList *list = [[JBQAResponseList alloc] initWithNibName:@"JBQAResponseList_iPhone" bundle:nil];
+    JBQAResponseList *list = [[JBQAResponseList alloc] init];
     NSLog(@"Question ID: %@",self.questionID);
     [list setQuestionID:self.questionID];
+    
+    /* TODO:
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        list.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:list animated:YES completion:nil];
+    }
+    else {
+        [self.navigationController pushViewController:list animated:YES];
+    }
+     [self.navigationController pushViewController:list animated:YES];
+     */
     [self.navigationController pushViewController:list animated:YES];
+    
 }
 
 -(void)setQuestionTitle:(NSString *)title asker:(NSString*)asker date:(NSDate *)date
