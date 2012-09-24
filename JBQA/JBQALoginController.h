@@ -31,7 +31,6 @@
     NSString *JBQAPassword;
     
     UITableView *_tableView;
-    BButton *_loginButton;
     
     UINavigationBar *_navBar;
     
