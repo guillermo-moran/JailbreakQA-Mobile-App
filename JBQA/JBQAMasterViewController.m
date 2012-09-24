@@ -303,9 +303,10 @@ static BOOL firstCheck = YES;
         }
         
         else {
-            JBQALoginController* loginView = [[JBQALoginController alloc] init];
-            loginView.modalPresentationStyle = UIModalPresentationFormSheet;
-            [self presentViewController:loginView animated:YES completion:NULL];
+            JBQALoginController *loginView = [[JBQALoginController alloc] initWithStyle:UITableViewStyleGrouped];
+            UINavigationController *loginNavigationController = [[UINavigationController alloc] initWithRootViewController:loginView];
+            loginNavigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+            [self presentViewController:loginNavigationController animated:YES completion:NULL];
         }
         isCheckingLogin = NO; //Reset it please, kthxbai
     }
