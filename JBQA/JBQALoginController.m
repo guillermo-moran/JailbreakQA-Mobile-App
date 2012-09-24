@@ -68,7 +68,6 @@
 {
     //set UI elements to nil when viewDidUnload is called, free memory :P
     _tableView = nil;
-    _loginButton = nil;
     loginWebView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -206,7 +205,6 @@
         
     }
     else {
-        [_loginButton setTitle:@"Logging In" forState:UIControlStateNormal];
         [self loginOnWebsite:SIGNIN_URL username:JBQAUsername password:JBQAPassword];
     }
 }
@@ -271,7 +269,6 @@
             dataController.loggedIn = NO;
         } else {
             [AJNotificationView showNoticeInView:self.view title:[NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername]];
-            [_loginButton setTitle:@"Logged in" forState:UIControlStateNormal];
             dataController.loggedIn = YES;
         }
         
