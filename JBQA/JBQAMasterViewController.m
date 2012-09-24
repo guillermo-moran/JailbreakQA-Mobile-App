@@ -72,6 +72,7 @@ static BOOL firstCheck = YES;
     self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.toolbarItems = @[leftFlex, moreButton, menuBtn]; //yay new syntax.
     
+    [self.tableView setBackgroundView:[[UIView alloc] init]];//I don't know why this is needed for the new SDK, but it is. Shitty pinstripe keeps showing up
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
