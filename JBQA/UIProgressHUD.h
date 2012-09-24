@@ -9,7 +9,7 @@
 
 - (void) showInView:(id)view;
 - (void) show: (BOOL)aShow;
-- (void) setText: (NSString*)aText;
+- (void) setText: (NSString *)aText;
 - (void) hide;
 - (void) done;
 

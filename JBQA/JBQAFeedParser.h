@@ -8,29 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-
-
 @protocol JBQAParserDelegate
 
+@required
 - (void)parseErrorOccurred:(NSError *)error;
 - (void)parserDidEndDocumentWithResults:(id)parseResults;
 
 @optional
-
 - (void)parserDidStartDocument;
 
 @end
 
+@class JBQADataController;
+
 @interface JBQAFeedParser : NSObject <NSXMLParserDelegate>
 {
+    JBQADataController *dataController;
     NSXMLParser  *rssParser;
     NSMutableDictionary *item;
 	NSString *currentElement;
 	NSMutableString *currentTitle, *currentDate, *currentSummary, *currentLink, *currentAuthor;
-    NSString *xmlString;
     NSMutableArray *parseResults;
     id <JBQAParserDelegate> delegate;
-    int totalLines;
 }
 
 @property (weak) NSXMLParser *rssParser;

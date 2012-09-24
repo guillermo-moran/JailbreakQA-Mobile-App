@@ -17,8 +17,8 @@ So.. Please feel free to contribute to this app by forking it & submitting pull 
 There's a lot of work to be done! Here is the things I have in mind:
 
 - Improve UI
-- Some clean up
-- Reply to question
+- <del>Some clean up</del>
+- <del>Reply to question</del>
 - Login through twitter/open-id
 
 P.S: This project uses ARC.
@@ -53,4 +53,4 @@ Thanks to:
 
 - <a href="https://github.com/caughtinflux">@Caughtinflux</a>
 - <a href="https://github.com/Cykey">@Cykey</a>
-- <a href="https://github.com/Protosphere7">@Protosphere7</a>
+- <a href="https://github.com/Protosphere">@Protosphere</a>

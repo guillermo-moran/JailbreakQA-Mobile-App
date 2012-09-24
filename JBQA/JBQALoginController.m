@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#import "JBQALoginController.h"
-
-#import "JBQATextFieldCell.h"
+#import <QuartzCore/QuartzCore.h>
 #import "BButton.h"
+
+#import "JBQALoginController.h"
+#import "JBQATextFieldCell.h"
 
 @interface JBQALoginController ()
 
@@ -36,15 +37,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     [[[self navigationController] navigationBar] setTintColor:[UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f]];
     [[self tableView] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     [[self tableView] setScrollEnabled:NO];
+
+    dataController = [JBQADataController sharedDataController];
     
-    _loginButton = [[BButton alloc] initWithFrame:CGRectMake(24, 120, 270, 46)];
-    [_loginButton setType:BButtonTypeInfo];
-    [_loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    [_loginButton addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [[self view] addSubview:_loginButton];
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
+
+    [_tableView setDelegate:self];
+    [_tableView setDataSource:self];
+    [_tableView setBackgroundColor:[UIColor clearColor]];
+    [_tableView setScrollEnabled:NO];
+    [[self view] addSubview:_tableView];
     
     UIBarButtonItem *_leftItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelTapped:)];
     
@@ -53,13 +59,17 @@
     
     loginWebView = [[UIWebView alloc] init];
     loginWebView.frame = CGRectZero;
-    [self.view addSubview:loginWebView];
+    [self.view addSubview:loginWebView]; //why? tell. me. why.
     [loginWebView setHidden:YES];
     
 }
 
 - (void)viewDidUnload
 {
+    //set UI elements to nil when viewDidUnload is called, free memory :P
+    _tableView = nil;
+    _loginButton = nil;
+    loginWebView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -72,7 +82,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -95,7 +105,7 @@
     static NSString *TextFieldCellIdentifier = @"TextFieldCell";
     static NSString *ButtonCellIdentifier = @"ButtonCellIdentifier";
     
-    if (self.isLoggingIn){
+    if (self.isLoggingIn) {
         return nil;
     }
         
@@ -129,9 +139,19 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ButtonCellIdentifier];
         
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:TextFieldCellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TextFieldCellIdentifier];
             
-            // Set up the button as a cell. I couldn't be bothered.
+            [cell setBackgroundView:[[UIView alloc] initWithFrame:CGRectZero]]; // Hacky way to get rid of the border on group-style cells.
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            
+            BButton *loginButton = [[BButton alloc] initWithFrame:[[cell contentView] frame]];
+            [loginButton setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+            
+            [loginButton setType:BButtonTypeInfo];
+            [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+            [loginButton addTarget:self action:@selector(loginTapped:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [[cell contentView] addSubview:loginButton];
         }
         
         return cell;
@@ -169,15 +189,26 @@
 
 - (void)loginTapped:(UIButton *)tapped
 {
-    [_loginButton setTitle:@"Logging In" forState:UIControlStateNormal];
-    
+
+    [_password resignFirstResponder];
     if ([JBQAUsername length] < 3 && [JBQAPassword length] < 1) {
-        UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please provide a username and password" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-        [loginError show];
-        return;
+        
+        CABasicAnimation *animation =
+        [CABasicAnimation animationWithKeyPath:@"position"];
+        [animation setDuration:0.05];
+        [animation setRepeatCount:3];
+        [animation setAutoreverses:YES];
+        [animation setFromValue:[NSValue valueWithCGPoint:
+                                 CGPointMake([_tableView center].x - 20.0f, [_tableView center].y)]];
+        [animation setToValue:[NSValue valueWithCGPoint:
+                               CGPointMake([_tableView center].x + 20.0f, [_tableView center].y)]];
+        [[_tableView layer] addAnimation:animation forKey:@"position"];
+        
     }
-    else
+    else {
+        [_loginButton setTitle:@"Logging In" forState:UIControlStateNormal];
         [self loginOnWebsite:SIGNIN_URL username:JBQAUsername password:JBQAPassword];
+    }
 }
 
 - (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
@@ -186,15 +217,21 @@
     
     [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     loginWebView.delegate = self;
+
+    JBQAUsername = username;
+    JBQAPassword = password;
+    isAttemptingLogin = YES;
+    isCheckingLogin = NO;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"Loading...");
-    hud = [[UIProgressHUD alloc] init];
-    [hud setText:@"Loading"];
-    [hud showInView:self.view];
-    
+    if (isAttemptingLogin) {
+        NSLog(@"Logging In");
+        hud = [[UIProgressHUD alloc] init];
+        [hud setText:@"Loading"];
+        [hud showInView:self.view];
+    }
     
 }
 
@@ -204,46 +241,55 @@
     [hud done];
     [hud setText:@"Done"];
     [hud hide];
-    
-    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"WebView finished load. ");
     // write javascript code in a string
     
-    NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
-    "document.getElementsByName('password')[0].value ='%@';"
-    "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
-    
-    // run javascript in webview:
-    [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
-    
-    html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    //NSLog(@"Retreived HTML Source: %@",html);
-    
-    loginAlert = [[UIAlertView alloc] init];
-    
-    if ([html rangeOfString:[NSString stringWithFormat:@"%@",JBQAUsername]].location == NSNotFound) {
-        loginAlert.title = @"Login Failed.";
-        loginAlert.message = @"Your username or password is incorrect. Please try again.";
-    }
-    else {
-        loginAlert.title = @"JBQA Login";
-        loginAlert.message = [NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername];
+    if (isAttemptingLogin) {
+        NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
+                                      "document.getElementsByName('password')[0].value ='%@';"
+                                      "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
+        [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
+        
+        loginWebView.delegate = self;
+        isAttemptingLogin = NO;
+        isCheckingLogin = YES;
+        
+        //[loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
+        return;
     }
     
-    [loginAlert show];
+    if (isCheckingLogin) {
+        
+        // run javascript in webview:
+        html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+        
+        if ([html rangeOfString:@"logout"].location == NSNotFound) {
+            [AJNotificationView showNoticeInView:self.view title:@"Your username or password is incorrect. Please try again."];
+            dataController.loggedIn = NO;
+        } else {
+            [AJNotificationView showNoticeInView:self.view title:[NSString stringWithFormat:@"You are now logged in as %@", JBQAUsername]];
+            [_loginButton setTitle:@"Logged in" forState:UIControlStateNormal];
+            dataController.loggedIn = YES;
+        }
+        
+        loginWebView.delegate = nil;
+        [hud hide];
+        
+        if (dataController.loggedIn)
+            [self performSelector:@selector(dismissModalViewController) withObject:nil afterDelay:2.5];
+    }
     
-    [self performSelector:@selector(dismissAlert:) withObject:loginAlert afterDelay:2.0];
-    [hud hide];
+    
+    // the loggedIn property for the shared controller can now replace the insane wait to show the action sheet.
+    //Set a BOOL for first launch, and then use JBQADataController's properties for login checks after the first one.
 }
 
-- (void)dismissAlert:(UIAlertView *)alert
+- (void)dismissModalViewController
 {
-    [alert dismissWithClickedButtonIndex:0 animated:YES];
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

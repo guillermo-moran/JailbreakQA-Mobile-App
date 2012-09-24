@@ -8,18 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import <dispatch/dispatch.h>
+
+#import "JBQADataControllerDelegate-Protocol.h"
 #import "JBQAFeedParser.h"
 
 #import "UIProgressHUD.h"
 
-@class JBQADetailViewController, JBQAFeedParser, JBQAReachability, ODRefreshControl, Reachability;
+@class JBQADetailViewController, JBQAReachability, ODRefreshControl, Reachability;
 
-@interface JBQAMasterViewController : UITableViewController <JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate>
-{    
+@interface JBQAMasterViewController : UITableViewController <JBQADataControllerDelegate, JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate, UIPickerViewDelegate>
+{
+    JBQADataController *dataController;
+    
     //UI
     UITableView *table;
     ODRefreshControl *refreshControl;
     UIBarButtonItem *menuBtn;
+    UIBarButtonItem *moreButton;
     UIBarButtonItem *leftFlex;
     UIActionSheet *menuSheet;
     
@@ -37,7 +42,6 @@
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
     
-    JBQAReachability *reachability;
 }
 
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
@@ -46,8 +50,11 @@
 @property (nonatomic) BOOL isLoggedIn;
 
 - (void)refreshData;
+- (void)displaySelectionView;
 - (void)ask;
-- (void)displayUserMenu:(id)sender event:(UIEvent *)event;
+- (void)displayUserMenu;
+
+- (void)showHUD;
+- (void)hideHUD;
 
 @end
-

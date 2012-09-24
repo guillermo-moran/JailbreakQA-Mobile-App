@@ -8,6 +8,8 @@
 
 #import "JBQADetailViewController.h"
 #import "JBQAAnswerController.h"
+#import "JBQAResponseList.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -16,34 +18,11 @@
 - (void)configureView;
 @end
 
-@implementation JBQADetailViewController
+@implementation JBQADetailViewController {}
+
 @synthesize answersCell;
-@synthesize answersCount;
-@synthesize masterPopoverController,detailItem,detailDescriptionLabel;
-
--(void)setQuestionTitle:(NSString*)title asker:(NSString*)asker date:(NSDate *)date
-{
-    qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDoesRelativeDateFormatting:YES];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    qDate.text = [NSString stringWithFormat:@"Posted: %@",[formatter stringFromDate:date]];
-
-    qTitle.text = title;
-}
-
--(void)setAvatarFromURL:(NSURL*)url {
-    avatarView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-}
-
--(void)setQuestionContent:(NSString *)content {
-    
-    NSString *cssString = @"<style>body {font-family: Helvetica;} img {width: 300px; height: auto;}</style>";
-    NSString *htmlString = [NSString stringWithFormat:@"%@%@",cssString,content];
-    
-    [questionView loadHTMLString:htmlString baseURL:nil];
-}
+@synthesize answersViewButton;
+@synthesize masterPopoverController,detailItem;
 
 #pragma mark - Managing the detail item
 
@@ -51,17 +30,17 @@
 {
     if (self.detailItem != newDetailItem) {
         self.detailItem = newDetailItem;
-
+        
         // Update the view.
         [self configureView];
     }
-
+    
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
+    }
 }
 
-
+#pragma mark ViewController Methods -
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,21 +51,20 @@
 
 - (void)configureView
 {
-
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
+    
     // Round corners using CALayer property
     [[questionView layer] setCornerRadius:10];
     [questionView setClipsToBounds:YES];
     
     // Create colored border using CALayer property
     [[questionView layer] setBorderColor:[[UIColor colorWithRed:0.48f green:0.48f blue:0.51f alpha:1.00f] CGColor]];
-                                                                //distinguish it from the questionController's textView
+    //distinguish it from the questionController's textView
     [[questionView layer] setBorderWidth:2.75];
     
-    UIBarButtonItem *answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
+    answerButton = [[UIBarButtonItem alloc] initWithTitle:@"Answer" style:UIBarButtonItemStylePlain target:self action:@selector(addResponse)];
     self.navigationItem.rightBarButtonItem = answerButton;
-    
-    if (self.detailItem)
-        self.detailDescriptionLabel.text = [self.detailItem description];
     
     if (questionView)
         for (UIView *subview in [questionView subviews])
@@ -95,20 +73,24 @@
                     if([shadow isKindOfClass:[UIImageView class]])
                         [shadow setHidden:YES];
     
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-   //For any extra configuration
+    //For any extra configuration
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)viewDidUnload
 {
     [self setAnswersCell:nil];
-    [self setAnswersCount:nil];
+    [self setAnswersViewButton:nil];
+    answerButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    self.detailDescriptionLabel = nil;
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -129,6 +111,54 @@
     return self;
 }
 
+
+
+#pragma mark Our methods -
+-(IBAction)viewResponses
+{
+    JBQAResponseList *list = [[JBQAResponseList alloc] init];
+    NSLog(@"Question ID: %@",self.questionID);
+    [list setQuestionID:self.questionID];
+    
+    /* TODO:
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        list.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:list animated:YES completion:nil];
+    }
+    else {
+        [self.navigationController pushViewController:list animated:YES];
+    }
+     [self.navigationController pushViewController:list animated:YES];
+     */
+    [self.navigationController pushViewController:list animated:YES];
+    
+}
+
+-(void)setQuestionTitle:(NSString *)title asker:(NSString*)asker date:(NSDate *)date
+{
+    qAsker.text = [NSString stringWithFormat:@"Asked By: %@",asker];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDoesRelativeDateFormatting:YES];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    qDate.text = [NSString stringWithFormat:@"Posted: %@",[formatter stringFromDate:date]];
+
+    qTitle.text = title;
+}
+
+- (void)setAvatarFromURL:(NSURL*)url
+{
+    avatarView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+}
+
+- (void)setQuestionContent:(NSString *)content
+{
+    NSString *cssString = @"<style>body {font-family: HelveticaNeue;} img {width: 300px; height: auto;}</style>";
+    
+    NSString *htmlString = [NSString stringWithFormat:@"%@%@",cssString,content];
+    
+    [questionView loadHTMLString:htmlString baseURL:nil];
+}
 
 -(void)addResponse
 {

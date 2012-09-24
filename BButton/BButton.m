@@ -84,7 +84,7 @@
 }
 
 - (void)setType:(BButtonType)type {
-    UIColor *color = [UIColor colorWithRed:0.00f green:0.33f blue:0.80f alpha:1.00f];
+    UIColor *color = nil;
     switch (type) {
         case BButtonTypeDefault:
             color = [UIColor colorWithRed:0.85f green:0.85f blue:0.85f alpha:1.00f];

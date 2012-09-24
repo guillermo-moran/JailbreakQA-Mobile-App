@@ -7,17 +7,28 @@
 //
 
 #import "JBQAAppDelegate.h"
-
 #import "JBQAMasterViewController.h"
-
 #import "JBQADetailViewController.h"
+
+#import "AJNotificationView.h"
 
 @implementation JBQAAppDelegate
 @synthesize window,navigationController,splitViewController;
 
+static BOOL isFirstLaunch = YES;
+static BOOL currentNetworkState = NO;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
+                                                animated:YES]; //Fuck tinted Statusbar, iOS 6
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    dataController = [JBQADataController sharedDataController];
+    [dataController startNetworkStatusNotifications]; 
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         JBQAMasterViewController *masterViewController = [[JBQAMasterViewController alloc] initWithNibName:@"JBQAMasterViewController_iPhone" bundle:nil];
@@ -38,7 +49,12 @@
         
         self.window.rootViewController = self.splitViewController;
     }
+    
     [self.window makeKeyAndVisible];
+    
+    [dataController addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
+    currentNetworkState = dataController.isInternetActive;
+    
     return YES;
 }
 
@@ -68,5 +84,25 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqual:@"internetActive"]) {
+        if (!dataController.isInternetActive) {
+            [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
+        }
+        if (!isFirstLaunch) {
+            if (dataController.isInternetActive) {
+                if (currentNetworkState != dataController.isInternetActive) {
+                    [AJNotificationView showNoticeInView:self.navigationController.visibleViewController.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
+                    //No more irritation when swithching from Wifi to cellular :P
+                }
+            }
+        }
+    }
+    isFirstLaunch = NO;
+    currentNetworkState = dataController.isInternetActive;
+}
+
 
 @end

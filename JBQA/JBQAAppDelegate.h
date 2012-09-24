@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class JBQADataController;
 @interface JBQAAppDelegate : UIResponder <UIApplicationDelegate>
+{
+    JBQADataController *dataController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -14,38 +14,33 @@
 
 - (void)parseXMLFileAtURL:(NSString *)URL
 {
+    dataController = [JBQADataController sharedDataController];
     @autoreleasepool {
-        self.parsing = YES;
         NSURL *xmlURL = [NSURL URLWithString:URL];
-        NSError *error = nil;
-        NSString *xmlFileString = [NSString stringWithContentsOfURL:xmlURL
-                                                       encoding:NSUTF8StringEncoding
-                                                          error:&error];
-    
-        totalLines = [xmlFileString componentsSeparatedByString:@"\n"].count;
-        // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
-        // this may be necessary only for the toolchain
         rssParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
         
         // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
         [rssParser setDelegate:self];
+ 
         // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
         [rssParser setShouldProcessNamespaces:NO];
         [rssParser setShouldReportNamespacePrefixes:NO];
         [rssParser setShouldResolveExternalEntities:NO];
+        
         [rssParser parse];
     }
 }
 
-//Forward NSXMLParser's delegated methods to self.delegate
+//Forward NSXMLParser's delegated methods to delegate
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
+    dataController.parsing = YES;
     @autoreleasepool {
+        self.parsing = YES;
         parseResults = [[NSMutableArray alloc] init];
-        if ([self.delegate respondsToSelector:@selector(parserDidStartDocument:)]) {
-            NSLog(@"Delegate responds to %@, sending to delegate", NSStringFromSelector(_cmd));
+        if ([self.delegate respondsToSelector:@selector(parserDidStartDocument:)])
             [self.delegate parserDidStartDocument];
-        }
+            
         else
             NSLog(@"Begin parse");
     }
@@ -53,10 +48,12 @@
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
+    dataController.parsing = NO;
     if ([self.delegate respondsToSelector:@selector(parseErrorOccurred:)])
         [self.delegate parseErrorOccurred:parseError];
+        
     else
-        NSLog(@"Parser encountered error: %@", parseError.description);
+        NSLog(@"Parser encountered error: %@, delegate doesn't conform to protocol", parseError.description);
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -104,7 +101,7 @@
             [currentSummary appendString:string];
         } else if ([currentElement isEqualToString:@"pubDate"]) {
             [currentDate appendString:string];
-        }else if ([currentElement isEqualToString:@"dc:creator"]) {
+        } else if ([currentElement isEqualToString:@"dc:creator"]) {
             [currentAuthor appendString:string];
         }
         
@@ -114,10 +111,13 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
+    dataController.parsing = NO;
+    
     if ([self.delegate respondsToSelector:@selector(parserDidEndDocumentWithResults:)])
         [self.delegate parserDidEndDocumentWithResults:parseResults];
     else
-        NSLog(@"Finished parsing");
+        NSLog(@"Finished parsing, delegate doesn't conform to protocol");
+    
 }
 
 @end

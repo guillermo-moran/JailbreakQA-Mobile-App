@@ -6,15 +6,13 @@
 //  Copyright (c) 2012 Fr0st Development. All rights reserved.
 //
 
-#import "JBQALinks.h"
-
 #import "JBQAMasterViewController.h"
 #import "JBQADetailViewController.h"
 
 #import "JBQAQuestionController.h"
 #import "JBQALoginController.h"
+#import "JBQAFeedPickerController.h"
 
-#import "JBQAReachability.h"
 #import "JBQAFeedParser.h"
 
 #import "ODRefreshControl.h"
@@ -30,49 +28,68 @@
 @implementation JBQAMasterViewController
 
 static BOOL isFirstRefresh = YES;
-
+static BOOL firstCheck = YES;
 
 #pragma mark View Stuff -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"JBQA";
     }
-    backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [self startReachability];
+    
+    dataController = [JBQADataController sharedDataController];
+    [dataController setDelegate:self];
+    [dataController addObserver:self forKeyPath:@"currentFeed" options:NSKeyValueObservingOptionNew context:NULL];
     [self configureView];
+    
     feedParser = [[JBQAFeedParser alloc] init];
-    feedParser.delegate = self;
+    [feedParser setDelegate:self];
     feedParser.parsing = YES;
-    dispatch_async(backgroundQueue, ^(void){[self refreshData];});
+    
+    dispatch_async(backgroundQueue, ^(void){
+        [self refreshData]; //can use this, since I overrode the getter to return the main JBQA URL if the string is nil :D
+        NSLog(@"current feed = %@", dataController.currentFeed);
+    });
+    //[dataController checkLoginStatus]; No.
 }
 
 - (void)configureView
 {
     //Add Buttons
     leftFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu:event:)];
+    menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu)];
+    moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(displaySelectionView)];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
-    self.toolbarItems = @[leftFlex, menuBtn]; //yay new syntax.
+    self.toolbarItems = @[leftFlex, moreButton, menuBtn]; //yay new syntax.
     
+    [self.tableView setBackgroundView:[[UIView alloc] init]];//I don't know why this is needed for the new SDK, but it is. Shitty pinstripe keeps showing up
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(refreshCurrent) forControlEvents:UIControlEventValueChanged];
     
     webView.delegate = self;
+    
 }
 
 - (void)viewDidUnload
 {
+    //release the memory if memory warning is received when invisible.
+    menuBtn = nil;
+    moreButton = nil;
+    leftFlex = nil;
+    refreshControl = nil;
+    hud = nil;
     [super viewDidUnload];
 }
 
@@ -88,63 +105,93 @@ static BOOL isFirstRefresh = YES;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-#pragma mark Internet Check Notifier Setup -
-- (void)startReachability
-{
-    //Reachability!
-    reachability = [[JBQAReachability alloc] init];
-    [reachability startNetworkStatusNotifications];
-    //register for notifications, notify user when connection is lost. k?
-    [reachability addObserver:self forKeyPath:@"internetActive" options:NSKeyValueObservingOptionNew context:NULL];
+#pragma mark HUD - 
+
+-(void)showHUD {
+    menuBtn.enabled = NO;
+    moreButton.enabled = NO;
+    hud = [[UIProgressHUD alloc] init];
+    [hud setText:@"Loading"];
+    [hud showInView:self.view];
 }
 
+
+-(void)hideHUD {
+    [hud done];
+    [hud setText:@"Done"];
+    [hud hide];
+    menuBtn.enabled = YES;
+    moreButton.enabled = YES;
+}
+
+#pragma mark KVO -
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if([keyPath isEqual:@"internetActive"]) {
-        if (!reachability.isInternetActive) {
-            if (feedParser.isParsing)
-                ;//do nothing
-            else
-                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Internet Connection Lost" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:4.0f]; //I like this. Fuck you, UIAlertView
-        }
-        if (reachability.isInternetActive) {
-            if (isFirstRefresh)
-                ;//do nothing
-            else
-                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeBlue title:@"Connected to Internet, Please Refresh." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:2.0f];
-        }
+    if ([keyPath isEqual:@"currentFeed"]) {
+        [self showHUD];
+        NSLog(@"refreshing data for feed %@", dataController.currentFeed);
+        
+        dispatch_async(backgroundQueue, ^(void) {[self refreshData];});
     }
 }
+#pragma mark Feed Picker -
 
+- (void)displaySelectionView
+{
+    JBQAFeedPickerController* feedPickerView = [[JBQAFeedPickerController alloc] initWithNibName:@"JBQAFeedPicker_iPhone" bundle:nil];
+    
+    [self.navigationController pushViewController:feedPickerView animated:YES];
+}
 
 #pragma mark JBQA Interaction Methods -
+
 - (void)refreshData
 {
     [refreshControl beginRefreshing];
-    if (reachability.isInternetActive)
-        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:RSS_FEED];});
+    if (dataController.isInternetActive)
+        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:dataController.currentFeed];});
     else
         [self parseErrorOccurred:nil];
 }
 
-- (void)displayUserMenu:(id)sender event:(UIEvent *)event
+- (void)displayUserMenu
 {
-    if (reachability.isInternetActive) {
-        
-        isCheckingLogin = YES; //Check if user is logged in, and specify what we're doing.
-        
-        //JBQALoginController *loginView = [[JBQALoginController alloc] init];
-    
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:SERVICE_URL]]];
-        
+    if (firstCheck) {
+        if (dataController.isInternetActive) {
+            [dataController checkLoginStatus];
+            isCheckingLogin = YES; //Check if user is logged in, and specify what we're doing.
+        }
+        else
+            [self parseErrorOccurred:nil];
     }
-    else
-        [self parseErrorOccurred:nil];
+    else if (dataController.isLoggedIn) {
+        
+        menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Ask a Question", nil];
+    
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            
+            if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                [menuSheet showFromBarButtonItem:menuBtn animated:YES];
+            }
+            else {
+                CGRect windowsRect = [self.navigationController.toolbar convertRect:menuBtn.customView.frame toView:self.view.window];
+                [menuSheet showFromRect:windowsRect inView:self.view.window animated:YES];
+            }
+        }
+        else {
+            [menuSheet showFromToolbar:self.navigationController.toolbar];
+        }
+    }
+    else {
+        JBQALoginController* loginView = [[JBQALoginController alloc] init];
+        loginView.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:loginView animated:YES completion:NULL];
+    }
 }
 
 - (void)ask
 {
-    if (reachability.isInternetActive) {
+    if (dataController.isInternetActive) {
         JBQAQuestionController *qController = [[JBQAQuestionController alloc] initWithNibName:@"JBQAQuestionController" bundle:nil];
         qController.modalPresentationStyle = UIModalPresentationPageSheet;
         [self presentViewController:qController animated:YES completion:NULL];
@@ -162,15 +209,29 @@ static BOOL isFirstRefresh = YES;
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies])
-                [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-        
-       
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
     else if (buttonIndex != actionSheet.cancelButtonIndex) {
         [self ask];
     }
-        
     
+    
+}
+
+#pragma mark UIWebViewDelegate -
+
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    if (isLoggingOut)
+    {
+        [dataController checkLoginStatus];
+        isLoggingOut = YES; //Check if user is logged in, and specify what we're doing.
+    }
+    
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An Error occured. Please Try again later." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
 }
 
 #pragma mark Parser Delegate Methods -
@@ -179,13 +240,14 @@ static BOOL isFirstRefresh = YES;
 {
     feedParser.parsing = NO;
     isFirstRefresh = NO;
-    if (reachability.isInternetActive && reachability.isHostReachable) {
+    if (dataController.isInternetActive && dataController.isHostReachable) {
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Unable To Sort Feed" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     else {
         [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Download Failed. Please Check your Internet Connection." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     }
     [refreshControl endRefreshing];
+    [self hideHUD];
 }
 
 
@@ -197,57 +259,32 @@ static BOOL isFirstRefresh = YES;
     NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
+    [self hideHUD];
+    return;
 }
 
-#pragma mark UIWebViewDelegate - 
+#pragma mark Data Controller Delegate -
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+- (void)dataControllerDidBeginCheckingLogin
 {
-    NSLog(@"Loading...");
-    hud = [[UIProgressHUD alloc] init];
-    [hud setText:@"Loading"];
-    [hud showInView:self.view];
-    
+    [self showHUD];
+    NSLog(@"Loading for login check...");
     
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)dataControllerFailedLoadWithError:(NSError *)error
 {
     NSLog(@"Load Error.");
-    [hud done];
-    [hud setText:@"Done"];
-    [hud hide];
-    
     
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)elWebView
+- (void)dataControllerFinishedCheckingLoginWithResult:(BOOL)isLoggedIn
 {
-    
-    NSLog(@"WebView finished load. ");
-    // write javascript code in a string
-    
-    NSString *html = [elWebView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    
-    // run javascript in webview:
-    [webView stringByEvaluatingJavaScriptFromString:html];
-    
-    if ([html rangeOfString:@"logout"].location == NSNotFound) {
-        _isLoggedIn = NO;
-        NSLog(@"Not logged in");
-        
-          
-    }
-    else {
-        _isLoggedIn = YES;
-        NSLog(@"Logged in.");
-    }
+    _isLoggedIn = isLoggedIn;
     
     if (isCheckingLogin) {
         
-        
         if (_isLoggedIn) {
-            
             menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Ask a Question", nil];
             
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -279,12 +316,12 @@ static BOOL isFirstRefresh = YES;
             [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"An error occured, please try again." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
         }
         else {
-            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"You Are Now Logged Out Of JBQA" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeDefault title:@"Logged out." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
         }
         isLoggingOut = NO;
     }
-        
-    [hud hide];
+    
+    [self hideHUD];
 }
 
 
@@ -367,7 +404,6 @@ static BOOL isFirstRefresh = YES;
 	    }
         
 	    self.detailViewController.detailItem = object;
-        [self.navigationController setToolbarHidden:YES animated:YES];
         [self.navigationController pushViewController:self.detailViewController animated:YES];
         
     }
@@ -383,10 +419,10 @@ static BOOL isFirstRefresh = YES;
     [self.detailViewController setQuestionTitle:title asker:asker date:date];
     [self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
-        
+    
     NSArray *URLComponents = [[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]] pathComponents]; //I'm bored again
     self.detailViewController.title = @"Details";
     NSString *questionID = [URLComponents objectAtIndex:2];
-    self.detailViewController.questionID = questionID; //PLEASE, LET'S CREATE A JBQADATACONTROLLER CLASS.....DO YOU EVER READ THE DOCS, fr0st? // Nope - fr0st.
+    self.detailViewController.questionID = questionID;
 }
 @end
