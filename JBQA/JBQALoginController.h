@@ -7,16 +7,21 @@
 //  Copyright © 2012 Fr0st Development. All rights reserved.
 //
 
+
+#import "JBQALinks.h"
+#import "JBQATextFieldCell.h"
+
 #import "UIProgressHUD.h"
 #import "AJNotificationView.h"
 
 @class JBQADataController, BButton;
 
-@interface JBQALoginController : UIViewController <UITextFieldDelegate, UIWebViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface JBQALoginController : UITableViewController <UITextFieldDelegate, UIWebViewDelegate>
 {
+    JBQATextFieldCell *_username;
+    JBQATextFieldCell *_password;
+
     JBQADataController *dataController;
-    UITextField *_username;
-    UITextField *_password;
     
     UIWebView *loginWebView;
     NSString *html;
@@ -26,7 +31,6 @@
     NSString *JBQAPassword;
     
     UITableView *_tableView;
-    BButton *_loginButton;
     
     UINavigationBar *_navBar;
     
