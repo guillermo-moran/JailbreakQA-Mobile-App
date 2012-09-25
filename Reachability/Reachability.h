@@ -62,21 +62,21 @@ typedef enum {
 } JBQANetworkStatus;
 #define kReachabilityChangedNotification @"JBQA_kNetworkReachabilityChangedNotification"
 
-@interface Reachability: NSObject
+@interface JBQAReachability: NSObject
 {
     BOOL localWiFiRef;
     SCNetworkReachabilityRef reachabilityRef;
 }
 
 //reachabilityWithHostName- Use to check the reachability of a particular host name.
-+ (Reachability*) reachabilityWithHostName: (NSString*) hostName;
++ (JBQAReachability*) reachabilityWithHostName: (NSString*) hostName;
 
 //reachabilityWithAddress- Use to check the reachability of a particular IP address.
-+ (Reachability*) reachabilityWithAddress: (const struct sockaddr_in*) hostAddress;
++ (JBQAReachability*) reachabilityWithAddress: (const struct sockaddr_in*) hostAddress;
 
 //reachabilityForInternetConnection- checks whether the default route is available.
 //  Should be used by applications that do not connect to a particular host
-+ (Reachability*) reachabilityForInternetConnection;
++ (JBQAReachability*) reachabilityForInternetConnection;
 
 //Start listening for reachability notifications on the current run loop
 - (BOOL) startNotifier;

@@ -99,14 +99,14 @@
 - (void)startNetworkStatusNotifications
 {    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-    internetReachable = [Reachability reachabilityForInternetConnection];
+    internetReachable = [JBQAReachability reachabilityForInternetConnection];
     
     self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
     
     [internetReachable startNotifier];
     NSLog(@"Starting up notifier");
 
-    hostReachable = [Reachability reachabilityWithHostName: SERVICE_URL];
+    hostReachable = [JBQAReachability reachabilityWithHostName: SERVICE_URL];
     self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
     
     [hostReachable startNotifier];

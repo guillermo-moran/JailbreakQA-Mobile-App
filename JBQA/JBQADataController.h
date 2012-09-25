@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "JBQADataControllerDelegate-Protocol.h"
 
-@class Reachability;
+@class JBQAReachability;
 
 @interface JBQADataController : NSObject <UIWebViewDelegate>
 {
     UIWebView *loginChecker;
     NSMutableArray *delegateArray;
     NSMutableString *currentFeed;
-    Reachability *internetReachable; //check if internet connection is available
-    Reachability *hostReachable; //JBQA check
+    JBQAReachability *internetReachable; //check if internet connection is available
+    JBQAReachability *hostReachable; //JBQA check
 }
 
 @property (nonatomic, getter = isLoggedIn) BOOL loggedIn;

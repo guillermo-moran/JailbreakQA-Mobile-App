@@ -14,7 +14,7 @@
 
 #import "UIProgressHUD.h"
 
-@class JBQADetailViewController, JBQAReachability, ODRefreshControl, Reachability;
+@class JBQADetailViewController, JBQAReachability, ODRefreshControl;
 
 @interface JBQAMasterViewController : UITableViewController <JBQADataControllerDelegate, JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate, UIPickerViewDelegate>
 {
