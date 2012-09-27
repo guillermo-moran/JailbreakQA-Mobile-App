@@ -1,0 +1,949 @@
+TJBQA
+v5
+r1
+cCheck dependencies
+cProcessInfoPlistFile /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Info.plist JBQA/JBQA-Info.plist
+cProcessPCH /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cProcessPCH /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQA normal i386
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk
+c00000000505A928E0000000000000110
+t1348113038
+s272
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+c00000000505B1C4C0000000000215D60
+t1348148300
+s2186592
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c00000000505B1C4D0000000000228FD0
+t1348148301
+s2265040
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c00000000505B1C5300000000003DCEF0
+t1348148307
+s4050672
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+c00000000505B1C5900000000000BCB50
+t1348148313
+s772944
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c00000000505B1C5C00000000001D57A0
+t1348148316
+s1922976
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+c00000000505B1C5E000000000006CC50
+t1348148318
+s445520
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c00000000505B1C600000000000AB3D60
+t1348148320
+s11222368
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/usr/lib/libxml2.2.dylib
+c00000000505B1C990000000000128820
+t1348148377
+s1214496
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/usr/lib/libz.1.2.5.dylib
+c00000000505B1C990000000000013500
+t1348148377
+s79104
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.h
+c000000005063C25D0000000000000917
+t1348715101
+s2327
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m
+c000000005063C25D000000000000313C
+t1348715101
+s12604
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/JBQAMobileIcon.png
+c000000005063C25D000000000000154C
+t1348715101
+s5452
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/JBQAMobileIcon@2x.png
+c000000005063C25D0000000000002E73
+t1348715101
+s11891
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/light_noise_diagonal.png
+c000000005063C25D00000000000023D1
+t1348715101
+s9169
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/light_noise_diagonal_@2X.png
+c000000005063C25D0000000000004AA8
+t1348715101
+s19112
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/list.png
+c000000005063C25D0000000000001772
+t1348715101
+s6002
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/list@2x.png
+c000000005063C25D00000000000017EE
+t1348715101
+s6126
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/retina_wood.png
+c000000005063C25D0000000000018F28
+t1348715101
+s102184
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Artwork/retina_wood_@2X.png
+c000000005063C25D0000000000060E48
+t1348715101
+s396872
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m
+c000000005063C25D0000000000002342
+t1348715101
+s9026
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Default-568h@2x.png
+c000000005063C25D00000000000048A2
+t1348715101
+s18594
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQA-Prefix.pch
+c000000005063C25D0000000000000174
+t1348715101
+s372
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.h
+c000000005063C25D00000000000003D2
+t1348715101
+s978
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.m
+c000000005063C25D000000000000239B
+t1348715101
+s9115
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.xib
+c000000005063C25D00000000000030AA
+t1348715101
+s12458
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.h
+c000000005063C25D0000000000000203
+t1348715101
+s515
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m
+c000000005063C25D000000000000155B
+t1348715101
+s5467
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.h
+c000000005063C25D0000000000000566
+t1348715101
+s1382
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m
+c000000005063C25D0000000000000E4A
+t1348715101
+s3658
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataControllerDelegate-Protocol.h
+c000000005063C25D00000000000001AC
+t1348715101
+s428
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.h
+c000000005063C25D00000000000005C4
+t1348715101
+s1476
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m
+c000000005063C25D0000000000001800
+t1348715101
+s6144
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h
+c000000005063C25D0000000000000414
+t1348715101
+s1044
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m
+c000000005063C25D000000000000112D
+t1348715101
+s4397
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.m
+c000000005063C25D00000000000010E7
+t1348715101
+s4327
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPicker_iPad.xib
+c000000005063C25D0000000000001B1A
+t1348715101
+s6938
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPicker_iPhone.xib
+c000000005063C25D0000000000002767
+t1348715101
+s10087
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALinks.h
+c000000005063C25D000000000000036D
+t1348715101
+s877
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.m
+c000000005063C25D00000000000026A0
+t1348715101
+s9888
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.h
+c000000005063C25D0000000000000632
+t1348715101
+s1586
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m
+c000000005063C4F2000000000000428D
+t1348715762
+s17037
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.m
+c000000005063C25D000000000000225F
+t1348715101
+s8799
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.xib
+c000000005063C25D0000000000005B1F
+t1348715101
+s23327
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController_iPad.xib
+c000000005063C25D00000000000010F5
+t1348715101
+s4341
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.h
+c000000005063C25D0000000000000343
+t1348715101
+s835
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.m
+c000000005063C25D00000000000018A5
+t1348715101
+s6309
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList_iPhone.xib
+c000000005063C25D0000000000002541
+t1348715101
+s9537
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/UIProgressHUD.h
+c000000005063C25D0000000000000134
+t1348715101
+s308
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/InfoPlist.strings
+c000000005063C25D000000000000002D
+t1348715101
+s45
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQADetailViewController_iPad.xib
+c000000005063C25D0000000000005725
+t1348715101
+s22309
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQADetailViewController_iPhone.xib
+c000000005063C25D000000000000526B
+t1348715101
+s21099
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQAMasterViewController_iPad.xib
+c000000005063C25D00000000000023C0
+t1348715101
+s9152
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQAMasterViewController_iPhone.xib
+c000000005063C25D0000000000002DFC
+t1348715101
+s11772
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m
+c000000005063C25D000000000000015F
+t1348715101
+s351
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.m
+c00000000505B32CC0000000000000708
+t1348154060
+s1800
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.xib
+c00000000505B32CC000000000000197C
+t1348154060
+s6524
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m
+c000000005063C25D0000000000003C2C
+t1348715101
+s15404
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m
+c000000005063C25D0000000000001F09
+t1348715101
+s7945
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQA.LinkFileList
+c000000005063C4A90000000000000A55
+t1348715689
+s2645
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.o
+t1348715702
+s108976
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.o
+t1348715733
+s112868
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.o
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.o
+t1348715702
+s3328
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.pth
+t1348715701
+s4845096
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.pth
+t1348715701
+s4835796
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app
+t1348715690
+s136
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app.dSYM
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Default-568h@2x.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Info.plist
+t1348715690
+s1063
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQA
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAAnswerController.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAAnswerViewController.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAFeedPicker_iPad.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAFeedPicker_iPhone.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAMobileIcon.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAMobileIcon@2x.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAQuestionController.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAQuestionController_iPad.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAResponseList_iPhone.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/PkgInfo
+t1348715690
+s8
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/en.lproj/InfoPlist.strings
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/en.lproj/JBQADetailViewController_iPad.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/en.lproj/JBQADetailViewController_iPhone.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/en.lproj/JBQAMasterViewController_iPad.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/en.lproj/JBQAMasterViewController_iPhone.nib
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/light_noise_diagonal.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/light_noise_diagonal_@2X.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/list.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/list@2x.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/retina_wood.png
+t2
+s0
+
+N/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/retina_wood_@2X.png
+t2
+s0
+
+NJBQA/JBQA-Info.plist
+c000000005063C25D0000000000000715
+t1348715101
+s1813
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m
+r0
+
+CBuild AST from /Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesad14aa72fc13b641^289cad72fc13b641^---0#1#0#--18"Check dependencies36"30B9017C-5C58-4706-AEA5-15413170F0D5-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408565.617159
+e370408565.801221
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m8e239e75fc13b641^4721cd75fc13b641^---0#0#0#-19%DVTDocumentLocation2@105"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m0000000000000000^3949"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.o AJNotificationView/AJNotificationView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/AJNotificationView/AJNotificationView.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/AJNotificationView.o36"F04294BB-05ED-4555-A17D-31FBAC1A841A-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408565.029183
+e370408565.360018
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection75"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m55a30775fc13b641^5e2c5c75fc13b641^---0#0#0#-19%DVTDocumentLocation2@83"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m0000000000000000^3861"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.o BButton/BButton.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/BButton/BButton.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/BButton.o36"FBF4003E-46C3-4A21-B183-65361E3B7F81-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408565.361342
+e370408565.615669
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection85"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.mefad5c75fc13b641^f2949d75fc13b641^---0#0#0#-19%DVTDocumentLocation2@93"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.m0000000000000000^3933"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.o JBQA/JBQAAnswerController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerController.o36"8BFF0B5E-74D4-4D95-BDAD-4E591D338159-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408566.656858
+e370408566.750759
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.mbe4ca876fc13b641^8868c076fc13b641^---0#0#0#-19%DVTDocumentLocation2@92"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.m0000000000000000^3947"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.o JBQAAnswerViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAnswerViewController.o36"EBC1949A-190A-4B92-89DC-E463E1BA5BF0-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408501.993252
+e370408502.511851
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection80"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m4c6cfe35fc13b641^740d8336fc13b641^---0#0#0#-19%DVTDocumentLocation2@88"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m0000000000000000^3903"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.o JBQA/JBQAAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAppDelegate.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAAppDelegate.o36"D132D60A-7E24-42E7-BCD4-8F3C4EE6FF46-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408565.802560
+e370408566.257931
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m:12:1: warning: autosynthesized property 'hostReachable' will use synthesized instance variable '_hostReachable', not existing instance variable 'hostReachable' [-Wobjc-autosynthesis-property-ivar-name-match]
+o@implementation JBQADataController {}
+o^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.h:33:54: note: property declared here
+o@property (nonatomic, getter = isHostReachable) BOOL hostReachable;
+o                                                     ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.h:20:23: note: ivar is declared here
+o    JBQAReachability *hostReachable; //JBQA check
+o                      ^
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection83"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m419acd75fc13b641^96064276fc13b641^-765"/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m:12:1: warning: autosynthesized property 'hostReachable' will use synthesized instance variable '_hostReachable', not existing instance variable 'hostReachable' [-Wobjc-autosynthesis-property-ivar-name-match]@implementation JBQADataController {}^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.h:33:54: note: property declared here@property (nonatomic, getter = isHostReachable) BOOL hostReachable;                                                     ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.h:20:23: note: ivar is declared here    JBQAReachability *hostReachable; //JBQA check                      ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@144"Autosynthesized property 'hostReachable' will use synthesized instance variable '_hostReachable', not existing instance variable 'hostReachable'-370408566#18446744073709551615#0#2(2@22"Property declared here-370408566#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@91"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.h0000000000000000^32#53#32#53#1209#0#14"Semantic Issue--2@21"Ivar is declared here-370408566#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@91"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.h0000000000000000^19#22#19#22#522#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@91"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m0000000000000000^11#0#11#0#202#0#14"Semantic Issue--0#0#0#-19%DVTDocumentLocation4@91"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m0000000000000000^3921"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.o JBQA/JBQADataController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADataController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADataController.o36"C682FEE6-7C8C-4D40-832E-FB76D00A69C1-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408530.552990
+e370408533.481699
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m:21:1: warning: autosynthesized property 'questionID' will use synthesized instance variable '_questionID', not existing instance variable 'questionID' [-Wobjc-autosynthesis-property-ivar-name-match]
+o@implementation JBQADetailViewController {}
+o^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.h:30:41: note: property declared here
+o@property (strong, nonatomic) NSString *questionID;
+o                                        ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.h:18:15: note: ivar is declared here
+o    NSString *questionID;
+o              ^
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m17bb8d52fc13b641^61fec655fc13b641^-719"/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m:21:1: warning: autosynthesized property 'questionID' will use synthesized instance variable '_questionID', not existing instance variable 'questionID' [-Wobjc-autosynthesis-property-ivar-name-match]@implementation JBQADetailViewController {}^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.h:30:41: note: property declared here@property (strong, nonatomic) NSString *questionID;                                        ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.h:18:15: note: ivar is declared here    NSString *questionID;              ^1 warning generated.-0#0#0#-19%DVTDocumentLocation2@97"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m0000000000000000^3957"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.o JBQA/JBQADetailViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQADetailViewController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQADetailViewController.o36"06759CCE-4FD6-419A-80A0-EFEE05188A1A-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408564.363885
+e370408564.619260
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m:13:1: warning: autosynthesized property 'delegate' will use synthesized instance variable '_delegate', not existing instance variable 'delegate' [-Wobjc-autosynthesis-property-ivar-name-match]
+o@implementation JBQAFeedParser
+o^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:38:21: note: property declared here
+o@property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
+o                    ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:32:29: note: ivar is declared here
+o    id <JBQAParserDelegate> delegate;
+o                            ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m:13:1: warning: autosynthesized property 'item' will use synthesized instance variable '_item', not existing instance variable 'item' [-Wobjc-autosynthesis-property-ivar-name-match]
+o@implementation JBQAFeedParser
+o^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:36:41: note: property declared here
+o@property (strong) NSMutableDictionary *item;
+o                                        ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:28:26: note: ivar is declared here
+o    NSMutableDictionary *item;
+o                         ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m:13:1: warning: autosynthesized property 'rssParser' will use synthesized instance variable '_rssParser', not existing instance variable 'rssParser' [-Wobjc-autosynthesis-property-ivar-name-match]
+o@implementation JBQAFeedParser
+o^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:35:31: note: property declared here
+o@property (weak) NSXMLParser *rssParser;
+o                              ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:27:19: note: ivar is declared here
+o    NSXMLParser  *rssParser;
+o                  ^
+o3 warnings generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection79"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.mf54a5d74fc13b641^b6869e74fc13b641^-2012"/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m:13:1: warning: autosynthesized property 'delegate' will use synthesized instance variable '_delegate', not existing instance variable 'delegate' [-Wobjc-autosynthesis-property-ivar-name-match]@implementation JBQAFeedParser^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:38:21: note: property declared here@property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)                    ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:32:29: note: ivar is declared here    id <JBQAParserDelegate> delegate;                            ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m:13:1: warning: autosynthesized property 'item' will use synthesized instance variable '_item', not existing instance variable 'item' [-Wobjc-autosynthesis-property-ivar-name-match]@implementation JBQAFeedParser^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:36:41: note: property declared here@property (strong) NSMutableDictionary *item;                                        ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:28:26: note: ivar is declared here    NSMutableDictionary *item;                         ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m:13:1: warning: autosynthesized property 'rssParser' will use synthesized instance variable '_rssParser', not existing instance variable 'rssParser' [-Wobjc-autosynthesis-property-ivar-name-match]@implementation JBQAFeedParser^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:35:31: note: property declared here@property (weak) NSXMLParser *rssParser;                              ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h:27:19: note: ivar is declared here    NSXMLParser  *rssParser;                  ^3 warnings generated.3(36%IDEClangDiagnosticActivityLogMessage2@129"Autosynthesized property 'delegate' will use synthesized instance variable '_delegate', not existing instance variable 'delegate'-370408564#18446744073709551615#0#2(2@22"Property declared here-370408564#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h0000000000000000^37#20#37#20#912#0#14"Semantic Issue--2@21"Ivar is declared here-370408564#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h0000000000000000^31#28#31#28#736#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m0000000000000000^12#0#12#0#205#0#14"Semantic Issue--2@117"Autosynthesized property 'item' will use synthesized instance variable '_item', not existing instance variable 'item'-370408564#18446744073709551615#0#2(2@22"Property declared here-370408564#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h0000000000000000^35#40#35#40#830#0#14"Semantic Issue--2@21"Ivar is declared here-370408564#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h0000000000000000^27#25#27#25#548#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m0000000000000000^12#0#12#0#205#0#14"Semantic Issue--2@132"Autosynthesized property 'rssParser' will use synthesized instance variable '_rssParser', not existing instance variable 'rssParser'-370408564#18446744073709551615#0#2(2@22"Property declared here-370408564#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h0000000000000000^34#30#34#30#779#0#14"Semantic Issue--2@21"Ivar is declared here-370408564#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.h0000000000000000^26#18#26#18#512#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m0000000000000000^12#0#12#0#205#0#14"Semantic Issue--0#0#0#-19%DVTDocumentLocation4@87"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m0000000000000000^3897"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.o JBQA/JBQAFeedParser.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedParser.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedParser.o36"9B9DDB2C-D682-42AA-B700-7D86D043DDC7-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408566.259315
+e370408566.439855
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.mb9894276fc13b641^569a7076fc13b641^---0#0#0#-19%DVTDocumentLocation2@97"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.m0000000000000000^3957"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.o JBQA/JBQAFeedPickerController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPickerController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAFeedPickerController.o36"EBF3DF01-62BB-403E-8A59-532780A00B0D-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408563.506374
+e370408563.926367
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.mdec78173fc13b641^ad85ed73fc13b641^---0#0#0#-19%DVTDocumentLocation2@92"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.m0000000000000000^3927"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.o JBQA/JBQALoginController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQALoginController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQALoginController.o36"F5D8F04D-F031-4FF0-9482-3A0C95DA1552-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408562.695636
+e370408563.505051
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m:28:1: warning: autosynthesized property 'stories' will use synthesized instance variable '_stories', not existing instance variable 'stories' [-Wobjc-autosynthesis-property-ivar-name-match]
+o@implementation JBQAMasterViewController
+o^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.h:48:47: note: property declared here
+o@property (strong, nonatomic) NSMutableArray *stories;
+o                                              ^
+o/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.h:41:21: note: ivar is declared here
+o    NSMutableArray *stories;
+o                    ^
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.mef37b272fc13b641^a530a373fc13b641^-725"/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m:28:1: warning: autosynthesized property 'stories' will use synthesized instance variable '_stories', not existing instance variable 'stories' [-Wobjc-autosynthesis-property-ivar-name-match]@implementation JBQAMasterViewController^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.h:48:47: note: property declared here@property (strong, nonatomic) NSMutableArray *stories;                                              ^/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.h:41:21: note: ivar is declared here    NSMutableArray *stories;                    ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@126"Autosynthesized property 'stories' will use synthesized instance variable '_stories', not existing instance variable 'stories'-370408563#18446744073709551615#0#2(2@22"Property declared here-370408563#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@97"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.h0000000000000000^47#46#47#46#1346#0#14"Semantic Issue--2@21"Ivar is declared here-370408563#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic3@97"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.h0000000000000000^40#20#40#20#1062#0#14"Semantic Issue--1#27"com.apple.dt.IDE.diagnostic3@97"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m0000000000000000^27#0#27#0#527#0#14"Semantic Issue--0#0#0#-19%DVTDocumentLocation4@97"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m0000000000000000^3957"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.o JBQA/JBQAMasterViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAMasterViewController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAMasterViewController.o36"ED841EAC-D9C9-4A35-B88C-4EE27E211670-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408563.943652
+e370408564.362437
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection87"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.mb2baf173fc13b641^bdc85c74fc13b641^---0#0#0#-19%DVTDocumentLocation2@95"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.m0000000000000000^3945"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.o JBQA/JBQAQuestionController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAQuestionController.o36"978B4191-A039-47B6-AE13-2806665C8491-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408566.441191
+e370408566.655537
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection81"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.mc51f7176fc13b641^20d2a776fc13b641^---0#0#0#-19%DVTDocumentLocation2@89"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.m0000000000000000^3909"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.o JBQA/JBQAResponseList.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQAResponseList.o36"52F325F7-C0D2-41BD-8E79-9435013A6DE2-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408564.620849
+e370408565.027881
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection93"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m55149f74fc13b641^55330775fc13b641^---0#0#0#-19%DVTDocumentLocation2@101"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m0000000000000000^3933"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.o ODRefreshControl/ODRefreshControl.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/ODRefreshControl/ODRefreshControl.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/ODRefreshControl.o36"872B213C-9B61-491A-9A33-2DC2232448E7-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408562.698209
+e370408565.290367
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection85"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m6de4b272fc13b641^255a4a75fc13b641^---0#0#0#-19%DVTDocumentLocation2@93"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m0000000000000000^3915"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.o Reachability/Reachability.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -fno-objc-arc -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/Reachability/Reachability.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/Reachability.o36"37110484-84DD-4F0A-9D06-4893CA00A482-
+
+CCompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.o /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408501.993252
+e370408502.507073
+r1
+xCompileC
+xbuild/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.o
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Compile /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m7a6dfe35fc13b641^9acf8136fc13b641^---0#0#0#-19%DVTDocumentLocation2@77"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m0000000000000000^3837"CompileC build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.o JBQA/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -include /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.d --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/main.m -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/main.o36"18E5F046-99BE-430B-9074-050FFCCD47F4-
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAAnswerController.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPicker_iPad.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAFeedPicker_iPhone.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAQuestionController_iPad.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQAResponseList_iPhone.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQADetailViewController_iPad.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQADetailViewController_iPhone.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQAMasterViewController_iPad.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/en.lproj/JBQAMasterViewController_iPhone.xib
+r0
+
+CCompileXIB /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQAAnswerViewController.xib
+r0
+
+CCopyStringsFile /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/en.lproj/InfoPlist.strings JBQA/en.lproj/InfoPlist.strings
+r0
+
+CCpResource Artwork/JBQAMobileIcon.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAMobileIcon.png
+r0
+
+CCpResource Artwork/JBQAMobileIcon@2x.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAMobileIcon@2x.png
+r0
+
+CCpResource Artwork/light_noise_diagonal.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/light_noise_diagonal.png
+r0
+
+CCpResource Artwork/light_noise_diagonal_@2X.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/light_noise_diagonal_@2X.png
+r0
+
+CCpResource Artwork/list.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/list.png
+r0
+
+CCpResource Artwork/list@2x.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/list@2x.png
+r0
+
+CCpResource Artwork/retina_wood.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/retina_wood.png
+r0
+
+CCpResource Artwork/retina_wood_@2X.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/retina_wood_@2X.png
+r0
+
+CCpResource Default-568h@2x.png build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Default-568h@2x.png
+r0
+
+CGenerateDSYMFile /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app.dSYM /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQA
+r0
+
+CLd /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQA normal i386
+s370408566.759253
+e370408568.496875
+r0
+xLd
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQA
+xnormal
+xi386
+oUndefined symbols for architecture i386:
+o  "_OBJC_CLASS_$_JBQATextFieldCell", referenced from:
+o      objc-class-ref in JBQALoginController.o
+old: symbol(s) not found for architecture i386
+oclang: error: linker command failed with exit code 1 (use -v to see invocation)
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection116"Link /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQAc686c276fc13b641^c6307f78fc13b641^-267"Undefined symbols for architecture i386:  "_OBJC_CLASS_$_JBQATextFieldCell", referenced from:      objc-class-ref in JBQALoginController.old: symbol(s) not found for architecture i386clang: error: linker command failed with exit code 1 (use -v to see invocation)4(21%IDEActivityLogMessage2@51""_OBJC_CLASS_$_JBQATextFieldCell", referenced from:-370408568#41#54#-2#-23%DVTTextDocumentLocation3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#25"Apple Mach-O Linker Error--2@39"Objc-class-ref in JBQALoginController.o-370408568#95#46#-0#-3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#26"Apple Mach-O Linker Notice--2@41"Symbol(s) not found for architecture i386-370408568#141#46#-0#-3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#26"Apple Mach-O Linker Notice--2@65"Linker command failed with exit code 1 (use -v to see invocation)-370408568#187#80#-2#-3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#25"Apple Mach-O Linker Error--0#0#0#--1409"Ld build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQA normal i386    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv IPHONEOS_DEPLOYMENT_TARGET 5.0    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -L/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -filelist /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/Objects-normal/i386/JBQA.LinkFileList -Xlinker -objc_abi_version -Xlinker 2 -fobjc-arc -fobjc-link-runtime -Xlinker -no_implicit_dylibs -mios-simulator-version-min=5.0 -lxml2.2 -framework QuartzCore -framework SystemConfiguration -framework MobileCoreServices -framework CFNetwork -lz.1.2.5 -framework UIKit -framework Foundation -framework CoreGraphics -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/JBQA36"8E4594DD-CF38-44AC-BE2A-053A017C9407-
+
+CProcessInfoPlistFile /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Info.plist JBQA/JBQA-Info.plist
+s370408490.025963
+e370408490.038119
+r1
+xProcessInfoPlistFile
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Info.plist
+xJBQA/JBQA-Info.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection28"Process JBQA/JBQA-Info.pliste1f0062afc13b641^2ba4742afc13b641^---0#0#0#-19%DVTDocumentLocation2@86"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQA-Info.plist0000000000000000^722"ProcessInfoPlistFile build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Info.plist JBQA/JBQA-Info.plist    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility JBQA/JBQA-Info.plist -genpkginfo /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app/Info.plist36"D84A4645-FB18-4636-869B-DE8F60F81E66-
+
+CProcessPCH /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408490.046977
+e370408501.986181
+r1
+xProcessPCH
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.pth
+xJBQA/JBQA-Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection31"Precompile JBQA/JBQA-Prefix.pch923f0c2afc13b641^0e84fc35fc13b641^---0#0#0#-19%DVTDocumentLocation2@86"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQA-Prefix.pch0000000000000000^3730"ProcessPCH build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQA-Prefix.pch -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.pth -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-bsukfjnkzfnpvmfhupzayzoiiefn/JBQA-Prefix.pch.d36"022C86B8-969D-4866-9537-4CF91AE4C06C-
+
+CProcessPCH /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s370408490.048079
+e370408501.986163
+r1
+xProcessPCH
+x/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.pth
+xJBQA/JBQA-Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection31"Precompile JBQA/JBQA-Prefix.pch08720c2afc13b641^d579fc35fc13b641^---0#0#0#-19%DVTDocumentLocation2@86"file://localhost/Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQA-Prefix.pch0000000000000000^3744"ProcessPCH build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/willie_m5296/github/JailbreakQA-Mobile-App    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-generated-files.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-own-target-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-all-target-headers.hmap -iquote /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/JBQA-project-headers.hmap -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources/i386 -I/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/JBQA.build/Debug-iphonesimulator/JBQA.build/DerivedSources -F/Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator -fno-objc-arc --serialize-diagnostics /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.dia -c /Users/willie_m5296/github/JailbreakQA-Mobile-App/JBQA/JBQA-Prefix.pch -o /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.pth -MMD -MT dependencies -MF /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Intermediates/PrecompiledHeaders/JBQA-Prefix-edfeixhugrdrembarlfypppiwdps/JBQA-Prefix.pch.d36"A27B529C-0315-4AE6-9D27-FC72548043CA-
+
+CProcessPCH /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Index/PrecompiledHeaders/JBQA-Prefix-afzmcohsbpemwaeazaxoqyqjnamo_ast/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CProcessPCH /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Index/PrecompiledHeaders/JBQA-Prefix-fjlfekdoyachrxcddscecwawnsfr_ast/JBQA-Prefix.pch.pth JBQA/JBQA-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CTouch /Users/willie_m5296/github/JailbreakQA-Mobile-App/build/JBQA/Build/Products/Debug-iphonesimulator/JBQA.app
+r0
+
