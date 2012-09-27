@@ -206,7 +206,21 @@ static BOOL firstCheck = YES;
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
         
         isLoggingOut = YES;
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]]];
+        
+        NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.jailbreakqa.com/logout/"]];
+        NSOperationQueue *queue = [NSOperationQueue new];
+        [NSURLConnection sendAsynchronousRequest:req queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            if (!data || error) {
+                [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An Error occured. Please Try again later." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+            }
+            
+            else {
+                [dataController checkLoginStatus];
+                isLoggingOut = YES;
+            }
+        }];
+        
+        // ?
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies])
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
@@ -216,22 +230,6 @@ static BOOL firstCheck = YES;
     }
     
     
-}
-
-#pragma mark UIWebViewDelegate -
-
--(void)webViewDidStartLoad:(UIWebView *)webView
-{
-    if (isLoggingOut)
-    {
-        [dataController checkLoginStatus];
-        isLoggingOut = YES; //Check if user is logged in, and specify what we're doing.
-    }
-    
-}
-
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An Error occured. Please Try again later." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
 }
 
 #pragma mark Parser Delegate Methods -
@@ -399,8 +397,7 @@ static BOOL firstCheck = YES;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 	    
         if (!self.detailViewController) {
-            
-	        self.detailViewController = [[JBQADetailViewController alloc] initWithNibName:@"JBQADetailViewController_iPhone" bundle:nil];
+            self.detailViewController = [[JBQADetailViewController alloc] initWithNibName:@"JBQADetailViewController_iPhone" bundle:nil];
 	    }
         
 	    self.detailViewController.detailItem = object;
@@ -411,18 +408,35 @@ static BOOL firstCheck = YES;
         self.detailViewController.detailItem = object;
     }
     
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]]]];
+    // fr0st; if you really wanna do this find another way to ftch the avatar.
+    /*__block NSURL *imageURL = nil;
     
-    NSString *img = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"];
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]]];
+    NSOperationQueue *queue = [NSOperationQueue new];
+    [NSURLConnection sendAsynchronousRequest:req queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        if (!data || error) {
+            [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An Error occured. Please Try again later." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
+        }
+        
+        else {
+            [webView loadRequest:req];
+            imageURL = [NSURL URLWithString:[webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[0].src;"]];
+        }
+    }];*/
     
-    NSURL *imageURL = [NSURL URLWithString:img];
     [self.detailViewController setQuestionTitle:title asker:asker date:date];
-    [self.detailViewController setAvatarFromURL:imageURL];
+    //[self.detailViewController setAvatarFromURL:imageURL];
     [self.detailViewController setQuestionContent:currentQuestion];
     
-    NSArray *URLComponents = [[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]] pathComponents]; //I'm bored again
     self.detailViewController.title = @"Details";
-    NSString *questionID = [URLComponents objectAtIndex:2];
-    self.detailViewController.questionID = questionID;
+    self.detailViewController.questionID = [[[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]] pathComponents] objectAtIndex:2];
+    
+    NSLog(@"endd");
+}
+
+#pragma mark UIWebViewDelegate -
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An Error occured. Please Try again later." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
 }
 @end
