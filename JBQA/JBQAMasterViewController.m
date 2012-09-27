@@ -82,13 +82,14 @@ static BOOL firstCheck = YES;
     
     UIImageView* backgroundImage = [[UIImageView alloc] init];
     
+<<<<<<< HEAD
     [self.tableView setBackgroundView:[[UIView alloc] init]];//I don't know why this is needed for the new SDK, but it is. Shitty pinstripe keeps showing up
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-
+=======
     backgroundImage.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal.png"]];
     
     self.tableView.backgroundView = backgroundImage;
-
+>>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
