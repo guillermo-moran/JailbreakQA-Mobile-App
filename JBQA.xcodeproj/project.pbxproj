@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		039D1D531610717A001DBFBA /* JBQATextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 039D1D521610717A001DBFBA /* JBQATextFieldCell.m */; };
 		48022E8215F0817B009D1DBF /* AJNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48022E8115F0817B009D1DBF /* AJNotificationView.m */; };
 		4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877EB1315EF350A004EF159 /* JBQAAnswerController.m */; };
 		4877EB1615EF350A004EF159 /* JBQAAnswerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */; };
 		489BD64615F3342400B62978 /* JBQADataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 489BD64515F3342400B62978 /* JBQADataController.m */; };
+<<<<<<< HEAD
+		ED4D0D751611274F0055F729 /* JBQAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4D0D741611274F0055F729 /* JBQAAnswerViewController.m */; };
+		ED4D0D77161127690055F729 /* JBQAAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4D0D76161127690055F729 /* JBQAAnswerViewController.xib */; };
+=======
 		48F5352115F748D100D24EB2 /* JBQAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */; };
 		48F5352215F748D100D24EB2 /* JBQAAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */; };
 		FD2207D11613ED1100DD0D27 /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD2207CF1613ED1100DD0D27 /* list@2x.png */; };
 		FD2207D21613ED1100DD0D27 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = FD2207D01613ED1100DD0D27 /* list.png */; };
+>>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
 		FD55120015E1632400214372 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5511FF15E1632400214372 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */; };
 		FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */; };
@@ -56,6 +62,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		039D1D511610717A001DBFBA /* JBQATextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQATextFieldCell.h; sourceTree = "<group>"; };
+		039D1D521610717A001DBFBA /* JBQATextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQATextFieldCell.m; sourceTree = "<group>"; };
 		48022E8015F0817B009D1DBF /* AJNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNotificationView.h; sourceTree = "<group>"; };
 		48022E8115F0817B009D1DBF /* AJNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNotificationView.m; sourceTree = "<group>"; };
 		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
@@ -65,11 +73,17 @@
 		489BD64415F3342400B62978 /* JBQADataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQADataController.h; sourceTree = "<group>"; };
 		489BD64515F3342400B62978 /* JBQADataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQADataController.m; sourceTree = "<group>"; };
 		489BD64715F33EF100B62978 /* JBQADataControllerDelegate-Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JBQADataControllerDelegate-Protocol.h"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		ED4D0D731611274F0055F729 /* JBQAAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerViewController.h; sourceTree = "<group>"; };
+		ED4D0D741611274F0055F729 /* JBQAAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerViewController.m; sourceTree = "<group>"; };
+		ED4D0D76161127690055F729 /* JBQAAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAAnswerViewController.xib; sourceTree = "<group>"; };
+=======
 		48F5351E15F748D100D24EB2 /* JBQAAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerViewController.h; sourceTree = SOURCE_ROOT; };
 		48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerViewController.m; sourceTree = SOURCE_ROOT; };
 		48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAAnswerViewController.xib; sourceTree = SOURCE_ROOT; };
 		FD2207CF1613ED1100DD0D27 /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list@2x.png"; sourceTree = "<group>"; };
 		FD2207D01613ED1100DD0D27 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+>>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
 		FD5511FE15E1632400214372 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD5511FF15E1632400214372 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FD5ECF3615D6ABCB0061E472 /* JBQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +172,7 @@
 		480D987115F741A300CE6D4A /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
+				ED4D0D76161127690055F729 /* JBQAAnswerViewController.xib */,
 				4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */,
 				FD5ECF5215D6ABCB0061E472 /* JBQAMasterViewController_iPhone.xib */,
 				FD5ECF5515D6ABCB0061E472 /* JBQAMasterViewController_iPad.xib */,
@@ -168,7 +183,6 @@
 				FDD2A1A015F54B5400E135DE /* JBQAFeedPicker_iPhone.xib */,
 				FDD2A1A215F54B6D00E135DE /* JBQAFeedPicker_iPad.xib */,
 				FDD2A1B015F584CF00E135DE /* JBQAResponseList_iPhone.xib */,
-				48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -214,8 +228,8 @@
 		48215CF815FDDA5D00238030 /* Response Views */ = {
 			isa = PBXGroup;
 			children = (
-				48F5351E15F748D100D24EB2 /* JBQAAnswerViewController.h */,
-				48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */,
+				ED4D0D731611274F0055F729 /* JBQAAnswerViewController.h */,
+				ED4D0D741611274F0055F729 /* JBQAAnswerViewController.m */,
 				FDD2A1AC15F5819600E135DE /* JBQAResponseList.h */,
 				FDD2A1AD15F5819700E135DE /* JBQAResponseList.m */,
 			);
@@ -282,6 +296,8 @@
 		FD5ECF4015D6ABCB0061E472 /* JBQA */ = {
 			isa = PBXGroup;
 			children = (
+				039D1D511610717A001DBFBA /* JBQATextFieldCell.h */,
+				039D1D521610717A001DBFBA /* JBQATextFieldCell.m */,
 				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
 				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
@@ -409,10 +425,13 @@
 				FDD2A1A115F54B5400E135DE /* JBQAFeedPicker_iPhone.xib in Resources */,
 				FDD2A1A315F54B6D00E135DE /* JBQAFeedPicker_iPad.xib in Resources */,
 				FDD2A1B115F584CF00E135DE /* JBQAResponseList_iPhone.xib in Resources */,
-				48F5352215F748D100D24EB2 /* JBQAAnswerViewController.xib in Resources */,
 				FD668222160B6A7500FC1B7B /* Default-568h@2x.png in Resources */,
+<<<<<<< HEAD
+				ED4D0D77161127690055F729 /* JBQAAnswerViewController.xib in Resources */,
+=======
 				FD2207D11613ED1100DD0D27 /* list@2x.png in Resources */,
 				FD2207D21613ED1100DD0D27 /* list.png in Resources */,
+>>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +457,8 @@
 				489BD64615F3342400B62978 /* JBQADataController.m in Sources */,
 				FDD2A19F15F547D000E135DE /* JBQAFeedPickerController.m in Sources */,
 				FDD2A1AE15F5819700E135DE /* JBQAResponseList.m in Sources */,
-				48F5352115F748D100D24EB2 /* JBQAAnswerViewController.m in Sources */,
+				039D1D531610717A001DBFBA /* JBQATextFieldCell.m in Sources */,
+				ED4D0D751611274F0055F729 /* JBQAAnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
