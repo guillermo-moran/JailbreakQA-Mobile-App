@@ -66,33 +66,17 @@ static BOOL firstCheck = YES;
     //Add Buttons
     leftFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     menuBtn = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(displayUserMenu)];
-    
-    
-    //moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(displaySelectionView)];
-    
-    UIBarButtonItem * moreItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"list.png"] style:UIBarButtonItemStylePlain target:self action:@selector(displaySelectionView)];
-    
-    self.navigationItem.rightBarButtonItem = moreItem;
+    moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(displaySelectionView)];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
     self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
-    self.toolbarItems = @[leftFlex, menuBtn]; //yay new syntax.
+    self.toolbarItems = @[leftFlex, moreButton, menuBtn]; //yay new syntax.
     
-    [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal.png"]]];
-    
-    UIImageView* backgroundImage = [[UIImageView alloc] init];
-    
-<<<<<<< HEAD
     [self.tableView setBackgroundView:[[UIView alloc] init]];//I don't know why this is needed for the new SDK, but it is. Shitty pinstripe keeps showing up
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-=======
-    backgroundImage.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal.png"]];
-    
-    self.tableView.backgroundView = backgroundImage;
->>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
     
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(refreshCurrent) forControlEvents:UIControlEventValueChanged];
     
     webView.delegate = self;
     
@@ -165,13 +149,7 @@ static BOOL firstCheck = YES;
 {
     [refreshControl beginRefreshing];
     if (dataController.isInternetActive)
-        
-        //dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:dataController.currentFeed];});
-        
-        //Background threading. FUCK YEAH!
-        
-        [feedParser performSelectorInBackground:@selector(parseXMLFileAtURL:) withObject:dataController.currentFeed];
-        
+        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:dataController.currentFeed];});
     else
         [self parseErrorOccurred:nil];
 }

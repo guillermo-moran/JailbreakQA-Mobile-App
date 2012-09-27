@@ -12,15 +12,8 @@
 		4877EB1515EF350A004EF159 /* JBQAAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4877EB1315EF350A004EF159 /* JBQAAnswerController.m */; };
 		4877EB1615EF350A004EF159 /* JBQAAnswerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */; };
 		489BD64615F3342400B62978 /* JBQADataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 489BD64515F3342400B62978 /* JBQADataController.m */; };
-<<<<<<< HEAD
 		ED4D0D751611274F0055F729 /* JBQAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4D0D741611274F0055F729 /* JBQAAnswerViewController.m */; };
 		ED4D0D77161127690055F729 /* JBQAAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4D0D76161127690055F729 /* JBQAAnswerViewController.xib */; };
-=======
-		48F5352115F748D100D24EB2 /* JBQAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */; };
-		48F5352215F748D100D24EB2 /* JBQAAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */; };
-		FD2207D11613ED1100DD0D27 /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD2207CF1613ED1100DD0D27 /* list@2x.png */; };
-		FD2207D21613ED1100DD0D27 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = FD2207D01613ED1100DD0D27 /* list.png */; };
->>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
 		FD55120015E1632400214372 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5511FF15E1632400214372 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD5ECF3B15D6ABCB0061E472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */; };
 		FD5ECF3D15D6ABCB0061E472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */; };
@@ -73,17 +66,9 @@
 		489BD64415F3342400B62978 /* JBQADataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQADataController.h; sourceTree = "<group>"; };
 		489BD64515F3342400B62978 /* JBQADataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQADataController.m; sourceTree = "<group>"; };
 		489BD64715F33EF100B62978 /* JBQADataControllerDelegate-Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JBQADataControllerDelegate-Protocol.h"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		ED4D0D731611274F0055F729 /* JBQAAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerViewController.h; sourceTree = "<group>"; };
 		ED4D0D741611274F0055F729 /* JBQAAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerViewController.m; sourceTree = "<group>"; };
 		ED4D0D76161127690055F729 /* JBQAAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAAnswerViewController.xib; sourceTree = "<group>"; };
-=======
-		48F5351E15F748D100D24EB2 /* JBQAAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerViewController.h; sourceTree = SOURCE_ROOT; };
-		48F5351F15F748D100D24EB2 /* JBQAAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerViewController.m; sourceTree = SOURCE_ROOT; };
-		48F5352015F748D100D24EB2 /* JBQAAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAAnswerViewController.xib; sourceTree = SOURCE_ROOT; };
-		FD2207CF1613ED1100DD0D27 /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list@2x.png"; sourceTree = "<group>"; };
-		FD2207D01613ED1100DD0D27 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
->>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
 		FD5511FE15E1632400214372 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD5511FF15E1632400214372 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FD5ECF3615D6ABCB0061E472 /* JBQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -344,8 +329,6 @@
 		FD621D3C15EA98B2007EEE78 /* Artwork */ = {
 			isa = PBXGroup;
 			children = (
-				FD2207CF1613ED1100DD0D27 /* list@2x.png */,
-				FD2207D01613ED1100DD0D27 /* list.png */,
 				FD621D3D15EA98B2007EEE78 /* JBQAMobileIcon.png */,
 				FD621D3E15EA98B2007EEE78 /* JBQAMobileIcon@2x.png */,
 				FD621D3F15EA98B2007EEE78 /* light_noise_diagonal.png */,
@@ -426,12 +409,7 @@
 				FDD2A1A315F54B6D00E135DE /* JBQAFeedPicker_iPad.xib in Resources */,
 				FDD2A1B115F584CF00E135DE /* JBQAResponseList_iPhone.xib in Resources */,
 				FD668222160B6A7500FC1B7B /* Default-568h@2x.png in Resources */,
-<<<<<<< HEAD
 				ED4D0D77161127690055F729 /* JBQAAnswerViewController.xib in Resources */,
-=======
-				FD2207D11613ED1100DD0D27 /* list@2x.png in Resources */,
-				FD2207D21613ED1100DD0D27 /* list.png in Resources */,
->>>>>>> Improved threading, now 9000x faster. Optimized UI for iOS 6, relocated "more" button.
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,13 +28,6 @@
     
     [self.tableView setBackgroundView:[[UIView alloc] init]];//I don't know why this is needed for the new SDK, but it is. Shitty pinstripe keeps showing up
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal"]]];
-    
-    UIImageView* backgroundImage = [[UIImageView alloc] init];
-    
-    backgroundImage.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"light_noise_diagonal.png"]];
-    
-    self.tableView.backgroundView = backgroundImage;
-    
     dataController = [JBQADataController sharedDataController];
     self.navigationItem.title = @"Select a feed";
     // Uncomment the following line to preserve selection between presentations.

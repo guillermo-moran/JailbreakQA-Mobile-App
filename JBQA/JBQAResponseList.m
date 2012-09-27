@@ -80,12 +80,11 @@
     if (dataController.isInternetActive) {
         [refreshControl beginRefreshing];
         NSLog(@"Loading answers from ID: %@",questionID);
-        
-        feedParser = [[JBQAFeedParser alloc] init];
-        feedParser.delegate = self;
-        
-        //Background threading. FUCK YEAH!
-        [feedParser performSelectorInBackground:@selector(parseXMLFileAtURL:) withObject:[NSString stringWithFormat:@"%@/questions/%@/%@",SERVICE_URL, questionID, ANSWERS_FEED]];
+        dispatch_async(backgroundQueue, ^(void) {
+            feedParser = [[JBQAFeedParser alloc] init];
+            feedParser.delegate = self;
+            [feedParser parseXMLFileAtURL:[NSString stringWithFormat:@"%@/questions/%@/%@",SERVICE_URL, questionID, ANSWERS_FEED]];
+        });
     }
     
     else {
