@@ -49,6 +49,13 @@
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
     [_tableView setBackgroundColor:[UIColor clearColor]];
+    
+    UIImageView* backgroundImage = [[UIImageView alloc] init];
+    
+    backgroundImage.backgroundColor = [UIColor clearColor];
+    
+    _tableView.backgroundView = backgroundImage;
+    
     [_tableView setScrollEnabled:NO];
     [[self view] addSubview:_tableView];
     
