@@ -79,12 +79,14 @@
 {
     if (dataController.isInternetActive) {
         [refreshControl beginRefreshing];
+        
+        feedParser = [[JBQAFeedParser alloc] init];
+        feedParser.delegate = self;
+        
         NSLog(@"Loading answers from ID: %@",questionID);
-        dispatch_async(backgroundQueue, ^(void) {
-            feedParser = [[JBQAFeedParser alloc] init];
-            feedParser.delegate = self;
-            [feedParser parseXMLFileAtURL:[NSString stringWithFormat:@"%@/questions/%@/%@",SERVICE_URL, questionID, ANSWERS_FEED]];
-        });
+        
+        [feedParser performSelectorInBackground:@selector(parseXMLFileAtURL:) withObject:[NSString stringWithFormat:@"%@/questions/%@/%@",SERVICE_URL, questionID, ANSWERS_FEED]];
+    
     }
     
     else {
