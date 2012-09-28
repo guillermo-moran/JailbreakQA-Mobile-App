@@ -45,7 +45,7 @@
 }
 
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;
-@property (strong, nonatomic) NSMutableArray *stories;
+//@property (strong, nonatomic) NSMutableArray *stories;
 @property (strong, nonatomic) JBQAReachability *reachability;
 @property (nonatomic) BOOL isLoggedIn;
 

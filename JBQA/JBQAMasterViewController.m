@@ -174,13 +174,17 @@ static BOOL firstCheck = YES;
 {
     if (firstCheck) {
         if (dataController.isInternetActive) {
-            [dataController checkLoginStatus];
             isCheckingLogin = YES; //Check if user is logged in, and specify what we're doing.
+            [dataController checkLoginStatus];
+
+            isCheckingLogin = NO;
+            firstCheck = NO;
         }
         else
             [self parseErrorOccurred:nil];
     }
-    else if (dataController.isLoggedIn) {
+    
+    if (dataController.isLoggedIn) {
         
         menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Ask a Question", nil];
     

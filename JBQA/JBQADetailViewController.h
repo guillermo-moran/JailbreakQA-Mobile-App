@@ -15,7 +15,7 @@
     IBOutlet UILabel *qAsker;
     IBOutlet UILabel *qDate; 
     IBOutlet UITextView *qTitle;                                                                                
-    NSString *questionID;
+    NSString *_questionID;
 
     UIBarButtonItem *answerButton;
 }                                                                                                               

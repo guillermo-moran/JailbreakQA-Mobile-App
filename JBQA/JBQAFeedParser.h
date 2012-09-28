@@ -29,11 +29,11 @@
 	NSString *currentElement;
 	NSMutableString *currentTitle, *currentDate, *currentSummary, *currentLink, *currentAuthor;
     NSMutableArray *parseResults;
-    id <JBQAParserDelegate> delegate;
+    __weak id <JBQAParserDelegate> _delegate;
 }
 
-@property (weak) NSXMLParser *rssParser;
-@property (strong) NSMutableDictionary *item;
+//@property (weak) NSXMLParser *rssParser;
+//@property (strong) NSMutableDictionary *item;
 @property (nonatomic, getter = isParsing) BOOL parsing;
 @property (weak) id delegate; //Hopefully, this will set the reference to nil when the parser dies :)
 
