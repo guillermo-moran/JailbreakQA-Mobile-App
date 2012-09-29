@@ -16,8 +16,8 @@
     UIWebView *loginChecker;
     NSMutableArray *delegateArray;
     NSMutableString *currentFeed;
-    JBQAReachability *internetReachable; //check if internet connection is available
-    JBQAReachability *hostReachable; //JBQA check
+    JBQAReachability *internetReachableCheck; //check if internet connection is available
+    JBQAReachability *hostReachableCheck; //JBQA check
 }
 
 @property (nonatomic, getter = isLoggedIn) BOOL loggedIn;

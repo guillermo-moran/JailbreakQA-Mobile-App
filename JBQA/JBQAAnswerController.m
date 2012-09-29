@@ -80,13 +80,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (IBAction)barButtonItemTapped:(UIBarButtonItem *)sender
 {
     if ([sender.title isEqualToString:@"Submit"]) {
-        NSLog(@"User wants to submit answer");
+        DLog(@"User wants to submit answer");
         if (self.answerTextField.text.length > 5) {
-            NSLog(@"Answer length is valid");
+            DLog(@"Answer length is valid");
             [self submitAnswerWithText:self.answerTextField.text forQuestion:self.questionID];
         }
         else {
-            NSLog(@"User is an idiot");
+            DLog(@"User is an idiot");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"JailbreakQA" message:@"Make sure your answer is at least 5 characters in length" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             [alert show];
         }
@@ -100,7 +100,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)submitAnswerWithText:(NSString *)answer forQuestion:(NSString *)questionID
 {
     NSString *questionLink = [NSString stringWithFormat:@"%@/questions/%@", SERVICE_URL, questionID];
-    NSLog(@"Question link is: %@", questionLink);
+    DLog(@"Question link is: %@", questionLink);
     self.answerWebView.delegate = self;
     
     isSubmittingAnswer = YES;
@@ -113,7 +113,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     if (isSubmittingAnswer) {
-        NSLog(@"Loading...");
+        DLog(@"Loading...");
         hud = [[UIProgressHUD alloc] init];
         [hud setText:@"Loading"];
         [hud showInView:self.view];
@@ -122,7 +122,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"Load Error.");
+    DLog(@"Load Error.");
     [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An error occurred. Try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
     [hud done];
     [hud setText:@"Done"];
@@ -134,13 +134,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"Finished loading");
+    DLog(@"Finished loading");
     
     if (isSubmittingAnswer) {
-        NSLog(@"Attempting submission: %@", self.answerTextField.text);
+        DLog(@"Attempting submission: %@", self.answerTextField.text);
         
         NSString *javascriptString = [NSString stringWithFormat:@"document.getElementsByName('text')[0].value = '%@';" "document.forms['fmanswer'].submit();", self.answerTextField.text];
-        NSLog(@"Processing javascript");
+        DLog(@"Processing javascript");
         
         [webView stringByEvaluatingJavaScriptFromString:javascriptString];
         webView.delegate = self;
@@ -158,7 +158,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
          - fr0st
          */
         
-        NSLog(@"Checking Success");
+        DLog(@"Checking Success");
         // run javascript in webview:
         NSString* html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
         

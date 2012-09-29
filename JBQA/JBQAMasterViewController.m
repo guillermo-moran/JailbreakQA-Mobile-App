@@ -56,7 +56,7 @@ static BOOL firstCheck = YES;
     
     dispatch_async(backgroundQueue, ^(void){
         [self refreshData]; //can use this, since I overrode the getter to return the main JBQA URL if the string is nil :D
-        NSLog(@"current feed = %@", dataController.currentFeed);
+        DLog(@"current feed = %@", dataController.currentFeed);
     });
     //[dataController checkLoginStatus]; No.
 }
@@ -139,7 +139,7 @@ static BOOL firstCheck = YES;
 {
     if ([keyPath isEqual:@"currentFeed"]) {
         [self showHUD];
-        NSLog(@"refreshing data for feed %@", dataController.currentFeed);
+        DLog(@"refreshing data for feed %@", dataController.currentFeed);
         
         dispatch_async(backgroundQueue, ^(void) {[self refreshData];});
     }
@@ -203,7 +203,7 @@ static BOOL firstCheck = YES;
         }
     }
     else {
-        JBQALoginController* loginView = [[JBQALoginController alloc] init];
+        JBQALoginController *loginView = [[JBQALoginController alloc] init];
         loginView.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:loginView animated:YES completion:NULL];
     }
@@ -274,7 +274,7 @@ static BOOL firstCheck = YES;
     stories = parseResults;
     isFirstRefresh = NO;
     [self.tableView reloadData];
-    NSLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
+    DLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
     [self hideHUD];
@@ -286,13 +286,13 @@ static BOOL firstCheck = YES;
 - (void)dataControllerDidBeginCheckingLogin
 {
     [self showHUD];
-    NSLog(@"Loading for login check...");
+    DLog(@"Loading for login check...");
     
 }
 
 - (void)dataControllerFailedLoadWithError:(NSError *)error
 {
-    NSLog(@"Load Error.");
+    DLog(@"Load Error.");
     
 }
 
@@ -451,7 +451,7 @@ static BOOL firstCheck = YES;
     self.detailViewController.title = @"Details";
     self.detailViewController.questionID = [[[NSURL URLWithString:[[stories objectAtIndex:storyIndex] objectForKey:@"link"]] pathComponents] objectAtIndex:2];
     
-    NSLog(@"endd");
+    DLog(@"endd");
 }
 
 #pragma mark UIWebViewDelegate -

@@ -103,7 +103,7 @@
 		FD621D4015EA98B2007EEE78 /* light_noise_diagonal_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light_noise_diagonal_@2X.png"; sourceTree = "<group>"; };
 		FD621D4115EA98B2007EEE78 /* retina_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina_wood.png; sourceTree = "<group>"; };
 		FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retina_wood_@2X.png"; sourceTree = "<group>"; };
-		FD668221160B6A7500FC1B7B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		FD668221160B6A7500FC1B7B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		FD668223160B6C3800FC1B7B /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAQuestionController.h; sourceTree = "<group>"; };
 		FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAQuestionController.m; sourceTree = "<group>"; };
@@ -210,6 +210,8 @@
 				FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */,
 				4877EB1215EF350A004EF159 /* JBQAAnswerController.h */,
 				4877EB1315EF350A004EF159 /* JBQAAnswerController.m */,
+				039D1D511610717A001DBFBA /* JBQATextFieldCell.h */,
+				039D1D521610717A001DBFBA /* JBQATextFieldCell.m */,
 			);
 			name = "Secondary Views";
 			sourceTree = "<group>";
@@ -248,7 +250,6 @@
 		FD5ECF2B15D6ABCB0061E472 = {
 			isa = PBXGroup;
 			children = (
-				FD668221160B6A7500FC1B7B /* Default-568h@2x.png */,
 				FD5ECF4015D6ABCB0061E472 /* JBQA */,
 				48A2ADC715EB3E5000A520CE /* External Classes */,
 				FD621D3C15EA98B2007EEE78 /* Artwork */,
@@ -285,8 +286,6 @@
 		FD5ECF4015D6ABCB0061E472 /* JBQA */ = {
 			isa = PBXGroup;
 			children = (
-				039D1D511610717A001DBFBA /* JBQATextFieldCell.h */,
-				039D1D521610717A001DBFBA /* JBQATextFieldCell.m */,
 				FD92F34115E4739A002D50E2 /* JBQALinks.h */,
 				FD5ECF4915D6ABCB0061E472 /* JBQAAppDelegate.h */,
 				FD5ECF4A15D6ABCB0061E472 /* JBQAAppDelegate.m */,
@@ -333,6 +332,7 @@
 		FD621D3C15EA98B2007EEE78 /* Artwork */ = {
 			isa = PBXGroup;
 			children = (
+				FD668221160B6A7500FC1B7B /* Default-568h@2x.png */,
 				FD32241316140016001A2D87 /* list@2x.png */,
 				FD32241416140016001A2D87 /* list.png */,
 				FD621D3D15EA98B2007EEE78 /* JBQAMobileIcon.png */,

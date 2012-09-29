@@ -117,7 +117,7 @@
 -(IBAction)viewResponses
 {
     JBQAResponseList *list = [[JBQAResponseList alloc] init];
-    NSLog(@"Question ID: %@",self.questionID);
+    DLog(@"Question ID: %@",self.questionID);
     [list setQuestionID:self.questionID];
     
     /* TODO:

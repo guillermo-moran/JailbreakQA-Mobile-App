@@ -83,7 +83,7 @@
         feedParser = [[JBQAFeedParser alloc] init];
         feedParser.delegate = self;
         
-        NSLog(@"Loading answers from ID: %@",questionID);
+        DLog(@"Loading answers from ID: %@",questionID);
         
         [feedParser performSelectorInBackground:@selector(parseXMLFileAtURL:) withObject:[NSString stringWithFormat:@"%@/questions/%@/%@",SERVICE_URL, questionID, ANSWERS_FEED]];
     
@@ -108,7 +108,7 @@
 - (void)parserDidEndDocumentWithResults:(id)parseResults
 {
     stories = parseResults;
-    NSLog(@"Done.");
+    DLog(@"Done.");
     [self.tableView reloadData];
     feedParser.parsing = NO;
     [refreshControl endRefreshing];

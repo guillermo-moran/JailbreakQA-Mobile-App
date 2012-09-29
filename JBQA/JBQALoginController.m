@@ -211,7 +211,7 @@
 
 - (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
 {
-    NSLog(@"Attempting login");
+    DLog(@"Attempting login");
     
     [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     loginWebView.delegate = self;
@@ -225,7 +225,7 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     if (isAttemptingLogin) {
-        NSLog(@"Logging In");
+        DLog(@"Logging In");
         hud = [[UIProgressHUD alloc] init];
         [hud setText:@"Loading"];
         [hud showInView:self.view];
@@ -235,7 +235,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"Load Error.");
+    DLog(@"Load Error.");
     [hud done];
     [hud setText:@"Done"];
     [hud hide];

@@ -47,18 +47,19 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"Finished loading for login check");
+    
+    DLog(@"Finished loading for login check");
     NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
 
     // run javascript in webview:
     [webView stringByEvaluatingJavaScriptFromString:html];
     
     if ([html rangeOfString:@"logout"].location == NSNotFound) {
-        NSLog(@"Not logged in.");
+        DLog(@"Not logged in.");
         self.loggedIn = NO;
     }
     else {
-        NSLog(@"Logged in.");
+        DLog(@"Logged in.");
         self.loggedIn = YES;
     }
     
@@ -71,7 +72,7 @@
 {
     if (!delegateArray) delegateArray = [[NSMutableArray alloc] init];
     [delegateArray addObject:delegate];
-    NSLog(@"Added object to the delegate array. No. of objects is: %i", delegateArray.count);
+    DLog(@"Added object to the delegate array. No. of objects is: %i", delegateArray.count);
 }
 
 - (id)delegateArray
@@ -99,24 +100,24 @@
 - (void)startNetworkStatusNotifications
 {    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-    internetReachable = [JBQAReachability reachabilityForInternetConnection];
+    internetReachableCheck = [JBQAReachability reachabilityForInternetConnection];
     
-    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
+    self.internetActive = [internetReachableCheck currentReachabilityStatus] != NotReachable;
     
-    [internetReachable startNotifier];
-    NSLog(@"Starting up notifier");
+    [internetReachableCheck startNotifier];
+    DLog(@"Starting up notifier");
 
-    hostReachable = [JBQAReachability reachabilityWithHostName: SERVICE_URL];
-    self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
+    hostReachableCheck = [JBQAReachability reachabilityWithHostName:SERVICE_URL];
+    self.hostReachable = [hostReachableCheck currentReachabilityStatus] != NotReachable;
     
-    [hostReachable startNotifier];
+    [hostReachableCheck startNotifier];
 }
 
 - (void)networkStatusChanged:(NSNotification *)notice
 {
     // called after network status changes
-    self.internetActive = [internetReachable currentReachabilityStatus] != NotReachable;
-    self.hostReachable = [hostReachable currentReachabilityStatus] != NotReachable;
+    self.internetActive = [internetReachableCheck currentReachabilityStatus] != NotReachable;
+    self.hostReachable = [hostReachableCheck currentReachabilityStatus] != NotReachable;
 }
 
 @end

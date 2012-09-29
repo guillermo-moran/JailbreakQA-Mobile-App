@@ -42,7 +42,7 @@
             [self.delegate parserDidStartDocument];
             
         else
-            NSLog(@"Begin parse");
+            DLog(@"Begin parse");
     }
 }
 
@@ -53,7 +53,7 @@
         [self.delegate parseErrorOccurred:parseError];
         
     else
-        NSLog(@"Parser encountered error: %@, delegate doesn't conform to protocol", parseError.description);
+        DLog(@"Parser encountered error: %@, delegate doesn't conform to protocol", parseError.description);
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -75,7 +75,7 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     @autoreleasepool {
-        //NSLog(@"ended element: %@", elementName);
+        //DLog(@"ended element: %@", elementName);
         if ([elementName isEqualToString:@"item"]) {
             // save values to an item, then store that item into the array...
             [item setObject:currentTitle forKey:@"title"];
@@ -91,7 +91,7 @@
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     @autoreleasepool {
-        //NSLog(@"found characters: %@", string);
+        //DLog(@"found characters: %@", string);
         // save the characters for the current item...
         if ([currentElement isEqualToString:@"title"]) {
             [currentTitle appendString:string];
@@ -116,7 +116,7 @@
     if ([self.delegate respondsToSelector:@selector(parserDidEndDocumentWithResults:)])
         [self.delegate parserDidEndDocumentWithResults:parseResults];
     else
-        NSLog(@"Finished parsing, delegate doesn't conform to protocol");
+        DLog(@"Finished parsing, delegate doesn't conform to protocol");
     
 }
 

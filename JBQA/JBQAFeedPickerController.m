@@ -115,29 +115,29 @@
 {
     /* you mad. Really. alloc'ing another instance of it is not going to put it on the screen >_<
     JBQAMasterViewController *master = [[JBQAMasterViewController alloc] init];
-    NSLog(@"meh");
+    DLog(@"meh");
     */
     switch (indexPath.row) {
         case 0:     //Active
             
-            NSLog(@"Selected 0");
+            DLog(@"Selected 0");
             dataController.currentFeed = RSS_FEED;
             break;
             
         case 1:     //Newest
-            NSLog(@"Selected 1");
-            NSLog(@"%@", dataController.currentFeed);
+            DLog(@"Selected 1");
+            DLog(@"%@", dataController.currentFeed);
             dataController.currentFeed = [NSMutableString stringWithString:NEWEST_FEED];
-            NSLog(@"%@", dataController.currentFeed);
+            DLog(@"%@", dataController.currentFeed);
             break;
             
         case 2:     //Unanswered
-            NSLog(@"Selected 2");
+            DLog(@"Selected 2");
             dataController.currentFeed = UNANSWERED_FEED;
             break;
             
         case 3:     //Most Voted
-            NSLog(@"Selected 3");
+            DLog(@"Selected 3");
             dataController.currentFeed = VOTED_FEED;
             break;
             

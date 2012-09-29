@@ -57,7 +57,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     if (isSubmittingQuestion) {
-        NSLog(@"Loading...");
+        DLog(@"Loading...");
         hud = [[UIProgressHUD alloc] init];
         [hud setText:@"Loading"];
         [hud showInView:self.view];
@@ -69,7 +69,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"Load Error.");
+    DLog(@"Load Error.");
     [hud done];
     [hud setText:@"Done"];
     [hud hide];
@@ -78,7 +78,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"WebView finished load. ");
+    DLog(@"WebView finished load. ");
     
     if (isSubmittingQuestion) {
         // write javascript code in a string. Ew javascript.
@@ -98,10 +98,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
     if (isCheckingSuccess) {
         
-        NSLog(@"Checking success");
+        DLog(@"Checking success");
         
         NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-        //NSLog(@"Retreived HTML Source: %@",html);
+        //DLog(@"Retreived HTML Source: %@",html);
         
         if ([html rangeOfString:qtext].location == NSNotFound) {
             [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"Error. Your question was not posted, please try again" linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
