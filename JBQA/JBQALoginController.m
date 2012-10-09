@@ -64,6 +64,8 @@
     
 }
 
+
+
 - (void)viewDidUnload
 {
     //set UI elements to nil when viewDidUnload is called, free memory :P
@@ -192,15 +194,15 @@
     [_password resignFirstResponder];
     if ([JBQAUsername length] < 3 && [JBQAPassword length] < 1) {
         
-        CABasicAnimation *animation =
-        [CABasicAnimation animationWithKeyPath:@"position"];
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+        
         [animation setDuration:0.05];
         [animation setRepeatCount:3];
         [animation setAutoreverses:YES];
-        [animation setFromValue:[NSValue valueWithCGPoint:
-                                 CGPointMake([_tableView center].x - 20.0f, [_tableView center].y)]];
-        [animation setToValue:[NSValue valueWithCGPoint:
-                               CGPointMake([_tableView center].x + 20.0f, [_tableView center].y)]];
+        
+        [animation setFromValue:[NSValue valueWithCGPoint:CGPointMake([_tableView center].x - 20.0f, [_tableView center].y)]];
+        [animation setToValue:[NSValue valueWithCGPoint:CGPointMake([_tableView center].x + 20.0f, [_tableView center].y)]];
+
         [[_tableView layer] addAnimation:animation forKey:@"position"];
         
     }
@@ -211,8 +213,6 @@
 
 - (void)loginOnWebsite:(NSString *)url username:(NSString *)username password:(NSString *)password
 {
-    DLog(@"Attempting login");
-    
     [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     loginWebView.delegate = self;
 
@@ -247,8 +247,8 @@
     
     if (isAttemptingLogin) {
         NSString *javaScriptString = [NSString stringWithFormat:@"document.getElementsByName('username')[0].value ='%@';"
-                                      "document.getElementsByName('password')[0].value ='%@';"
-                                      "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
+                                                                 "document.getElementsByName('password')[0].value ='%@';"
+                                                                 "document.getElementById('blogin').click();", JBQAUsername, JBQAPassword];
         [webView stringByEvaluatingJavaScriptFromString: javaScriptString];
         
         loginWebView.delegate = self;

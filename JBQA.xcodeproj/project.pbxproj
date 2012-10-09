@@ -61,7 +61,6 @@
 		039D1D521610717A001DBFBA /* JBQATextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQATextFieldCell.m; sourceTree = "<group>"; };
 		48022E8015F0817B009D1DBF /* AJNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJNotificationView.h; sourceTree = "<group>"; };
 		48022E8115F0817B009D1DBF /* AJNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJNotificationView.m; sourceTree = "<group>"; };
-		48070B8515D8E1EC0087D034 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		4877EB1215EF350A004EF159 /* JBQAAnswerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAAnswerController.h; sourceTree = "<group>"; };
 		4877EB1315EF350A004EF159 /* JBQAAnswerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAAnswerController.m; sourceTree = "<group>"; };
 		4877EB1415EF350A004EF159 /* JBQAAnswerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAAnswerController.xib; sourceTree = "<group>"; };
@@ -275,7 +274,6 @@
 				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
 				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
 				FDAB15AF15D99DAF001B8FA5 /* CFNetwork.framework */,
-				48070B8515D8E1EC0087D034 /* CoreFoundation.framework */,
 				FD5ECF3A15D6ABCB0061E472 /* UIKit.framework */,
 				FD5ECF3C15D6ABCB0061E472 /* Foundation.framework */,
 				FD5ECF3E15D6ABCB0061E472 /* CoreGraphics.framework */,

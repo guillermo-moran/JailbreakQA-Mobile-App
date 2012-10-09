@@ -16,7 +16,7 @@
 
 @class JBQADetailViewController, JBQAReachability, ODRefreshControl;
 
-@interface JBQAMasterViewController : UITableViewController <JBQADataControllerDelegate, JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate, UIPickerViewDelegate>
+@interface JBQAMasterViewController : UITableViewController <JBQADataControllerDelegate, JBQAParserDelegate, UIActionSheetDelegate, UIWebViewDelegate>
 {
     JBQADataController *dataController;
     
@@ -41,7 +41,6 @@
     NSMutableArray *stories;
     //Using Grand Central Dispatch for now, since such a simple thing hardly warrants using NSOperations
     dispatch_queue_t backgroundQueue;
-    
 }
 
 @property (strong, nonatomic) JBQADetailViewController *detailViewController;

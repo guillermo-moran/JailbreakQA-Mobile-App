@@ -113,32 +113,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /* you mad. Really. alloc'ing another instance of it is not going to put it on the screen >_<
-    JBQAMasterViewController *master = [[JBQAMasterViewController alloc] init];
-    DLog(@"meh");
-    */
     switch (indexPath.row) {
         case 0:     //Active
-            
-            DLog(@"Selected 0");
-            dataController.currentFeed = RSS_FEED;
+            if (![dataController.currentFeed  isEqual:RSS_FEED])
+                dataController.currentFeed = RSS_FEED;
             break;
             
         case 1:     //Newest
-            DLog(@"Selected 1");
-            DLog(@"%@", dataController.currentFeed);
-            dataController.currentFeed = [NSMutableString stringWithString:NEWEST_FEED];
-            DLog(@"%@", dataController.currentFeed);
+            if (![dataController.currentFeed isEqual:NEWEST_FEED])
+                dataController.currentFeed = NEWEST_FEED;
             break;
             
         case 2:     //Unanswered
-            DLog(@"Selected 2");
-            dataController.currentFeed = UNANSWERED_FEED;
+            if (![dataController.currentFeed isEqual:UNANSWERED_FEED]);
+                dataController.currentFeed = UNANSWERED_FEED;
             break;
             
         case 3:     //Most Voted
-            DLog(@"Selected 3");
-            dataController.currentFeed = VOTED_FEED;
+            if (![dataController.currentFeed isEqual:VOTED_FEED]);
+                dataController.currentFeed = VOTED_FEED;
             break;
             
         default:

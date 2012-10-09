@@ -30,20 +30,19 @@
 static BOOL isFirstRefresh = YES;
 static BOOL firstCheck = YES;
 
-#pragma mark View Stuff -
+#pragma mark View Lifecycle -
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"JBQA";
     }
-    
     return self;
 }
 
 - (void)viewDidLoad
 {
+    backgroundQueue = dispatch_queue_create("jbqamobile.bgqueue", NULL);
     
     dataController = [JBQADataController sharedDataController];
     [dataController setDelegate:self];
@@ -54,8 +53,9 @@ static BOOL firstCheck = YES;
     [feedParser setDelegate:self];
     feedParser.parsing = YES;
     
+    __weak id meh = self; //no retain cycles pls
     dispatch_async(backgroundQueue, ^(void){
-        [self refreshData]; //can use this, since I overrode the getter to return the main JBQA URL if the string is nil :D
+        [meh refreshData]; //can use this, since I overrode the getter to return the main JBQA URL if the string is nil :D
         DLog(@"current feed = %@", dataController.currentFeed);
     });
     //[dataController checkLoginStatus]; No.
@@ -89,7 +89,7 @@ static BOOL firstCheck = YES;
     refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     
-    webView.delegate = self;
+    //webView.delegate = self; lolwat
     
 }
 - (void)viewDidUnload
@@ -100,6 +100,9 @@ static BOOL firstCheck = YES;
     leftFlex = nil;
     refreshControl = nil;
     hud = nil;
+    
+    dispatch_release(backgroundQueue);
+    
     [super viewDidUnload];
 }
 
@@ -159,13 +162,8 @@ static BOOL firstCheck = YES;
 {
     [refreshControl beginRefreshing];
     if (dataController.isInternetActive)
-        
-        //dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:dataController.currentFeed];});
-        
-        //Background threading. FUCK YEAH!
-        
-        [feedParser performSelectorInBackground:@selector(parseXMLFileAtURL:) withObject:dataController.currentFeed];
-        
+        dispatch_async(backgroundQueue, ^(void) {[feedParser parseXMLFileAtURL:dataController.currentFeed];});
+    
     else
         [self parseErrorOccurred:nil];
 }
@@ -202,11 +200,6 @@ static BOOL firstCheck = YES;
             [menuSheet showFromToolbar:self.navigationController.toolbar];
         }
     }
-    else {
-        JBQALoginController *loginView = [[JBQALoginController alloc] init];
-        loginView.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:loginView animated:YES completion:NULL];
-    }
 }
 
 - (void)ask
@@ -240,7 +233,6 @@ static BOOL firstCheck = YES;
             }
         }];
         
-        // ?
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies])
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
@@ -274,7 +266,6 @@ static BOOL firstCheck = YES;
     stories = parseResults;
     isFirstRefresh = NO;
     [self.tableView reloadData];
-    DLog(@"tableView updated, with %d items", [stories count]); //always thirty GAR! I WANT MOAR
     feedParser.parsing = NO;
     [refreshControl endRefreshing];
     [self hideHUD];
@@ -293,14 +284,12 @@ static BOOL firstCheck = YES;
 - (void)dataControllerFailedLoadWithError:(NSError *)error
 {
     DLog(@"Load Error.");
-    
 }
 
 - (void)dataControllerFinishedCheckingLoginWithResult:(BOOL)isLoggedIn
 {
     _isLoggedIn = isLoggedIn;
     
-    if (isCheckingLogin) {
         
         if (_isLoggedIn) {
             menuSheet = [[UIActionSheet alloc] initWithTitle:@"JailbreakQA" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Ask a Question", nil];
@@ -326,8 +315,6 @@ static BOOL firstCheck = YES;
             loginNavigationController.modalPresentationStyle = UIModalPresentationFormSheet;
             [self presentViewController:loginNavigationController animated:YES completion:NULL];
         }
-        isCheckingLogin = NO; //Reset it please, kthxbai
-    }
     
     if (isLoggingOut) {
         if (_isLoggedIn) {
@@ -453,10 +440,11 @@ static BOOL firstCheck = YES;
     
     DLog(@"endd");
 }
-
+/*
 #pragma mark UIWebViewDelegate -
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [AJNotificationView showNoticeInView:self.view type:AJNotificationTypeRed title:@"An Error occured. Please Try again later." linedBackground:AJLinedBackgroundTypeDisabled hideAfter:3.0f];
 }
+ */
 @end
