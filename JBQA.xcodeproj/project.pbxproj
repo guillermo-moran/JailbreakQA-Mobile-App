@@ -39,6 +39,7 @@
 		FD621D4815EA98B2007EEE78 /* retina_wood_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */; };
 		FD668222160B6A7500FC1B7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD668221160B6A7500FC1B7B /* Default-568h@2x.png */; };
 		FD668224160B6C3800FC1B7B /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FD668223160B6C3800FC1B7B /* libxml2.2.dylib */; };
+		FD831FAF16FF429F006A97B7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD831FAE16FF429F006A97B7 /* CoreFoundation.framework */; };
 		FD92F33D15E47130002D50E2 /* JBQAQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */; };
 		FD92F33E15E47130002D50E2 /* JBQAQuestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */; };
 		FD92F34015E47168002D50E2 /* JBQAQuestionController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD92F33F15E47168002D50E2 /* JBQAQuestionController_iPad.xib */; };
@@ -104,6 +105,7 @@
 		FD621D4215EA98B2007EEE78 /* retina_wood_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retina_wood_@2X.png"; sourceTree = "<group>"; };
 		FD668221160B6A7500FC1B7B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		FD668223160B6C3800FC1B7B /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		FD831FAE16FF429F006A97B7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		FD92F33A15E47130002D50E2 /* JBQAQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBQAQuestionController.h; sourceTree = "<group>"; };
 		FD92F33B15E47130002D50E2 /* JBQAQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBQAQuestionController.m; sourceTree = "<group>"; };
 		FD92F33C15E47130002D50E2 /* JBQAQuestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBQAQuestionController.xib; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD831FAF16FF429F006A97B7 /* CoreFoundation.framework in Frameworks */,
 				FD668224160B6C3800FC1B7B /* libxml2.2.dylib in Frameworks */,
 				FDDC8B6715E92D3400DC305F /* QuartzCore.framework in Frameworks */,
 				FDAB15B415D99DB7001B8FA5 /* SystemConfiguration.framework in Frameworks */,
@@ -270,6 +273,7 @@
 			children = (
 				FD668223160B6C3800FC1B7B /* libxml2.2.dylib */,
 				FDAB15AB15D99D91001B8FA5 /* libz.1.2.5.dylib */,
+				FD831FAE16FF429F006A97B7 /* CoreFoundation.framework */,
 				FDDC8B6615E92D3400DC305F /* QuartzCore.framework */,
 				FDAB15B315D99DB7001B8FA5 /* SystemConfiguration.framework */,
 				FDAB15B115D99DB3001B8FA5 /* MobileCoreServices.framework */,
